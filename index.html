@@ -1,0 +1,1654 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ayuda al Vecino — Beneficios y Fondos para tu Comunidad</title>
+<meta name="description" content="Plataforma gratuita para Chile: encuentra beneficios municipales, fondos para juntas de vecinos, FONDEVE, FNDR, FOSIS y más — todo en un solo lugar, en lenguaje simple.">
+<meta property="og:title" content="Ayuda al Vecino — Beneficios y Fondos para tu Comunidad">
+<meta property="og:description" content="Beneficios personales por municipio y fondos para juntas de vecinos. Gratis, en simple, para toda Chile.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_CL">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --verde:#1a6b3c; --verde2:#2d9e5f; --verde-s:#e8f5ee;
+  --amarillo:#f5c842; --amarillo-s:#fef9e7;
+  --gris-o:#1c2331; --gris:#4a5568; --gris-c:#f7f8fa;
+  --blanco:#fff; --borde:#e2e8f0;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--gris-c);color:var(--gris-o);min-height:100vh}
+
+/* NAV */
+nav{background:var(--verde);padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:64px;position:sticky;top:0;z-index:100;box-shadow:0 2px 12px rgba(0,0,0,.15)}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none}
+.logo-icon{width:36px;height:36px;background:var(--amarillo);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:18px}
+.logo-text{font-family:'Fraunces',serif;color:#fff;font-size:1.2rem;font-weight:700;line-height:1.1}
+.logo-text span{display:block;font-size:.65rem;font-weight:300;opacity:.8;letter-spacing:1px;text-transform:uppercase}
+.nav-links{display:flex;gap:1.5rem;align-items:center}
+.nav-links a{color:rgba(255,255,255,.85);text-decoration:none;font-size:.9rem;font-weight:500;transition:color .2s}
+.nav-links a:hover{color:var(--amarillo)}
+.btn-nav{background:var(--amarillo);color:var(--gris-o)!important;padding:8px 18px;border-radius:20px;font-weight:600!important;font-size:.85rem!important}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,var(--verde),#0f4a28);padding:4rem 2rem 3rem;text-align:center;position:relative;overflow:hidden}
+.hero-badge{display:inline-block;background:rgba(245,200,66,.2);color:var(--amarillo);border:1px solid rgba(245,200,66,.3);padding:6px 16px;border-radius:20px;font-size:.8rem;font-weight:600;letter-spacing:.5px;margin-bottom:1.5rem;text-transform:uppercase}
+.hero h1{font-family:'Fraunces',serif;font-size:clamp(2rem,5vw,3.2rem);color:#fff;line-height:1.15;margin-bottom:1rem}
+.hero h1 em{color:var(--amarillo);font-style:normal}
+.hero p{color:rgba(255,255,255,.8);font-size:1.05rem;max-width:540px;margin:0 auto 2rem;line-height:1.6}
+
+/* BUSCADOR */
+.buscador{background:#fff;border-radius:16px;padding:1.5rem;max-width:780px;margin:0 auto;box-shadow:0 20px 60px rgba(0,0,0,.25)}
+.buscador-titulo{font-size:.85rem;color:var(--gris);font-weight:600;margin-bottom:1rem;text-align:left}
+.fila-filtros{display:grid;gap:.75rem;margin-bottom:.75rem}
+.fila-3{grid-template-columns:1fr 1fr 1fr}
+.fila-4{grid-template-columns:1fr 1fr 1fr 1fr}
+.fg label{display:block;font-size:.72rem;color:var(--gris);margin-bottom:4px;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.fg select{width:100%;padding:10px 12px;border:1.5px solid var(--borde);border-radius:10px;font-family:'DM Sans',sans-serif;font-size:.88rem;color:var(--gris-o);background:var(--gris-c);cursor:pointer;transition:border-color .2s;-webkit-appearance:none}
+.fg select:focus{outline:none;border-color:var(--verde2);background:#fff}
+.btn-buscar{background:var(--verde);color:#fff;border:none;padding:10px 20px;border-radius:10px;font-family:'DM Sans',sans-serif;font-weight:600;font-size:.88rem;cursor:pointer;height:40px;transition:background .2s;align-self:end}
+.btn-buscar:hover{background:var(--verde2)}
+.btn-limpiar{background:#4a5568;color:#fff;border:none;padding:10px 20px;border-radius:10px;font-family:'DM Sans',sans-serif;font-weight:600;font-size:.88rem;cursor:pointer;height:40px;transition:background .2s;align-self:end}
+.btn-limpiar:hover{background:#2d3748}
+
+/* STATS */
+.stats-bar{background:#fff;border-bottom:1px solid var(--borde);padding:1rem 2rem;display:flex;justify-content:center;gap:3rem}
+.stat{text-align:center}
+.stat-num{font-family:'Fraunces',serif;font-size:1.6rem;font-weight:900;color:var(--verde)}
+.stat-label{font-size:.75rem;color:var(--gris);font-weight:500}
+
+/* ALERTA BANNER */
+.banner{background:linear-gradient(90deg,#fff8e1,#fffde7);border-left:4px solid var(--amarillo);padding:.85rem 2rem;display:flex;align-items:center;gap:.75rem;font-size:.88rem;color:#7a5c00;font-weight:500}
+.badge-nuevo{background:var(--amarillo);color:#7a5c00;font-size:.7rem;font-weight:700;padding:2px 8px;border-radius:10px;text-transform:uppercase}
+.banner a{color:var(--verde);font-weight:600;margin-left:auto;text-decoration:none}
+
+/* MAIN */
+main{max-width:1200px;margin:0 auto;padding:2.5rem 1.5rem}
+
+/* TABS */
+.tabs{display:flex;gap:.4rem;border-bottom:2px solid var(--borde);margin-bottom:2rem}
+.tab{padding:.6rem 1.2rem;border:none;background:transparent;font-family:'DM Sans',sans-serif;font-size:.88rem;font-weight:600;color:var(--gris);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s}
+.tab.activa{color:var(--verde);border-bottom-color:var(--verde)}
+.tab-content{display:none}
+.tab-content.activa{display:block}
+
+/* SECCIÓN TITULO */
+.sec-titulo{font-family:'Fraunces',serif;font-size:1.4rem;color:var(--gris-o);margin-bottom:1.25rem;display:flex;align-items:center;gap:.5rem}
+
+/* CATEGORÍAS */
+.cats-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:.75rem;margin-bottom:2.5rem}
+.cat-btn{background:#fff;border:1.5px solid var(--borde);border-radius:14px;padding:1rem .75rem;text-align:center;cursor:pointer;transition:all .2s;font-family:'DM Sans',sans-serif}
+.cat-btn:hover,.cat-btn.activa{border-color:var(--verde);background:var(--verde-s);transform:translateY(-2px);box-shadow:0 6px 16px rgba(26,107,60,.12)}
+.cat-btn .emoji{font-size:1.8rem;display:block;margin-bottom:.4rem}
+.cat-btn .nombre{font-size:.77rem;font-weight:600;color:var(--gris-o);line-height:1.2}
+
+/* FONDOS */
+.fondos-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.25rem}
+.fondos-count{font-size:.85rem;color:var(--gris)}
+.fondos-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1.25rem;margin-bottom:3rem}
+
+/* BANNER COMUNA */
+.banner-comuna{display:none;background:var(--verde-s);border:1.5px solid var(--verde2);border-radius:12px;padding:.75rem 1rem;margin-bottom:1rem;align-items:center;gap:.5rem;font-size:.85rem;color:var(--verde);font-weight:500}
+
+/* TARJETA */
+.tarjeta{background:#fff;border-radius:18px;border:1.5px solid var(--borde);overflow:hidden;transition:transform .2s,box-shadow .2s;cursor:pointer}
+.tarjeta:hover{transform:translateY(-4px);box-shadow:0 16px 40px rgba(26,107,60,.13);border-color:var(--verde2)}
+.tarjeta-top{padding:1.25rem 1.25rem 0;display:flex;justify-content:space-between;align-items:flex-start}
+.t-inst{font-size:.7rem;font-weight:700;color:var(--verde);text-transform:uppercase;letter-spacing:.5px;background:var(--verde-s);padding:3px 10px;border-radius:8px}
+.estado-badge{font-size:.72rem;font-weight:700;padding:4px 10px;border-radius:10px;display:flex;align-items:center;gap:4px}
+.e-abierto{background:#e8f8ef;color:#1a6b3c}
+.e-proximo{background:#fff8e1;color:#b7860a}
+.e-cerrado{background:#fef0ef;color:#c0392b}
+.estado-dot{width:6px;height:6px;border-radius:50%;display:inline-block}
+.e-abierto .estado-dot{background:#1a6b3c;animation:pulso 1.5s infinite}
+.e-proximo .estado-dot{background:#f5c842}
+.e-cerrado .estado-dot{background:#e74c3c}
+@keyframes pulso{0%,100%{opacity:1}50%{opacity:.4}}
+.tarjeta-body{padding:1rem 1.25rem}
+.t-nombre{font-family:'Fraunces',serif;font-size:1rem;font-weight:700;color:var(--gris-o);margin-bottom:.5rem;line-height:1.25}
+.t-desc{font-size:.84rem;color:var(--gris);line-height:1.5;margin-bottom:1rem}
+.t-datos{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:1rem}
+.dato{background:var(--gris-c);border-radius:10px;padding:.6rem .75rem}
+.dato-label{font-size:.67rem;color:var(--gris);font-weight:600;text-transform:uppercase;letter-spacing:.3px;margin-bottom:2px}
+.dato-valor{font-size:.84rem;font-weight:600;color:var(--gris-o)}
+.t-tags{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:.75rem}
+.tag{font-size:.72rem;padding:3px 10px;border-radius:8px;background:#f0f4f8;color:var(--gris);font-weight:500}
+.tag-co{background:#fff8e1;color:#7a5c00}
+.tarjeta-footer{padding:.9rem 1.25rem;border-top:1px solid var(--borde);display:flex;gap:.6rem;align-items:center}
+.btn-ver{flex:1;background:var(--verde);color:#fff;border:none;padding:9px 16px;border-radius:10px;font-family:'DM Sans',sans-serif;font-weight:600;font-size:.83rem;cursor:pointer;transition:background .2s}
+.btn-ver:hover{background:var(--verde2)}
+.btn-alerta{background:var(--amarillo-s);border:1.5px solid var(--amarillo);color:#7a5c00;padding:9px 12px;border-radius:10px;font-size:.85rem;cursor:pointer;transition:all .2s}
+.btn-alerta:hover,.btn-alerta.activa{background:var(--amarillo)}
+
+/* CALENDARIO */
+.cal-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:.75rem;margin-bottom:3rem}
+.cal-item{background:#fff;border-radius:14px;border:1.5px solid var(--borde);padding:1rem 1.25rem;display:flex;gap:1rem;align-items:center;transition:all .2s}
+.cal-item:hover{border-color:var(--verde);box-shadow:0 4px 16px rgba(26,107,60,.1)}
+.cal-fecha{background:var(--verde);color:#fff;border-radius:10px;padding:.5rem .75rem;text-align:center;min-width:54px;flex-shrink:0}
+.cal-fecha .dia{font-family:'Fraunces',serif;font-size:1.4rem;font-weight:900;line-height:1}
+.cal-fecha .mes{font-size:.65rem;text-transform:uppercase;letter-spacing:.5px;opacity:.85}
+.cal-info .cal-nombre{font-weight:600;font-size:.87rem;color:var(--gris-o);margin-bottom:2px}
+.cal-info .cal-tipo{font-size:.75rem;color:var(--gris)}
+.cal-urgente{border-color:var(--amarillo);background:var(--amarillo-s)}
+.cal-urgente .cal-fecha{background:var(--amarillo);color:var(--gris-o)}
+
+/* FAQ */
+.faq-item{background:#fff;border:1.5px solid var(--borde);border-radius:14px;margin-bottom:.6rem;overflow:hidden}
+.faq-pregunta{padding:1rem 1.25rem;font-weight:600;font-size:.88rem;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+.faq-pregunta:hover{background:var(--verde-s)}
+.faq-resp{display:none;padding:0 1.25rem 1rem;font-size:.85rem;color:var(--gris);line-height:1.6}
+.faq-resp.abierta{display:block}
+
+/* MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:1000;align-items:center;justify-content:center;padding:1rem}
+.modal-overlay.abierto{display:flex}
+.modal{background:#fff;border-radius:20px;padding:2rem;max-width:440px;width:100%;position:relative;animation:slideUp .3s ease;max-height:90vh;overflow-y:auto}
+.modal-detalle{max-width:580px}
+@keyframes slideUp{from{transform:translateY(30px);opacity:0}to{transform:translateY(0);opacity:1}}
+.modal-close{position:absolute;top:1rem;right:1rem;background:var(--gris-c);border:none;width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center}
+.modal h2{font-family:'Fraunces',serif;font-size:1.4rem;margin-bottom:.4rem}
+.modal p.sub{font-size:.87rem;color:var(--gris);margin-bottom:1.5rem}
+.fg2{margin-bottom:1rem}
+.fg2 label{display:block;font-size:.8rem;font-weight:600;color:var(--gris-o);margin-bottom:4px}
+.fg2 input,.fg2 select{width:100%;padding:10px 14px;border:1.5px solid var(--borde);border-radius:10px;font-family:'DM Sans',sans-serif;font-size:.9rem;transition:border-color .2s}
+.fg2 input:focus,.fg2 select:focus{outline:none;border-color:var(--verde)}
+.check-row{display:flex;align-items:center;gap:.5rem;font-size:.82rem;color:var(--gris);margin-bottom:1.25rem}
+.btn-reg{width:100%;background:var(--verde);color:#fff;border:none;padding:12px;border-radius:12px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:.95rem;cursor:pointer;transition:background .2s}
+.btn-reg:hover{background:var(--verde2)}
+.success{text-align:center;padding:1.5rem 0}
+.success .s-icon{font-size:3rem;margin-bottom:1rem}
+.success h3{font-family:'Fraunces',serif;font-size:1.3rem;margin-bottom:.5rem}
+.success p{font-size:.85rem;color:var(--gris)}
+
+/* DETALLE TABS */
+.d-tabs{display:flex;gap:.3rem;border-bottom:2px solid var(--borde);margin-bottom:1rem}
+.dtab{padding:.5rem 1rem;border:none;background:transparent;font-family:'DM Sans',sans-serif;font-size:.82rem;font-weight:600;color:var(--gris);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s;border-radius:6px 6px 0 0}
+.dtab:hover{color:var(--verde);background:var(--verde-s)}
+.dtab.activa{color:var(--verde);border-bottom-color:var(--verde);background:transparent}
+.dtab-panel{display:none}
+.dtab-panel.activa{display:block}
+.d-sec{margin-bottom:1.25rem}
+.d-sec h4{font-size:.78rem;font-weight:700;color:var(--verde);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.5rem}
+.d-sec p{font-size:.87rem;color:var(--gris);line-height:1.6}
+.d-datos{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:1.25rem}
+.d-dato{background:var(--gris-c);padding:.85rem;border-radius:12px}
+.d-dato .lbl{font-size:.7rem;font-weight:700;color:var(--gris);text-transform:uppercase;margin-bottom:3px}
+.d-dato .val{font-size:.95rem;font-weight:600;color:var(--gris-o)}
+.ejemplo-item{background:var(--gris-c);border-radius:10px;padding:.65rem .9rem;font-size:.87rem;color:var(--gris-o);border-left:3px solid var(--verde2);margin-bottom:.5rem}
+.caso-box{background:var(--verde-s);border-radius:12px;padding:1rem;font-size:.87rem;color:var(--verde);line-height:1.6;border:1.5px solid var(--verde2)}
+.paso-item{display:flex;gap:.75rem;align-items:flex-start;margin-bottom:.6rem}
+.paso-num{background:var(--verde);color:#fff;border-radius:50%;width:24px;height:24px;min-width:24px;display:flex;align-items:center;justify-content:center;font-size:.75rem;font-weight:700;margin-top:1px}
+.paso-txt{font-size:.87rem;color:var(--gris-o);padding-top:3px}
+.btn-postular{width:100%;background:var(--verde);color:#fff;border:none;padding:13px;border-radius:12px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:1rem;cursor:pointer;transition:background .2s;margin-top:.5rem}
+.btn-postular:hover{background:var(--verde2)}
+
+/* TOAST */
+.toast{position:fixed;bottom:2rem;right:2rem;background:var(--gris-o);color:#fff;padding:12px 20px;border-radius:12px;font-size:.87rem;font-weight:500;z-index:2000;transform:translateY(80px);opacity:0;transition:all .3s;max-width:320px}
+.toast.visible{transform:translateY(0);opacity:1}
+.toast.verde{background:var(--verde)}
+
+/* FOOTER */
+footer{background:var(--gris-o);color:rgba(255,255,255,.7);padding:2rem;text-align:center;font-size:.82rem;margin-top:2rem}
+footer strong{color:#fff}
+footer a{color:var(--amarillo);text-decoration:none}
+
+/* HAMBURGER */
+.hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:transparent;border:none;cursor:pointer;padding:6px;border-radius:6px;transition:background .2s}
+.hamburger:hover{background:rgba(255,255,255,.15)}
+.hamburger span{display:block;width:22px;height:2px;background:#fff;border-radius:2px;transition:transform .25s,opacity .25s}
+.hamburger.abierto span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.abierto span:nth-child(2){opacity:0}
+.hamburger.abierto span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+@media(max-width:768px){
+  .fila-4{grid-template-columns:1fr 1fr}
+}
+@media(max-width:640px){
+  .fila-3,.fila-4{grid-template-columns:1fr 1fr}
+  .fondos-grid{grid-template-columns:1fr}
+  .stats-bar{gap:1.5rem}
+  nav{padding:0 1rem}
+  .hero{padding:3rem 1rem 2.5rem}
+  .d-datos{grid-template-columns:1fr}
+  .hamburger{display:flex}
+  .nav-links{display:none;position:absolute;top:64px;left:0;right:0;background:var(--verde);flex-direction:column;gap:0;z-index:99;box-shadow:0 6px 20px rgba(0,0,0,.25);padding:.5rem 0}
+  .nav-links.abierto{display:flex}
+  .nav-links a{color:rgba(255,255,255,.9)!important;padding:.85rem 1.5rem;border-bottom:1px solid rgba(255,255,255,.1);font-size:.95rem!important;font-weight:500!important;border-radius:0!important}
+  .nav-links a:last-child{border-bottom:none}
+  .nav-links .btn-nav{background:var(--amarillo);color:var(--gris-o)!important;margin:.75rem 1.5rem;border-radius:10px!important;text-align:center;font-weight:700!important}
+  .hide-m{display:block}
+}
+
+  /* INICIO */
+  .inicio-acerca{background:linear-gradient(135deg,var(--verde),#0f4a28);border-radius:20px;padding:2.5rem;margin-bottom:2.5rem;text-align:center;color:#fff}
+  .inicio-icono{font-size:3rem;margin-bottom:1rem}
+  .inicio-titulo{font-family:"Fraunces",serif;font-size:1.8rem;margin-bottom:1rem;color:#fff}
+  .inicio-texto{font-size:.95rem;line-height:1.8;color:rgba(255,255,255,.9);max-width:680px;margin:0 auto}
+  .inicio-subtitulo{font-family:"Fraunces",serif;font-size:1.3rem;color:var(--gris-o);margin-bottom:1.25rem;text-align:center}
+  .inicio-opciones{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:2.5rem}
+  .inicio-card{background:#fff;border:2px solid var(--borde);border-radius:20px;padding:2rem;cursor:pointer;transition:all .25s;text-align:center}
+  .inicio-card:hover{border-color:var(--verde);transform:translateY(-4px);box-shadow:0 16px 40px rgba(26,107,60,.15)}
+  .ic-emoji{font-size:3rem;margin-bottom:.75rem}
+  .ic-titulo{font-family:"Fraunces",serif;font-size:1.3rem;font-weight:700;color:var(--gris-o);margin-bottom:.6rem}
+  .ic-desc{font-size:.87rem;color:var(--gris);line-height:1.6;margin-bottom:1rem;min-height:60px}
+  .ic-stats{display:flex;justify-content:center;gap:1rem;margin-bottom:1.25rem}
+  .ic-stats span{background:var(--verde-s);color:var(--verde);font-size:.78rem;font-weight:700;padding:4px 12px;border-radius:20px}
+  .ic-btn{background:var(--verde);color:#fff;padding:10px 24px;border-radius:10px;font-size:.88rem;font-weight:700;display:inline-block;transition:background .2s}
+  .inicio-card:hover .ic-btn{background:var(--verde2)}
+  .inicio-numeros{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;background:var(--gris-c);border-radius:16px;padding:1.5rem}
+  .in-item{text-align:center}
+  .in-num{font-family:"Fraunces",serif;font-size:1.8rem;font-weight:900;color:var(--verde)}
+  .in-label{font-size:.75rem;color:var(--gris);font-weight:500;margin-top:2px}
+  @media(max-width:640px){
+    .inicio-opciones{grid-template-columns:1fr}
+    .inicio-numeros{grid-template-columns:1fr 1fr}
+    .ic-desc{min-height:auto}
+  }
+
+  /* MUNICIPIOS */
+  .muni-btn{background:#fff;border:1.5px solid var(--borde);border-radius:14px;padding:1rem;text-align:center;cursor:pointer;transition:all .2s;font-family:"DM Sans",sans-serif}
+  .muni-btn:hover,.muni-btn.activa{border-color:var(--verde);background:var(--verde-s);transform:translateY(-2px);box-shadow:0 6px 16px rgba(26,107,60,.12)}
+  .muni-btn .m-nombre{font-size:.88rem;font-weight:700;color:var(--gris-o);display:block;margin-bottom:2px}
+  .muni-btn .m-region{font-size:.72rem;color:var(--gris)}
+  .muni-btn .m-pop{font-size:.7rem;color:var(--verde);font-weight:600;margin-top:4px;display:block}
+  .muni-card{background:#fff;border-radius:18px;border:1.5px solid var(--borde);overflow:hidden;margin-bottom:2rem}
+  .muni-header{padding:1.5rem;background:linear-gradient(135deg,var(--verde),#0f4a28);color:#fff;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
+  .muni-header h3{font-family:"Fraunces",serif;font-size:1.5rem;margin-bottom:.25rem}
+  .muni-header p{font-size:.85rem;opacity:.85}
+  .muni-header a{background:rgba(255,255,255,.2);color:#fff;padding:7px 16px;border-radius:20px;text-decoration:none;font-size:.82rem;font-weight:600;border:1px solid rgba(255,255,255,.3);transition:background .2s}
+  .muni-header a:hover{background:rgba(255,255,255,.35)}
+  .muni-body{padding:1.5rem}
+  .cat-seccion{margin-bottom:1.5rem}
+  .cat-titulo{display:flex;align-items:center;gap:.5rem;font-family:"Fraunces",serif;font-size:1rem;color:var(--gris-o);margin-bottom:.75rem;padding-bottom:.5rem;border-bottom:2px solid var(--verde-s)}
+  .beneficio-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:.75rem}
+  .beneficio-card{background:var(--gris-c);border-radius:12px;padding:1rem;border:1.5px solid var(--borde);transition:all .2s;cursor:pointer}
+  .beneficio-card:hover{border-color:var(--verde);background:var(--verde-s)}
+  .b-titulo{font-weight:700;font-size:.88rem;color:var(--gris-o);margin-bottom:.4rem}
+  .b-desc{font-size:.82rem;color:var(--gris);line-height:1.5;margin-bottom:.6rem}
+  .b-como-btn{font-size:.75rem;color:var(--verde);font-weight:600;background:none;border:none;cursor:pointer;padding:0;font-family:"DM Sans",sans-serif}
+  .b-como{display:none;margin-top:.5rem;padding:.75rem;background:#fff;border-radius:8px;font-size:.83rem;color:var(--gris-o);line-height:1.6;border-left:3px solid var(--verde2)}
+  .b-como.visible{display:block}
+  .beneficio-card{position:relative}
+  .b-como a{display:inline-block;margin-top:.5rem;background:var(--verde);color:#fff;padding:6px 14px;border-radius:8px;font-size:.78rem;font-weight:600;text-decoration:none;transition:background .2s}
+  .b-como a:hover{background:var(--verde2)}
+
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="logo">
+    <div class="logo-icon">🏘️</div>
+    <div class="logo-text">Ayuda al Vecino<span>Chile · Fondos y Beneficios</span></div>
+  </a>
+  <div class="nav-links" id="nav-links">
+    <a href="#" class="hide-m" onclick="switchTab('inicio');cerrarMenu();return false">Beneficios</a>
+    <a href="#" class="hide-m" onclick="switchTab('calendario');cerrarMenu();return false">Calendario</a>
+    <a href="#" class="hide-m" onclick="switchTab('faq');cerrarMenu();return false">Ayuda</a>
+    <a href="#" class="btn-nav" onclick="abrirRegistro();cerrarMenu();return false">Registrarme</a>
+  </div>
+  <button class="hamburger" id="hamburger" aria-label="Abrir menú" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<section class="hero">
+  <div class="hero-badge">🇨🇱 Plataforma Gratuita para Chile</div>
+  <h1>Los beneficios de tu comunidad,<br><em>en un solo lugar</em></h1>
+  <p>Beneficios personales por municipio y fondos para juntas de vecinos — todo en un solo lugar, gratis y en simple.</p>
+
+  <div class="buscador">
+    <div class="buscador-titulo" id="buscador-titulo">🔍 Encuentra fondos y beneficios disponibles para tu comunidad</div>
+    <div class="fila-filtros fila-3">
+      <div class="fg">
+        <label>🗺️ Zona</label>
+        <select id="sel-zona" onchange="onZona()">
+          <option value="">Todas las zonas</option>
+          <option value="norte">🌵 Norte</option>
+          <option value="centro">🌆 Centro</option>
+          <option value="sur">🌲 Sur</option>
+        </select>
+      </div>
+      <div class="fg">
+        <label>📍 Región</label>
+        <select id="sel-region" onchange="onRegion()">
+          <option value="">Todas las regiones</option>
+        </select>
+      </div>
+      <div class="fg">
+        <label>🏘️ Comuna</label>
+        <select id="sel-comuna" onchange="buscar()">
+          <option value="">Todas las comunas</option>
+        </select>
+      </div>
+    </div>
+    <div class="fila-filtros fila-4" style="margin-top:.75rem">
+      <div class="fg">
+        <label>📂 Área</label>
+        <select id="sel-cat" onchange="buscar()">
+          <option value="">Todas las áreas</option>
+          <option>Sede Vecinal</option>
+          <option>Áreas Verdes</option>
+          <option>Cultura</option>
+          <option>Deporte</option>
+          <option>Seguridad</option>
+          <option>Medio Ambiente</option>
+          <option>Social</option>
+        </select>
+      </div>
+      <div class="fg">
+        <label>🔆 Estado</label>
+        <select id="sel-estado" onchange="buscar()">
+          <option value="">Todos</option>
+          <option value="abierto">🟢 Abiertos ahora</option>
+          <option value="proximo">🟡 Próximamente</option>
+          <option value="cerrado">🔴 Cerrados</option>
+        </select>
+      </div>
+      <button class="btn-buscar" onclick="buscar()">🔍 Buscar</button>
+      <button class="btn-limpiar" onclick="limpiar()">✕ Limpiar</button>
+    </div>
+  </div>
+</section>
+
+<div class="stats-bar">
+  <div class="stat"><div class="stat-num">14</div><div class="stat-label">Municipios con beneficios</div></div>
+  <div class="stat"><div class="stat-num">81</div><div class="stat-label">Beneficios personales</div></div>
+  <div class="stat"><div class="stat-num">22</div><div class="stat-label">Fondos y programas</div></div>
+  <div class="stat"><div class="stat-num">$17B+</div><div class="stat-label">En financiamiento</div></div>
+</div>
+
+<div class="banner">
+  <span class="badge-nuevo">Nuevo</span>
+  🔔 <strong>Fondo Comunidad Activa 2026</strong> — $14.165 millones para la Región Metropolitana. Postula antes del 30 de junio.
+  <a href="#" onclick="switchTab('juntavecinos');verDetalle(5);return false">Ver más →</a>
+</div>
+
+<main>
+  <div class="tabs">
+    <button class="tab activa" data-tab="inicio" onclick="switchTab('inicio')">🏘️ Inicio</button>
+    <button class="tab" data-tab="personal" onclick="switchTab('personal')">🏠 Beneficios Personales</button>
+    <button class="tab" data-tab="juntavecinos" onclick="switchTab('juntavecinos')">🤝 Fondos para Juntas de Vecinos</button>
+    <button class="tab" data-tab="calendario" onclick="switchTab('calendario')">📅 Calendario</button>
+    <button class="tab" data-tab="faq" onclick="switchTab('faq')">❓ Preguntas Frecuentes</button>
+  </div>
+
+  <div id="tab-inicio" class="tab-content activa">
+    <div class="inicio-acerca">
+      <div class="inicio-icono">🏘️</div>
+      <h2 class="inicio-titulo">Acerca de Ayuda al Vecino</h2>
+      <p class="inicio-texto">
+        Ayuda al Vecino nació de una necesidad real: que los beneficios del Estado y los municipios lleguen a todas las personas, no solo a quienes saben buscarlos. En Chile existen cientos de fondos, subsidios y programas gratuitos — pero están dispersos en decenas de sitios distintos, con lenguaje técnico y difíciles de encontrar. Esta plataforma reúne todo en un solo lugar, en lenguaje simple, para que cualquier vecino o vecina — sin importar su edad ni sus conocimientos — pueda conocer a qué tiene derecho y cómo acceder. Porque los beneficios son de todos, y todos merecen saberlo.
+      </p>
+    </div>
+
+    <h3 class="inicio-subtitulo">¿Qué estás buscando hoy?</h3>
+
+    <div class="inicio-opciones">
+      <div class="inicio-card" role="button" tabindex="0" onclick="switchTab('personal');selTipo('personal')">
+        <div class="ic-emoji">🏠</div>
+        <div class="ic-titulo">Beneficios Personales</div>
+        <div class="ic-desc">Farmacia, salud, becas, adulto mayor, vivienda y más — sin concursar, solo acercarte a tu municipio.</div>
+        <div class="ic-stats">
+          <span>14 municipios</span>
+          <span>120+ beneficios</span>
+        </div>
+        <div class="ic-btn">Ver beneficios →</div>
+      </div>
+
+      <div class="inicio-card" role="button" tabindex="0" onclick="switchTab('juntavecinos');selTipo('juntavecinos')">
+        <div class="ic-emoji">🤝</div>
+        <div class="ic-titulo">Fondos para Juntas de Vecinos</div>
+        <div class="ic-desc">FONDEVE, FNDR, MINVU, FOSIS y más — fondos concursables para organizaciones comunitarias con personalidad jurídica.</div>
+        <div class="ic-stats">
+          <span>22 fondos</span>
+          <span>$17B+ disponibles</span>
+        </div>
+        <div class="ic-btn">Ver fondos →</div>
+      </div>
+    </div>
+
+    <div class="inicio-numeros">
+      <div class="in-item">
+        <div class="in-num">14</div>
+        <div class="in-label">Municipios con beneficios</div>
+      </div>
+      <div class="in-item">
+        <div class="in-num">81</div>
+        <div class="in-label">Beneficios personales directos</div>
+      </div>
+      <div class="in-item">
+        <div class="in-num">22</div>
+        <div class="in-label">Fondos para organizaciones</div>
+      </div>
+      <div class="in-item">
+        <div class="in-num">$17B+</div>
+        <div class="in-label">En financiamiento disponible</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="tab-personal" class="tab-content">
+    <h2 class="sec-titulo">🏠 Beneficios Personales por Municipio</h2>
+    <p style="font-size:.9rem;color:#4a5568;margin-bottom:1.5rem;max-width:680px">Beneficios directos que cualquier vecino puede pedir sin concursar. Selecciona tu municipio y descubre salud, becas, adulto mayor, vivienda y más.</p>
+    <div id="muni-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:.75rem;margin-bottom:2rem"></div>
+    <div id="muni-detalle"></div>
+  </div>
+
+  <div id="tab-juntavecinos" class="tab-content">
+    <h2 class="sec-titulo">🗂️ ¿Qué necesita tu junta de vecinos?</h2>
+    <div class="cats-grid">
+      <div class="cat-btn" role="button" tabindex="0" onclick="filtrarCat('Sede Vecinal',this)"><span class="emoji">🏚️</span><span class="nombre">Sede Vecinal</span></div>
+      <div class="cat-btn" role="button" tabindex="0" onclick="filtrarCat('Áreas Verdes',this)"><span class="emoji">🌳</span><span class="nombre">Áreas Verdes</span></div>
+      <div class="cat-btn" role="button" tabindex="0" onclick="filtrarCat('Cultura',this)"><span class="emoji">🎭</span><span class="nombre">Cultura y Arte</span></div>
+      <div class="cat-btn" role="button" tabindex="0" onclick="filtrarCat('Deporte',this)"><span class="emoji">⚽</span><span class="nombre">Deporte</span></div>
+      <div class="cat-btn" role="button" tabindex="0" onclick="filtrarCat('Seguridad',this)"><span class="emoji">🔒</span><span class="nombre">Seguridad</span></div>
+      <div class="cat-btn" role="button" tabindex="0" onclick="filtrarCat('Medio Ambiente',this)"><span class="emoji">🌱</span><span class="nombre">Medio Ambiente</span></div>
+      <div class="cat-btn" role="button" tabindex="0" onclick="filtrarCat('Social',this)"><span class="emoji">🤝</span><span class="nombre">Social</span></div>
+      <div class="cat-btn" role="button" tabindex="0" onclick="filtrarCat('',this)"><span class="emoji">💡</span><span class="nombre">Ver todos</span></div>
+    </div>
+
+    <div class="fondos-header">
+      <h2 class="sec-titulo" style="margin:0">📋 Fondos y postulaciones disponibles</h2>
+      <span class="fondos-count" id="fondos-count">Mostrando 17 fondos</span>
+    </div>
+    <div class="banner-comuna" id="banner-comuna">📍 <span id="banner-texto"></span></div>
+    <div class="fondos-grid" id="fondos-grid"></div>
+  </div>
+
+  <div id="tab-calendario" class="tab-content">
+    <h2 class="sec-titulo">📅 Fechas Importantes 2026</h2>
+    <div class="cal-grid" id="cal-grid"></div>
+  </div>
+
+  <div id="tab-faq" class="tab-content">
+    <h2 class="sec-titulo">❓ Preguntas Frecuentes</h2>
+    <div id="faq-grid"></div>
+  </div>
+</main>
+
+<footer>
+  <strong>Ayuda al Vecino</strong> — Plataforma gratuita para organizaciones comunitarias de Chile<br><br>
+  Información basada en fuentes oficiales: <a href="https://fondos.gob.cl" target="_blank">fondos.gob.cl</a> · <a href="https://minvu.gob.cl" target="_blank">minvu.gob.cl</a> · <a href="https://fosis.gob.cl" target="_blank">fosis.gob.cl</a><br><br>
+  <span style="opacity:.5">Prototipo v2.0 · 2026</span> &nbsp;·&nbsp; <span id="datos-source" style="opacity:.5">Datos locales</span>
+</footer>
+
+<!-- MODAL REGISTRO -->
+<div class="modal-overlay" id="modal-registro" role="dialog" aria-modal="true" aria-labelledby="modal-registro-titulo">
+  <div class="modal">
+    <button class="modal-close" onclick="cerrar('modal-registro')">✕</button>
+    <div id="reg-form">
+      <h2>🏘️ Únete gratis</h2>
+      <p class="sub">Recibe alertas cuando abran fondos para tu comunidad.</p>
+      <div class="fg2"><label>Tu nombre</label><input type="text" id="r-nombre" placeholder="María González"></div>
+      <div class="fg2"><label>Correo electrónico</label><input type="email" id="r-email" placeholder="maria@correo.com"></div>
+      <div class="fg2">
+        <label>Tu región</label>
+        <select id="r-region">
+          <option value="">Selecciona tu región</option>
+          <option>Región Metropolitana</option><option>Valparaíso</option><option>Biobío</option>
+          <option>La Araucanía</option><option>Los Lagos</option><option>Maule</option>
+          <option>O'Higgins</option><option>Coquimbo</option><option>Antofagasta</option>
+          <option>Arica y Parinacota</option>
+        </select>
+      </div>
+      <div class="fg2">
+        <label for="r-rol">¿Eres dirigente vecinal?</label>
+        <select id="r-rol"><option>Sí, soy dirigente/directivo</option><option>No, soy vecino/a</option><option>Trabajo en municipio</option></select>
+      </div>
+      <div class="check-row"><input type="checkbox" id="chk-alertas" checked><label for="chk-alertas">Quiero recibir alertas de nuevos fondos</label></div>
+      <button class="btn-reg" onclick="registrar()">✅ Registrarme gratis</button>
+    </div>
+    <div id="reg-ok" class="success" style="display:none">
+      <div class="s-icon">🎉</div>
+      <h3>¡Ya estás registrado!</h3>
+      <p>Te avisaremos cuando abran fondos para tu región.</p>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL DETALLE -->
+<div class="modal-overlay" id="modal-detalle" role="dialog" aria-modal="true" aria-labelledby="modal-detalle-titulo">
+  <div class="modal modal-detalle">
+    <button class="modal-close" onclick="cerrar('modal-detalle')">✕</button>
+    <div id="detalle-contenido"></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+// ── CONFIGURACIÓN ──
+// Pega aquí el ID de tu Google Sheet (la parte entre /d/ y /edit en la URL)
+// Ejemplo: "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgVE2upms"
+// Deja vacío ("") para usar solo los datos locales hardcodeados
+var SHEET_ID = "";
+
+// ── DATOS FONDOS ──
+// ALCANCE: "nacional" | "regional" | "municipal"
+var fondos = [
+  {id:1,alcance:"nacional",nombre:"Fondo de Fortalecimiento de Org. de Interés Público (FFOIP)",inst:"SEGEGOB",desc:"Financia proyectos que fortalezcan la participación ciudadana, cohesión social y trabajo comunitario.",estado:"cerrado",monto:"Hasta $10.000.000",cofin:"No requerido",quien:"Juntas de vecinos y organizaciones comunitarias con personalidad jurídica.",cats:["Social"],region:"Nacional",abre:"2 mar 2026",cierra:"24 abr 2026",link:"https://fondos.gob.cl",req:"Personalidad jurídica vigente, Clave Única del representante, Certificado de Vigencia no mayor a 6 meses.",pasos:"Obtén Clave Única · Ingresa a fondos.gob.cl · Completa el formulario online · Adjunta documentos · Envía antes del plazo",ejemplos:["🤝 Talleres de participación ciudadana y liderazgo vecinal","🎭 Proyectos culturales y de identidad comunitaria","📢 Campañas de información y difusión en el barrio","👶 Actividades de cohesión social para toda la familia","🌍 Iniciativas de cuidado del medio ambiente local"],caso:"La Agrupación Cultural de Villa El Bosque (Maipú) financió talleres de folclore y una muestra artística barrial que reunió a más de 200 vecinos."},
+  {id:2,alcance:"nacional",nombre:"Programa Espacios Comunitarios — MINVU",inst:"Ministerio de Vivienda",desc:"Subsidios para construir o mejorar sedes vecinales, áreas verdes, multicanchas, plazas y espacios públicos.",estado:"proximo",monto:"Hasta 7.500 UF",cofin:"No requerido",quien:"Organizaciones comunitarias y Juntas de Vecinos bajo Ley 19.418.",cats:["Sede Vecinal","Áreas Verdes"],region:"Nacional",abre:"Por confirmar",cierra:"Por confirmar",link:"https://minvu.gob.cl",req:"Personalidad jurídica, RUT de la organización, permiso municipal si aplica.",pasos:"Revisa llamados en minvu.gob.cl · Elige una Entidad Patrocinante (EP) · La EP gestiona la postulación · MINVU evalúa y asigna subsidio",ejemplos:["🏚️ Construcción de sede vecinal nueva desde cero","🌳 Plazas con juegos infantiles y áreas verdes","⚽ Multicanchas techadas para el barrio","♿ Rampas y accesos para personas con discapacidad","🏋️ Máquinas de ejercicio al aire libre"],caso:"La Junta de Vecinos Los Andes Sur (Concepción) construyó una multicancha techada que hoy usan diariamente más de 150 niños y jóvenes del sector."},
+  {id:3,alcance:"nacional",nombre:"DS-27 Mejoramiento de Sedes Sociales — MINVU",inst:"MINVU",desc:"Subsidio específico para la reparación y modernización de sedes sociales comunitarias deterioradas.",estado:"proximo",monto:"Hasta 2.000 UF",cofin:"10% aporte propio",quien:"Juntas de vecinos con sede que requiera reparación.",cats:["Sede Vecinal"],region:"Nacional",abre:"Por confirmar",cierra:"Por confirmar",link:"https://minvu.gob.cl",req:"Sede social deteriorada, personalidad jurídica vigente, contar con el 10% del valor del proyecto.",pasos:"Contacta SERVIU regional · Diagnóstico técnico · Postulación colectiva con EP · Evaluación MINVU · Ejecución de obras",ejemplos:["🔧 Reparación de techos y cielos de la sede","💧 Arreglo de cañerías e instalaciones sanitarias","🪟 Cambio de ventanas y puertas deterioradas","💡 Mejora del sistema eléctrico","🏗️ Refuerzo estructural de muros y fundaciones"],caso:"La Junta de Vecinos Población Simón Bolívar (Santiago) reparó el techo de su sede que tenía goteras hace 8 años, recuperando el espacio de reunión para todos los vecinos."},
+  {id:4,alcance:"nacional",nombre:"Organizaciones en Acción — FOSIS",inst:"FOSIS",desc:"Financia proyectos comunitarios autogestionados para fortalecer la capacidad de organización vecinal.",estado:"proximo",monto:"Hasta $2.088.000",cofin:"No requerido",quien:"Organizaciones comunitarias funcionales y territoriales regidas por Ley 19.418.",cats:["Social"],region:"Nacional",abre:"Licitación regional",cierra:"Según región",link:"https://fosis.gob.cl",req:"Vigencia en Registro Civil, ser organización sin fines de lucro, proyecto de duración máxima 6 meses.",pasos:"Revisa licitaciones en fosis.gob.cl · Prepara propuesta de proyecto · Postula según plazos regionales · Ejecución en 6 meses",ejemplos:["📚 Talleres de capacitación para dirigentes vecinales","💻 Compra de computador y conectividad para la sede","📋 Desarrollo de reglamento interno de la organización","🗳️ Mejora de procesos de participación y votación","📊 Registro y archivo digital de la organización"],caso:"La Unión Comunal de Juntas de Vecinos de Pudahuel capacitó a 45 dirigentes en gestión de proyectos y administración de fondos públicos."},
+  {id:5,alcance:"regional",nombre:"Fondo Comunidad Activa 2026 — GORE RM",inst:"Gobierno Regional RM",desc:"Fondo regional que financia iniciativas en cultura, deporte, seguridad ciudadana, inclusión social y medio ambiente.",estado:"abierto",monto:"Hasta $75.000.000",cofin:"No requerido",quien:"Juntas de vecinos, fundaciones, corporaciones y organizaciones sin fines de lucro de la RM.",cats:["Cultura","Deporte","Seguridad","Medio Ambiente","Social"],region:"Región Metropolitana",abre:"24 mar 2026",cierra:"7 may 2026",link:"https://gobiernosantiago.cl",req:"Personalidad jurídica vigente de al menos 2 años, domicilio en la Región Metropolitana.",pasos:"Revisa bases en gobiernosantiago.cl · Prepara el formulario · Adjunta documentos · Postula online antes del plazo",ejemplos:["🎭 Festival cultural o artístico del barrio","⚽ Campeonato deportivo comunal o regional","🌱 Proyecto de reciclaje y compostaje comunitario","🔒 Cámaras de seguridad para el sector","👴 Programa de inclusión para adultos mayores"],caso:"El Club Deportivo Unión Pudahuel organizó un torneo intercomunal de fútbol juvenil con más de 20 equipos, financiado completamente por este fondo."},
+  {id:6,alcance:"nacional",nombre:"FONDEVE — Fondo de Desarrollo Vecinal",inst:"Municipios",desc:"Cofinanciamiento municipal para proyectos de mejoramiento de infraestructura, habitabilidad y seguridad presentados por Juntas de Vecinos.",estado:"abierto",monto:"Según municipio",cofin:"Cofinanciamiento",quien:"Juntas de Vecinos con directorio vigente y personalidad jurídica.",cats:["Sede Vecinal","Seguridad"],region:"Nacional",abre:"Varía por municipio",cierra:"Varía por municipio",link:"https://chileatiende.gob.cl",req:"Directorio vigente, personalidad jurídica, proyecto de mejoramiento comunitario. No pueden volver a postular por 3 años.",pasos:"Consulta en tu municipio · Descarga el reglamento FONDEVE · Elabora el proyecto · Presenta documentos · Espera evaluación",ejemplos:["🪑 Sillas, mesas y mobiliario para la sede","🎨 Pintura y reparación de fachada exterior","🔒 Sistema de alarma y rejas de seguridad","💡 Ampliación del sistema eléctrico e iluminación","🌳 Recuperación de espacio verde o plaza del sector"],caso:"La Junta de Vecinos Villa Río Claro (Temuco) renovó completamente el mobiliario de su sede y pintó el exterior, recuperando el espacio de reunión para más de 300 familias."},
+  {id:7,alcance:"nacional",nombre:"Fondos Concursables 8% FNDR — Gobierno Regional",inst:"GORE (por región)",desc:"Cada gobierno regional distribuye el 8% del FNDR en concursos para organizaciones de la sociedad civil.",estado:"abierto",monto:"Hasta $75.000.000",cofin:"No requerido",quien:"Instituciones privadas sin fines de lucro con domicilio en la región correspondiente.",cats:["Social","Cultura","Deporte","Seguridad"],region:"Nacional",abre:"Según región",cierra:"Según región",link:"https://fondos.gob.cl",req:"Domicilio en la región, personalidad jurídica, no tener inhabilidades. Máximo 2 proyectos por institución.",pasos:"Revisa el GORE de tu región · Descarga las bases · Prepara el formulario · Postula en plataforma o presencialmente",ejemplos:["🎭 Festival o muestra cultural regional","🏃 Programa de actividad física para adultos mayores","🌿 Proyecto de reforestación urbana","🔐 Alumbrado para pasajes oscuros","♿ Talleres de inclusión y no discriminación"],caso:"La Agrupación de Adultos Mayores Amanecer (Los Ángeles) implementó un programa de yoga financiado por el FNDR que atiende semanalmente a 80 personas."},
+  {id:8,alcance:"nacional",nombre:"Fondos Concursables Municipales",inst:"Municipios",desc:"Cada municipio administra fondos propios para financiar proyectos vecinales en seguridad, cultura, deporte, medioambiente y desarrollo comunitario.",estado:"abierto",monto:"Hasta $20.000.000",cofin:"No requerido",quien:"Organizaciones comunitarias con personalidad jurídica otorgada por el municipio.",cats:["Cultura","Deporte","Seguridad","Medio Ambiente","Social"],region:"Nacional",abre:"Varía por municipio",cierra:"Varía por municipio",link:"https://chileatiende.gob.cl",req:"Personalidad jurídica municipal, al menos 3 años de antigüedad, acciones en la comuna.",pasos:"Consulta en tu municipio el proceso · Asiste a capacitación · Completa formulario online o presencial · Adjunta documentos",ejemplos:["🎪 Fiestas patrias o navidad del barrio","📷 Cámaras de vigilancia para pasajes y calles","🌺 Jardines y ornamentación del sector","🏅 Equipamiento deportivo para el club","🎨 Mural artístico identitario del barrio"],caso:"La Junta de Vecinos Pasaje Las Flores (Santiago) financió cámaras de seguridad para 3 pasajes tras postular a los fondos concursables municipales."},
+  {id:9,alcance:"nacional",nombre:"Fondos Concursables Banco Santander",inst:"Banco Santander",desc:"Programa privado que financia proyectos sociales de organizaciones sin fines de lucro para mejorar la calidad de vida en situación de vulnerabilidad.",estado:"cerrado",monto:"Entre $7M y $20M",cofin:"No requerido",quien:"ONG, fundaciones, juntas de vecinos y clubes deportivos de todo Chile.",cats:["Social"],region:"Nacional",abre:"Mar 2026",cierra:"4 may 2026",link:"https://santander.cl",req:"Organización sin fines de lucro, proyecto social con impacto en vulnerabilidad.",pasos:"Revisa bases en santander.cl · Regístrate en la plataforma · Postula el proyecto · Proceso de evaluación · Anuncio de ganadores",ejemplos:["🏠 Proyecto habitacional para familias vulnerables","👩‍🍳 Comedor comunitario para adultos mayores","📚 Biblioteca o sala de estudio para jóvenes","🌱 Huerto comunitario y talleres de alimentación","🤝 Centro de apoyo para mujeres jefas de hogar"],caso:"La Fundación Vecinos en Acción (Valparaíso) implementó un comedor comunitario que entrega 60 almuerzos diarios a adultos mayores en situación de vulnerabilidad."},
+  {id:10,alcance:"municipal",nombre:"FONDEVE + Subvenciones + Tu Barrio Más Seguro — Maipú",inst:"Municipio de Maipú",desc:"Tres líneas: FONDEVE para juntas de vecinos, Subvenciones para organizaciones funcionales y Tu Barrio Más Seguro para iniciativas de prevención.",estado:"cerrado",monto:"Hasta $3.000.000",cofin:"No requerido",quien:"Juntas de vecinos, clubes, fundaciones, centros de madres y organizaciones culturales y deportivas de Maipú.",cats:["Social","Seguridad","Sede Vecinal"],region:"Región Metropolitana",comunas:["Maipú"],abre:"Mar 2026",cierra:"8 may 2026",link:"https://maipu.cl",req:"Personalidad jurídica vigente otorgada por la Municipalidad de Maipú. Postulación híbrida online y presencial.",pasos:"Descarga bases en maipu.cl · Asiste a capacitación gratuita · Postula online o presencialmente · Adjunta documentos · Espera resultados",ejemplos:["🔒 Alarmas y sistemas de vigilancia comunitaria","🪑 Mobiliario y equipamiento para la sede vecinal","🎭 Actividades culturales y recreativas del barrio","🌳 Mejoramiento de áreas verdes y plazas","🎽 Indumentaria deportiva para el club"],caso:"La Junta de Vecinos Villa Independencia (Maipú) instaló un sistema de alarma comunitaria que cubre 4 pasajes del sector gracias al fondo Tu Barrio Más Seguro."},
+  {id:11,alcance:"municipal",nombre:"Fondos Concursables — Municipalidad de Santiago",inst:"Municipio de Santiago",desc:"$600 millones anuales para financiar proyectos en seguridad, deporte, cultura, medio ambiente y desarrollo vecinal. Proceso 100% online.",estado:"abierto",monto:"Según categoría",cofin:"No requerido",quien:"Juntas de vecinos, clubes deportivos, centros de madres, ONGs con personalidad jurídica de Santiago.",cats:["Social","Cultura","Deporte","Seguridad","Medio Ambiente"],region:"Región Metropolitana",comunas:["Santiago"],abre:"Mar 2026",cierra:"Por confirmar",link:"https://munistgo.cl/fondos",req:"Organización con al menos 3 años de antigüedad, personalidad jurídica vigente, acciones territoriales en Santiago.",pasos:"Ingresa a munistgo.cl/fondos · Descarga bases y formulario · Postula 100% online · Adjunta documentos requeridos · Sigue el cronograma oficial",ejemplos:["📷 Cámaras de vigilancia y alumbrado en pasajes","🎭 Obra de teatro o festival cultural del barrio","⚽ Equipamiento para club deportivo juvenil","🌱 Proyecto de compostaje y reciclaje urbano","♿ Adaptación de sede para accesibilidad universal"],caso:"El Centro Cultural Lo Barnechea financió una muestra de artes visuales con artistas locales que reunió a más de 500 vecinos durante tres fines de semana."},
+  {id:12,alcance:"municipal",nombre:"FONDEVE + Corazón de Barrio + Ñuñoa Más Segura",inst:"Municipio de Ñuñoa",desc:"Tres fondos con $300 millones en total: FONDEVE hasta $5M para juntas de vecinos, Corazón de Barrio para cultura y arte, y Ñuñoa Más Segura para prevención.",estado:"abierto",monto:"Hasta $5.000.000",cofin:"No requerido",quien:"Juntas de vecinos, organizaciones culturales, deportivas y de seguridad de la comuna de Ñuñoa.",cats:["Sede Vecinal","Cultura","Seguridad"],region:"Región Metropolitana",comunas:["Ñuñoa"],abre:"May 2026",cierra:"Por confirmar",link:"https://nunoa.cl",req:"Personalidad jurídica vigente en la municipalidad de Ñuñoa, proyecto ejecutable hasta el 31 de diciembre 2026.",pasos:"Descarga bases en nunoa.cl · Elige la línea que aplica a tu proyecto · Completa el formulario · Postula dentro del plazo",ejemplos:["🏚️ FONDEVE: reparación o equipamiento de sede vecinal hasta $5M","🎭 Corazón de Barrio: murales, festivales y talleres de arte","🔒 Ñuñoa Más Segura: alarmas, iluminación y prevención barrial","🌿 Jardines y ornamentación del pasaje o calle","👶 Actividades recreativas para niños del barrio"],caso:"La Junta de Vecinos Sector Irarrázaval (Ñuñoa) ganó el fondo Corazón de Barrio para financiar un mural histórico que hoy es ícono del barrio."},
+  {id:13,alcance:"municipal",nombre:"FONDEVE — Municipalidad de Providencia",inst:"Municipio de Providencia",desc:"Fondo de desarrollo vecinal para Juntas de Vecinos de Providencia con $1.000 millones disponibles. Postulación digital con Clave Única.",estado:"proximo",monto:"Según proyecto",cofin:"No requerido",quien:"Juntas de vecinos con personalidad jurídica vigente en la comuna de Providencia.",cats:["Sede Vecinal","Social"],region:"Región Metropolitana",comunas:["Providencia"],abre:"Por confirmar",cierra:"Por confirmar",link:"https://tramites.providencia.cl",req:"Clave Única o Clave Vecino para postular online. Comité de Administración debe completar el formulario digital.",pasos:"Ingresa a tramites.providencia.cl · Usa Clave Única · Selecciona trámite FONDEVE 2026 · Completa formulario digitalmente · Agrega dos correos de contacto",ejemplos:["🔧 Reparación de techos, muros y espacios comunes deteriorados","💡 Mejoramiento de iluminación en áreas comunes","💧 Arreglo de cañerías y problemas de humedad","🏗️ Refuerzo estructural en edificios con riesgo","♿ Instalación de rampas y accesibilidad universal"],caso:"Una comunidad en Marchant Pereira (Providencia) reparó el techo completo de su edificio gracias al FONDEVE, resolviendo humedad que afectaba a 40 familias."},
+  {id:14,alcance:"municipal",nombre:"FONDEVE + Fondos Concursables — Las Condes",inst:"Municipio de Las Condes",desc:"Dos líneas: FONDEVE para mejoramiento de infraestructura comunitaria y Fondos Concursables generales para organizaciones sin fines de lucro.",estado:"cerrado",monto:"Según proyecto",cofin:"Cofinanciamiento en FONDEVE",quien:"Juntas de Vecinos y organizaciones comunitarias con personalidad jurídica de Las Condes.",cats:["Sede Vecinal","Social","Cultura","Deporte"],region:"Región Metropolitana",comunas:["Las Condes"],abre:"Abr 2026",cierra:"18 may 2026",link:"https://lascondes.cl/beneficios/financiamiento-de-proyectos",req:"Personalidad jurídica de Las Condes vigente, directorio activo, rendición de cuentas anteriores al día.",pasos:"Revisa bases en lascondes.cl · Envía formulario a postulaciones.ffcc@lascondes.cl · Adjunta todos los anexos · No se aceptan fuera de plazo",ejemplos:["🏚️ Mejoramiento de infraestructura y bienes comunes","💡 Eficiencia energética: paneles solares o LED","🔒 Rejas, intercomunicadores y sistemas de alarma","🌳 Áreas verdes y paisajismo del condominio","♿ Accesibilidad universal en espacios comunes"],caso:"Una comunidad de Las Condes instaló paneles solares en áreas comunes gracias al FONDEVE, reduciendo en un 40% el gasto en electricidad."},
+  {id:15,alcance:"regional",nombre:"Fondos de Vinculación con la Comunidad — GORE Valparaíso",inst:"Gobierno Regional Valparaíso",desc:"Fondo regional de $2.500 millones para organizaciones comunitarias de la región, incluyendo juntas de vecinos, sindicatos y pueblos originarios.",estado:"proximo",monto:"Según bases regionales",cofin:"No requerido",quien:"Organizaciones comunitarias, juntas de vecinos, sindicatos, clubes, entidades culturales y religiosas de Valparaíso.",cats:["Social","Cultura","Deporte"],region:"Valparaíso",abre:"Por confirmar",cierra:"Por confirmar",link:"https://gorevalparaiso.cl",req:"Personalidad jurídica vigente, domicilio en la Región de Valparaíso. El GORE realiza capacitaciones en terreno.",pasos:"Revisa bases en gorevalparaiso.cl · Asiste a capacitación presencial o virtual · Prepara el formulario · Postula antes del plazo regional",ejemplos:["🎭 Festival cultural con identidad regional","⚽ Campeonato deportivo provincial o regional","🌿 Reforestación y recuperación de quebradas","🤝 Programa de inclusión para pueblos originarios","👴 Centro de día para adultos mayores rurales"],caso:"La Agrupación Comunitaria Mapuche Lof Mapu (Olmué) financió un encuentro cultural intercultural con más de 300 asistentes que rescató tradiciones ancestrales."},
+  {id:16,alcance:"municipal",nombre:"FONDECOV — Fondo de Desarrollo Comunitario y Vecinal Temuco",inst:"Municipio de Temuco",desc:"Instrumento de participación ciudadana que permite a las organizaciones de Temuco definir y priorizar en qué se invierten los fondos de su territorio.",estado:"proximo",monto:"Según bases 2026",cofin:"No requerido",quien:"Juntas de vecinos, organizaciones funcionales, comunidades indígenas y organizaciones deportivas de Temuco.",cats:["Social","Sede Vecinal","Cultura"],region:"La Araucanía",comunas:["Temuco"],abre:"Por confirmar",cierra:"Por confirmar",link:"https://temuco.cl/vecinos/fondo-de-desarrollo-comunitario-y-vecinal",req:"Personas jurídicas sin fines de lucro vigentes, incluyendo comunidades indígenas y organizaciones deportivas.",pasos:"Revisa bases en temuco.cl · Participa en asambleas de priorización · Presenta proyecto · Evaluación y adjudicación",ejemplos:["🗳️ Asambleas donde los vecinos deciden el proyecto","🌱 Huertos comunitarios y soberanía alimentaria","🎭 Rescate de tradiciones culturales mapuche y locales","🏚️ Mejoramiento de sedes de comunidades indígenas","📚 Talleres educativos y de formación comunitaria"],caso:"La Comunidad Indígena Pewenche del sur de Temuco priorizó en asamblea un huerto comunitario que hoy abastece verduras a 25 familias del sector."},
+  {id:17,alcance:"municipal",nombre:"Fondos Concursables Puerto Valparaíso",inst:"Puerto Valparaíso",desc:"Programa privado-comunitario del puerto para financiar proyectos de organizaciones sociales de Valparaíso. Incluye el Fondo Aniversario para el Barrio Puerto.",estado:"cerrado",monto:"Según categoría",cofin:"No requerido",quien:"Juntas de vecinos, clubes deportivos, clubes de adulto mayor y organizaciones funcionales de Valparaíso.",cats:["Social","Cultura","Deporte"],region:"Valparaíso",comunas:["Valparaíso"],abre:"31 mar 2026",cierra:"24 abr 2026",link:"https://puertovalparaiso.cl",req:"Ser organización social de la ciudad de Valparaíso. Postulación 100% digital.",pasos:"Revisa bases en puertovalparaiso.cl · Regístrate en plataforma · Completa formulario online · Resultados el 23 de julio 2026",ejemplos:["⚓ Proyectos del Barrio Puerto con identidad patrimonial","🎭 Actividades culturales vinculadas al patrimonio portuario","🏃 Iniciativas deportivas para clubes del sector","🌿 Mejoramiento de espacios verdes costeros","👴 Programas para adultos mayores del sector portuario"],caso:"El Club de Adulto Mayor Copihue de Oro (Placilla) compró equipamiento para talleres semanales de manualidades y actividad física gracias a este fondo."},
+  {id:18,alcance:"nacional",nombre:"Fondo Nacional Adulto Mayor — SENAMA",inst:"SENAMA",desc:"Financia proyectos autogestionados de organizaciones de personas mayores en voluntariado, vida saludable, inclusión digital, recreación y actividades productivas.",estado:"cerrado",monto:"Según proyecto",cofin:"No requerido",quien:"Organizaciones de personas mayores con personalidad jurídica vigente. Todos sus integrantes deben tener 60 años o más.",cats:["Social","Adulto Mayor"],region:"Nacional",abre:"Mar 2026",cierra:"8 may 2026",link:"https://fondoweb.senama.cl",req:"Personalidad jurídica vigente, RUT organización, Certificado de vigencia no mayor a 90 días, Clave Única del representante.",pasos:"Regístrate en fondoweb.senama.cl · Completa formulario de postulación online · Adjunta documentos · Consultas al fondo@senama.gob.cl o WhatsApp +56 9 33680632",ejemplos:["🏃 Talleres de vida saludable y actividad física","💻 Inclusión digital para adultos mayores","🎭 Actividades recreativas y culturales","🤝 Programas de voluntariado comunitario","🌱 Actividades productivas que mejoran calidad de vida"],caso:"Un club de adultos mayores de Temuco financió un programa de yoga y talleres de uso de smartphone para 40 personas mayores de 70 años."},
+  {id:19,alcance:"nacional",nombre:"Fondo para la Equidad de Género — SERNAMEG",inst:"SernamEG",desc:"Financia proyectos liderados por mujeres o personas naturales que promuevan participación, asociatividad y liderazgo femenino en sus comunidades.",estado:"proximo",monto:"Hasta $3.000.000",cofin:"No requerido",quien:"Personas naturales y organizaciones sin fines de lucro de todas las regiones del país.",cats:["Social","Mujer"],region:"Nacional",abre:"Abr 2026",cierra:"Por confirmar",link:"https://fondos.gob.cl/ficha/sernameg/equidad-de-genero/",req:"Persona natural: acreditar identidad y capacidad de ejecución. Persona jurídica: sin fines de lucro, inscrita en registro de personas jurídicas receptoras de fondos públicos.",pasos:"Ingresa a fondos.gob.cl · Busca Fondo Equidad de Género SERNAMEG · Descarga bases · Postula online en el periodo indicado",ejemplos:["👩 Talleres de liderazgo y emprendimiento para mujeres","🤝 Redes de apoyo y asociatividad femenina en el barrio","📢 Proyectos de difusión de derechos de la mujer","🌍 Iniciativas de equidad de género en comunidades rurales","👩‍👧 Programas de apoyo para mujeres jefas de hogar"],caso:"Una vecina de Magallanes lideró un proyecto de red de apoyo para mujeres rurales, financiado por el FEG, que hoy conecta a más de 30 mujeres de distintos sectores."},
+  {id:20,alcance:"nacional",nombre:"Programa 4 a 7 — SernamEG",inst:"SernamEG",desc:"Cuidado integral y gratuito para hijos e hijas de mujeres trabajadoras después del horario escolar. Funciona 12 meses al año incluyendo enero y febrero.",estado:"abierto",monto:"Gratuito",cofin:"No requerido",quien:"Mujeres trabajadoras con hijos o hijas en edad escolar en establecimientos educacionales participantes.",cats:["Mujer","Social"],region:"Nacional",abre:"Mar 2026",cierra:"Según establecimiento",link:"https://sernameg.gob.cl",req:"Ser mujer trabajadora. El programa opera en establecimientos educacionales específicos. Inscripción directa en el establecimiento participante.",pasos:"Revisa en sernameg.gob.cl qué establecimientos participan en tu región · Inscribe a tu hijo o hija directamente en el establecimiento · Sin costo para la familia",ejemplos:["👶 Cuidado seguro de niños después del horario escolar","📚 Apoyo en tareas y actividades educativas","🎨 Talleres recreativos y culturales","🍎 Alimentación durante la jornada extendida","🏃 Actividades deportivas y de recreación"],caso:"Una madre de Copiapó pudo mantener su trabajo porque el Programa 4 a 7 cuida a sus dos hijos desde las 16:00 hasta las 20:00 hrs en su colegio."},
+  {id:21,alcance:"nacional",nombre:"Bono Marzo — Aporte Familiar Permanente",inst:"MDSF / IPS",desc:"Bono anual que se paga automáticamente en marzo a familias con cargas familiares o que reciben beneficios del Estado como SUF, asignación familiar u otros.",estado:"cerrado",monto:"Varía según tramo RSH",cofin:"No requerido",quien:"Familias del 60% más vulnerable según RSH que reciban SUF, asignación familiar o maternal.",cats:["Social"],region:"Nacional",abre:"Mar 2026",cierra:"Pago automático",link:"https://chileatiende.gob.cl/temas/aporte-familiar-permanente",req:"No se postula. Se paga automáticamente a quienes cumplen los requisitos según RSH y beneficios que reciben.",pasos:"No necesitas hacer nada · Si cumples requisitos te llega automáticamente · Consulta en chileatiende.gob.cl o en tu municipio si tienes dudas",ejemplos:["💰 Dinero directo para familias vulnerables en marzo","🏠 Apoyo económico para gastos de inicio de año","📚 Complemento para útiles y uniformes escolares","🍎 Apoyo para alimentación familiar","🏥 Complemento para gastos de salud"],caso:"Una familia de 4 personas de La Pintana recibió automáticamente su Bono Marzo sin tener que postular, porque ya tenía el SUF activo."},
+  {id:22,alcance:"nacional",nombre:"Pensión Garantizada Universal — PGU",inst:"IPS / Ministerio Previsión Social",desc:"Pensión mensual garantizada por el Estado para personas mayores de 65 años que no tengan pensión o tengan una pensión baja.",estado:"abierto",monto:"Hasta $214.296 mensual",cofin:"No requerido",quien:"Personas de 65 años o más, que vivan en Chile hace al menos 20 años, y que estén en el 90% de mayor vulnerabilidad según RSH.",cats:["Social","Adulto Mayor"],region:"Nacional",abre:"Permanente",cierra:"Sin plazo",link:"https://chileatiende.gob.cl/fichas/130457-aumento-de-la-pension-garantizada-universal-pgu",req:"Tener 65 años o más. Vivir en Chile los últimos 20 años. Estar en el 90% de vulnerabilidad según RSH. No integrar el 10% de mayor renta.",pasos:"Acércate al IPS o ChileAtiende más cercano · Consulta en chileatiende.gob.cl · Pídele a la municipalidad que te oriente · No necesitas abogado ni gestor",ejemplos:["👴 Ingreso mensual garantizado para adultos mayores","💊 Complemento para gastos de medicamentos","🏠 Ayuda para pagar arriendo o servicios básicos","🍎 Apoyo para alimentación diaria","🚌 Complemento para movilización"],caso:"Un adulto mayor de 72 años de Valparaíso que no tenía pensión comenzó a recibir la PGU completa luego de que su nieta lo ayudó a consultar en ChileAtiende."}
+];
+
+// ── ZONAS / REGIONES / COMUNAS ──
+var zonas = {
+  norte:{label:"🌵 Norte",regiones:{
+    "Arica y Parinacota":["Arica","Camarones","General Lagos","Putre"],
+    "Tarapacá":["Alto Hospicio","Camiña","Colchane","Huara","Iquique","Pica","Pozo Almonte"],
+    "Antofagasta":["Antofagasta","Calama","María Elena","Mejillones","Ollagüe","San Pedro de Atacama","Sierra Gorda","Taltal","Tocopilla"],
+    "Atacama":["Alto del Carmen","Caldera","Chañaral","Copiapó","Diego de Almagro","Freirina","Huasco","Tierra Amarilla","Vallenar"],
+    "Coquimbo":["Andacollo","Canela","Combarbalá","Coquimbo","Illapel","La Higuera","La Serena","Los Vilos","Monte Patria","Ovalle","Paihuano","Punitaqui","Río Hurtado","Salamanca","Vicuña"]
+  }},
+  centro:{label:"🌆 Centro",regiones:{
+    "Valparaíso":["Algarrobo","Cabildo","Calera","Calle Larga","Cartagena","Casablanca","Catemu","Concón","El Quisco","El Tabo","Hijuelas","Juan Fernández","La Cruz","La Ligua","Limache","Llaillay","Los Andes","Nogales","Olmué","Panquehue","Papudo","Petorca","Puchuncaví","Putaendo","Quillota","Quilpué","Quintero","Rinconada","San Antonio","San Esteban","San Felipe","Santa María","Santo Domingo","Valparaíso","Villa Alemana","Viña del Mar","Zapallar"],
+    "Región Metropolitana":["Alhué","Buin","Calera de Tango","Cerrillos","Cerro Navia","Colina","Conchalí","Curacaví","El Bosque","El Monte","Estación Central","Huechuraba","Independencia","Isla de Maipo","La Cisterna","La Florida","La Granja","La Pintana","La Reina","Lampa","Las Condes","Lo Barnechea","Lo Espejo","Lo Prado","Macul","Maipú","María Pinto","Melipilla","Ñuñoa","Padre Hurtado","Paine","Peñaflor","Peñalolén","Pirque","Providencia","Pudahuel","Puente Alto","Quilicura","Quinta Normal","Recoleta","Renca","San Bernardo","San José de Maipo","San Miguel","San Pedro","San Ramón","Santiago","Talagante","Tiltil","Vitacura"],
+    "O'Higgins":["Chépica","Chimbarongo","Codegua","Coinco","Coltauco","Doñihue","Graneros","La Estrella","Las Cabras","Litueche","Lolol","Machalí","Malloa","Marchihue","Mostazal","Nancagua","Navidad","Olivar","Palmilla","Paredones","Peralillo","Peumo","Pichidegua","Pichilemu","Placilla","Pumanque","Quinta de Tilcoco","Rancagua","Rengo","Requínoa","San Fernando","Santa Cruz"],
+    "Maule":["Cauquenes","Chanco","Colbún","Constitución","Curepto","Curicó","Empedrado","Licantén","Linares","Longaví","Maule","Molina","Parral","Pelarco","Pelluhue","Pencahue","Rauco","Retiro","Río Claro","Romeral","Sagrada Familia","San Clemente","San Javier","San Rafael","Talca","Teno","Vichuquén","Villa Alegre","Yerbas Buenas"],
+    "Ñuble":["Bulnes","Chillán","Chillán Viejo","Cobquecura","Coelemu","Coihueco","El Carmen","Ninhue","Ñiquén","Pemuco","Pinto","Portezuelo","Quillón","Quirihue","Ránquil","San Carlos","San Fabián","San Ignacio","San Nicolás","Trehuaco","Yungay"]
+  }},
+  sur:{label:"🌲 Sur",regiones:{
+    "Biobío":["Alto Biobío","Antuco","Arauco","Cabrero","Cañete","Chiguayante","Concepción","Contulmo","Coronel","Curanilahue","Florida","Hualpén","Hualqui","Laja","Lebu","Los Álamos","Los Ángeles","Lota","Mulchén","Nacimiento","Negrete","Penco","Quilaco","Quilleco","San Pedro de la Paz","Santa Bárbara","Santa Juana","Talcahuano","Tucapel","Yumbel"],
+    "La Araucanía":["Angol","Carahue","Cholchol","Collipulli","Cunco","Curacautín","Curarrehue","Ercilla","Freire","Galvarino","Gorbea","Lautaro","Loncoche","Lonquimay","Los Sauces","Lumaco","Melipeuco","Nueva Imperial","Padre Las Casas","Perquenco","Pitrufquén","Pucón","Purén","Renaico","Saavedra","Temuco","Teodoro Schmidt","Toltén","Traiguén","Victoria","Vilcún","Villarrica"],
+    "Los Ríos":["Corral","Futrono","La Unión","Lago Ranco","Lanco","Los Lagos","Máfil","Mariquina","Paillaco","Panguipulli","Río Bueno","Valdivia"],
+    "Los Lagos":["Ancud","Calbuco","Castro","Chaitén","Chonchi","Cochamó","Curaco de Vélez","Dalcahue","Fresia","Frutillar","Futaleufú","Hualaihué","Llanquihue","Los Muermos","Maullín","Osorno","Palena","Puerto Montt","Puerto Octay","Puerto Varas","Puqueldón","Purranque","Puyehue","Queilén","Quellón","Quemchi","Quinchao","Río Negro","San Juan de la Costa","San Pablo"],
+    "Aysén":["Aysén","Chile Chico","Cisnes","Cochrane","Coyhaique","Guaitecas","Lago Verde","Río Ibáñez","Tortel"],
+    "Magallanes":["Antártica","Cabo de Hornos","Laguna Blanca","Natales","Porvenir","Primavera","Punta Arenas","Río Verde","San Gregorio","Timaukel","Torres del Paine"]
+  }}
+};
+
+// Mapa región → zona
+var regionZona = {};
+for (var z in zonas) {
+  for (var r in zonas[z].regiones) {
+    regionZona[r] = z;
+  }
+}
+
+// Fondos específicos por comuna
+var fondosComuna = {
+  "Santiago":[11],"Maipú":[10],"Ñuñoa":[12],"Providencia":[13],"Las Condes":[14],"Temuco":[16],"Valparaíso":[17]
+};
+
+var alertas = (function() {
+  // Cargar alertas guardadas en localStorage
+  var guardadas = [];
+  try { guardadas = JSON.parse(localStorage.getItem("atv_alertas") || "[]"); } catch(e) {}
+  return new Set(guardadas);
+})();
+
+function guardarAlertas() {
+  try { localStorage.setItem("atv_alertas", JSON.stringify(Array.from(alertas))); } catch(e) {}
+}
+
+// ── ESTADO AUTOMÁTICO POR FECHAS ──
+var MESES = {
+  "ene":0,"feb":1,"mar":2,"abr":3,"may":4,"jun":5,
+  "jul":6,"ago":7,"sep":8,"oct":9,"nov":10,"dic":11
+};
+
+function parsearFecha(str, escierre) {
+  if (!str) return null;
+  str = str.trim().toLowerCase();
+
+  // Fecha exacta: "24 abr 2026"
+  var m = str.match(/^(\d{1,2})\s+([a-z]+)\s+(\d{4})$/);
+  if (m) {
+    var mesExacto = MESES[m[2].substring(0,3)];
+    if (mesExacto !== undefined) return new Date(parseInt(m[3]), mesExacto, parseInt(m[1]));
+  }
+
+  // Solo mes y año: "may 2026" — apertura = día 1, cierre = último día del mes
+  var m2 = str.match(/^([a-z]+)\s+(\d{4})$/);
+  if (m2) {
+    var mesMes = MESES[m2[1].substring(0,3)];
+    if (mesMes !== undefined) {
+      var anio = parseInt(m2[2]);
+      if (escierre) return new Date(anio, mesMes + 1, 0); // último día del mes
+      return new Date(anio, mesMes, 1);
+    }
+  }
+
+  return null;
+}
+
+function calcularEstado(fondo) {
+  // Casos especiales que siempre están abiertos
+  if (fondo.cierra === "Sin plazo" || fondo.abre === "Permanente") return "abierto";
+
+  var hoy = new Date();
+  hoy.setHours(0,0,0,0);
+
+  var fechaAbre  = parsearFecha(fondo.abre, false);
+  var fechaCierra = parsearFecha(fondo.cierra, true);
+
+  // No se pueden parsear las fechas → respetar el campo hardcodeado
+  if (!fechaAbre && !fechaCierra) return fondo.estado;
+
+  // Si la fecha de cierre ya pasó → cerrado
+  if (fechaCierra && fechaCierra < hoy) return "cerrado";
+
+  // Si la fecha de apertura aún no llegó → próximamente
+  if (fechaAbre && fechaAbre > hoy) return "proximo";
+
+  // Apertura pasó y cierre aún no (o no tiene cierre definido) → abierto
+  if (fechaAbre && fechaAbre <= hoy) return "abierto";
+
+  return fondo.estado;
+}
+
+// ── FILTROS ──
+function onZona() {
+  var zona = document.getElementById("sel-zona").value;
+  var selR = document.getElementById("sel-region");
+  var selC = document.getElementById("sel-comuna");
+  selR.innerHTML = "<option value=''>Todas las regiones</option>";
+  selC.innerHTML = "<option value=''>Todas las comunas</option>";
+  if (zona) {
+    var regs = Object.keys(zonas[zona].regiones);
+    regs.forEach(function(r) {
+      var o = document.createElement("option");
+      o.value = r; o.textContent = r;
+      selR.appendChild(o);
+    });
+  } else {
+    for (var z in zonas) {
+      var grp = document.createElement("optgroup");
+      grp.label = zonas[z].label;
+      for (var r in zonas[z].regiones) {
+        var o = document.createElement("option");
+        o.value = r; o.textContent = r;
+        grp.appendChild(o);
+      }
+      selR.appendChild(grp);
+    }
+  }
+  buscar();
+}
+
+function onRegion() {
+  var zona = document.getElementById("sel-zona").value;
+  var region = document.getElementById("sel-region").value;
+  var selC = document.getElementById("sel-comuna");
+  selC.innerHTML = "<option value=''>Todas las comunas</option>";
+  if (region) {
+    var zKey = zona || regionZona[region];
+    var comunas = zonas[zKey] && zonas[zKey].regiones[region] ? zonas[zKey].regiones[region] : [];
+    comunas.forEach(function(c) {
+      var o = document.createElement("option");
+      o.value = c; o.textContent = c;
+      selC.appendChild(o);
+    });
+  }
+  buscar();
+}
+
+// Mapa comuna → id municipio
+var comunaAMunicipio = {
+  // Maipú (municipio propio)
+  "Maipú":"maipu",
+  // Puente Alto (municipio propio)
+  "Puente Alto":"puentealto","Pirque":"puentealto","San José de Maipo":"puentealto",
+  // La Florida (municipio propio)
+  "La Florida":"laflorida",
+  // Santiago (solo la comuna de Santiago)
+  "Santiago":"santiago",
+  // Providencia (municipio propio - corregido)
+  "Providencia":"providencia",
+  // Ñuñoa (municipio propio - corregido)
+  "Ñuñoa":"nunoa",
+  // Las Condes (municipio propio - corregido)
+  "Las Condes":"lascondes",
+  // Quilicura (municipio propio)
+  "Quilicura":"quilicura",
+  // Peñalolén (municipio propio)
+  "Peñalolén":"penalolen",
+  // Antofagasta
+  "Antofagasta":"antofagasta","Calama":"antofagasta","Mejillones":"antofagasta",
+  // Concepción
+  "Concepción":"concepcion","Talcahuano":"concepcion","Hualpén":"concepcion",
+  "San Pedro de la Paz":"concepcion","Chiguayante":"concepcion",
+  // Temuco
+  "Temuco":"temuco","Padre Las Casas":"temuco","Villarrica":"temuco",
+  // Valparaíso
+  "Valparaíso":"valparaiso","Viña del Mar":"valparaiso","Quilpué":"valparaiso","Villa Alemana":"valparaiso",
+  // Recoleta (municipio propio - corregido, Independencia es municipio distinto)
+  "Recoleta":"recoleta",
+  // San Bernardo
+  "San Bernardo":"sanbernardo","Buin":"sanbernardo","Paine":"sanbernardo",
+  // Cerro Navia
+  "Cerro Navia":"cerronavia","Lo Prado":"cerronavia",
+  // Pudahuel
+  "Pudahuel":"pudahuel","Lampa":"pudahuel","Tiltil":"pudahuel"
+};
+
+function buscar() {
+  var zona = document.getElementById("sel-zona").value;
+  var region = document.getElementById("sel-region").value;
+  var comuna = document.getElementById("sel-comuna").value;
+  var cat = document.getElementById("sel-cat").value;
+  var estado = document.getElementById("sel-estado").value;
+
+  // Detectar pestaña activa
+  var tabPersonal = document.getElementById("tab-personal");
+  var enPersonal = tabPersonal && tabPersonal.classList.contains("activa");
+
+  if (enPersonal) {
+    // ── MODO BENEFICIOS PERSONALES: buscar municipio por comuna o región ──
+    var muniId = null;
+
+    if (comuna && comunaAMunicipio[comuna]) {
+      muniId = comunaAMunicipio[comuna];
+    } else if (region) {
+      // Buscar el primer municipio que coincida con esa región
+      var municipioRegion = municipios.find(function(m) { return m.region === region; });
+      if (municipioRegion) muniId = municipioRegion.id;
+    }
+
+    if (muniId) {
+      verMunicipio(muniId);
+      // Scroll al detalle
+      setTimeout(function() {
+        var d = document.getElementById("muni-detalle");
+        if (d) d.scrollIntoView({behavior:"smooth", block:"start"});
+      }, 200);
+      // Mostrar aviso
+      var bc = document.getElementById("banner-comuna");
+      var bt = document.getElementById("banner-texto");
+      if (bc && bt) {
+        bc.style.display = "flex";
+        bt.textContent = "Mostrando beneficios municipales para " + (comuna || region);
+      }
+    } else if (!zona && !region && !comuna) {
+      // Sin filtros: ocultar banner
+      var bc = document.getElementById("banner-comuna");
+      if (bc) bc.style.display = "none";
+    } else {
+      // No encontrado
+      var bc = document.getElementById("banner-comuna");
+      var bt = document.getElementById("banner-texto");
+      if (bc && bt) {
+        bc.style.display = "flex";
+        bt.textContent = "Aún no tenemos ese municipio — pronto lo agregamos. Prueba con otra zona.";
+      }
+    }
+    return;
+  }
+
+  // ── MODO FONDOS JUNTAS DE VECINOS: filtrar fondos con alcance ──
+  var filtrados = fondos.filter(function(f) {
+    var matchCat = !cat || f.cats.indexOf(cat) >= 0;
+    var matchEstado = !estado || calcularEstado(f) === estado;
+
+    // Sin filtros geográficos: mostrar todos
+    if (!zona && !region && !comuna) {
+      return matchCat && matchEstado;
+    }
+
+    // Con comuna seleccionada
+    if (comuna) {
+      if (f.alcance === "nacional") return matchCat && matchEstado; // nacionales siempre
+      if (f.alcance === "regional") return f.region === region && matchCat && matchEstado;
+      if (f.alcance === "municipal") {
+        return f.comunas && f.comunas.indexOf(comuna) >= 0 && matchCat && matchEstado;
+      }
+    }
+
+    // Con región seleccionada (sin comuna)
+    if (region) {
+      if (f.alcance === "nacional") return matchCat && matchEstado;
+      if (f.alcance === "regional") return f.region === region && matchCat && matchEstado;
+      if (f.alcance === "municipal") return f.region === region && matchCat && matchEstado;
+    }
+
+    // Solo zona seleccionada
+    if (zona) {
+      if (f.alcance === "nacional") return matchCat && matchEstado;
+      if (f.alcance === "regional") return regionZona[f.region] === zona && matchCat && matchEstado;
+      if (f.alcance === "municipal") return regionZona[f.region] === zona && matchCat && matchEstado;
+    }
+
+    return matchCat && matchEstado;
+  });
+
+  var bc = document.getElementById("banner-comuna");
+  var bt = document.getElementById("banner-texto");
+  if (bc && bt) {
+    if (comuna) {
+      bc.style.display = "flex";
+      bt.textContent = "Mostrando fondos nacionales + fondos específicos para " + comuna;
+    } else {
+      bc.style.display = "none";
+    }
+  }
+
+  renderFondos(filtrados);
+}
+
+function limpiar() {
+  document.getElementById("sel-zona").value = "";
+  document.getElementById("sel-cat").value = "";
+  document.getElementById("sel-estado").value = "";
+  onZona();
+}
+
+function filtrarCat(cat, el) {
+  document.getElementById("sel-cat").value = cat;
+  document.querySelectorAll(".cat-btn").forEach(function(b){ b.classList.remove("activa"); });
+  if (el) el.classList.add("activa");
+  buscar();
+  switchTab("juntavecinos");
+  document.getElementById("fondos-grid").scrollIntoView({behavior:"smooth",block:"start"});
+}
+
+// ── RENDER FONDOS ──
+function renderFondos(lista) {
+  var grid = document.getElementById("fondos-grid");
+  document.getElementById("fondos-count").textContent = "Mostrando " + lista.length + " fondos";
+  if (lista.length === 0) {
+    grid.innerHTML = "<div style='grid-column:1/-1;text-align:center;padding:3rem 1rem;background:#fff;border-radius:18px;border:1.5px solid var(--borde)'>" +
+      "<div style='font-size:2.5rem;margin-bottom:1rem'>🔍</div>" +
+      "<div style='font-family:Fraunces,serif;font-size:1.2rem;color:var(--gris-o);margin-bottom:.5rem'>No encontramos fondos con esos filtros</div>" +
+      "<div style='font-size:.87rem;color:var(--gris);margin-bottom:1.25rem'>Prueba cambiando la categoría, región o estado del fondo.</div>" +
+      "<button style='background:var(--verde);color:#fff;border:none;padding:9px 20px;border-radius:10px;font-family:DM Sans,sans-serif;font-weight:600;font-size:.87rem;cursor:pointer' onclick='limpiar()'>✕ Limpiar filtros</button>" +
+    "</div>";
+    return;
+  }
+  grid.innerHTML = lista.map(function(f) {
+    var _est = calcularEstado(f);
+    var badgeClass = _est === "abierto" ? "e-abierto" : _est === "proximo" ? "e-proximo" : "e-cerrado";
+    var badgeLabel = _est === "abierto" ? "Abierto" : _est === "proximo" ? "Próximamente" : "Cerrado";
+    var tags = f.cats.map(function(c){ return "<span class='tag'>"+c+"</span>"; }).join("");
+    if (f.cofin !== "No requerido") tags += "<span class='tag tag-co'>⚡ Cofinanciamiento</span>";
+    var alarmaIcon = alertas.has(f.id) ? "🔔" : "🔕";
+    var alarmaClass = alertas.has(f.id) ? "btn-alerta activa" : "btn-alerta";
+    return "<div class='tarjeta' role='button' tabindex='0' onclick='verDetalle("+f.id+")' onkeydown='if(event.key===\"Enter\")verDetalle("+f.id+")'>" +
+      "<div class='tarjeta-top'><span class='t-inst'>"+f.inst+"</span>" +
+      "<span class='estado-badge "+badgeClass+"'><span class='estado-dot'></span>"+badgeLabel+"</span></div>" +
+      "<div class='tarjeta-body'>" +
+        "<div class='t-nombre'>"+f.nombre+"</div>" +
+        "<div class='t-desc'>"+f.desc+"</div>" +
+        "<div class='t-datos'>" +
+          "<div class='dato'><div class='dato-label'>💰 Monto</div><div class='dato-valor'>"+f.monto+"</div></div>" +
+          "<div class='dato'><div class='dato-label'>📍 Alcance</div><div class='dato-valor'>"+f.region+"</div></div>" +
+          "<div class='dato'><div class='dato-label'>📅 Apertura</div><div class='dato-valor'>"+f.abre+"</div></div>" +
+          "<div class='dato'><div class='dato-label'>⏰ Cierre</div><div class='dato-valor'>"+f.cierra+"</div></div>" +
+        "</div>" +
+        "<div class='t-tags'>"+tags+"</div>" +
+      "</div>" +
+      "<div class='tarjeta-footer' onclick='event.stopPropagation()'>" +
+        "<button class='btn-ver' onclick='verDetalle("+f.id+")'>Ver detalles →</button>" +
+        "<button class='"+alarmaClass+"' onclick='toggleAlerta("+f.id+")' title='Activar alerta'>"+alarmaIcon+"</button>" +
+      "</div>" +
+    "</div>";
+  }).join("");
+}
+
+// ── DETALLE ──
+function verDetalle(id) {
+  var f = fondos.find(function(x){ return x.id === id; });
+  if (!f) return;
+
+  var _est = calcularEstado(f);
+  var eClass = _est === "abierto" ? "e-abierto" : _est === "proximo" ? "e-proximo" : "e-cerrado";
+  var eLabel = _est === "abierto" ? "🟢 Abierto" : _est === "proximo" ? "🟡 Próximamente" : "🔴 Cerrado";
+
+  var ejHtml = f.ejemplos.map(function(e){
+    return "<div class='ejemplo-item'>"+e+"</div>";
+  }).join("");
+
+  var pasosHtml = f.pasos.split(" · ").map(function(p, i){
+    return "<div class='paso-item'><div class='paso-num'>"+(i+1)+"</div><div class='paso-txt'>"+p+"</div></div>";
+  }).join("");
+
+  var aLabel = alertas.has(f.id) ? "🔔 Alerta activada" : "🔕 Activar alerta cuando abra";
+
+  var html = "";
+  html += "<div style='margin-bottom:1rem'>";
+  html += "<div class='t-inst' style='display:inline-block;margin-bottom:.5rem'>"+f.inst+"</div>";
+  html += "<div class='detalle-nombre' style='font-family:Fraunces,serif;font-size:1.35rem;font-weight:700;line-height:1.2;margin-bottom:.4rem'>"+f.nombre+"</div>";
+  html += "<span class='estado-badge "+eClass+"' style='display:inline-flex'><span class='estado-dot'></span> "+eLabel+"</span>";
+  html += "</div>";
+
+  html += "<div class='d-datos'>";
+  html += "<div class='d-dato'><div class='lbl'>💰 Monto</div><div class='val'>"+f.monto+"</div></div>";
+  html += "<div class='d-dato'><div class='lbl'>🤝 Cofinanciamiento</div><div class='val'>"+f.cofin+"</div></div>";
+  html += "<div class='d-dato'><div class='lbl'>📅 Apertura</div><div class='val'>"+f.abre+"</div></div>";
+  html += "<div class='d-dato'><div class='lbl'>⏰ Cierre</div><div class='val'>"+f.cierra+"</div></div>";
+  html += "</div>";
+
+  html += "<div class='d-tabs'>";
+  html += "<button class='dtab activa' onclick='dTab(\"info\",this)'>📋 Info</button>";
+  html += "<button class='dtab' onclick='dTab(\"ejemplos\",this)'>💡 Ejemplos</button>";
+  html += "<button class='dtab' onclick='dTab(\"postular\",this)'>📝 Cómo postular</button>";
+  html += "</div>";
+
+  html += "<div id='dp-info' class='dtab-panel activa'>";
+  html += "<div class='d-sec'><h4>Para qué sirve</h4><p>"+f.desc+"</p></div>";
+  html += "<div class='d-sec'><h4>Quién puede postular</h4><p>"+f.quien+"</p></div>";
+  html += "<div class='d-sec'><h4>Requisitos principales</h4><p>"+f.req+"</p></div>";
+  html += "</div>";
+
+  html += "<div id='dp-ejemplos' class='dtab-panel'>";
+  html += "<div class='d-sec'><h4>Qué puedes financiar con este fondo</h4>";
+  html += ejHtml + "</div>";
+  html += "<div class='d-sec'><h4>Caso real</h4><div class='caso-box'>"+f.caso+"</div></div>";
+  html += "</div>";
+
+  html += "<div id='dp-postular' class='dtab-panel'>";
+  html += "<div class='d-sec'><h4>Pasos para postular</h4>"+pasosHtml+"</div>";
+  html += "</div>";
+
+  html += "<div style='margin-top:1.25rem'>";
+  html += "<button class='btn-alerta' style='width:100%;margin-bottom:.5rem;padding:11px' onclick='toggleAlerta("+f.id+")'>"+aLabel+"</button>";
+  html += "<a href='"+f.link+"' target='_blank' class='btn-postular' style='display:block;text-align:center;text-decoration:none'>Ir al sitio oficial →</a>";
+  html += "</div>";
+
+  document.getElementById("detalle-contenido").innerHTML = html;
+  document.getElementById("modal-detalle").classList.add("abierto");
+}
+
+function dTab(nombre, btn) {
+  document.querySelectorAll(".dtab-panel").forEach(function(p){ p.classList.remove("activa"); });
+  document.querySelectorAll(".dtab").forEach(function(b){ b.classList.remove("activa"); });
+  var el = document.getElementById("dp-"+nombre);
+  if (el) el.classList.add("activa");
+  btn.classList.add("activa");
+}
+
+// ── ALERTAS ──
+function toggleAlerta(id) {
+  if (alertas.has(id)) {
+    alertas.delete(id);
+    toast("🔕 Alerta desactivada");
+  } else {
+    alertas.add(id);
+    toast("🔔 ¡Alerta activada! Te avisaremos cuando cambie el estado", "verde");
+  }
+  guardarAlertas();
+  // Actualizar solo los botones de alerta de esa tarjeta sin re-renderizar todo
+  var activa = alertas.has(id);
+  document.querySelectorAll(".btn-alerta").forEach(function(btn) {
+    var oc = btn.getAttribute("onclick") || "";
+    if (oc.indexOf("toggleAlerta("+id+")") === -1) return;
+    // Botón en tarjeta (icono pequeño) vs botón en modal (texto largo)
+    if (btn.style.width === "100%") {
+      btn.textContent = activa ? "🔔 Alerta activada" : "🔕 Activar alerta cuando abra";
+    } else {
+      btn.textContent = activa ? "🔔" : "🔕";
+    }
+    btn.classList.toggle("activa", activa);
+  });
+}
+
+// ── TABS PRINCIPALES ──
+function switchTab(nombre) {
+  // Activar/desactivar botones por data-tab en lugar de índice fijo
+  document.querySelectorAll(".tab").forEach(function(btn) {
+    var t = btn.getAttribute("data-tab");
+    btn.classList.toggle("activa", t === nombre);
+  });
+  // Activar/desactivar contenidos
+  ["inicio","personal","juntavecinos","calendario","faq"].forEach(function(t) {
+    var el = document.getElementById("tab-"+t);
+    if (el) el.classList.toggle("activa", t === nombre);
+  });
+  // Actualizar título del buscador según pestaña
+  var titulo = document.getElementById("buscador-titulo");
+  if (titulo) {
+    if (nombre === "personal") {
+      titulo.textContent = "🔍 Elige tu zona, región o comuna para ver los beneficios de tu municipio";
+    } else if (nombre === "juntavecinos") {
+      titulo.textContent = "🔍 Busca fondos disponibles para tu junta de vecinos";
+    } else {
+      titulo.textContent = "🔍 Encuentra fondos y beneficios disponibles para tu comunidad";
+    }
+  }
+  // Limpiar banner al cambiar pestaña
+  var bc = document.getElementById("banner-comuna");
+  if (bc) bc.style.display = "none";
+}
+
+// ── REGISTRO ──
+function abrirRegistro() {
+  document.getElementById("reg-form").style.display = "block";
+  document.getElementById("reg-ok").style.display = "none";
+  document.getElementById("modal-registro").classList.add("abierto");
+}
+
+function registrar() {
+  var n = document.getElementById("r-nombre").value.trim();
+  var e = document.getElementById("r-email").value.trim();
+  var r = document.getElementById("r-region").value;
+  if (!n || !e || !r) { toast("⚠️ Por favor completa todos los campos"); return; }
+  // Guardar en localStorage
+  try {
+    localStorage.setItem("atv_usuario", JSON.stringify({ nombre: n, email: e, region: r }));
+  } catch(err) {}
+  document.getElementById("reg-form").style.display = "none";
+  document.getElementById("reg-ok").style.display = "block";
+  var btn = document.querySelector(".btn-nav");
+  if (btn) btn.textContent = "👋 " + n.split(" ")[0];
+}
+
+// Restaurar sesión guardada al cargar
+(function() {
+  try {
+    var u = JSON.parse(localStorage.getItem("atv_usuario") || "null");
+    if (u && u.nombre) {
+      var btn = document.querySelector(".btn-nav");
+      if (btn) btn.textContent = "👋 " + u.nombre.split(" ")[0];
+    }
+  } catch(err) {}
+})();
+
+function cerrar(id) {
+  document.getElementById(id).classList.remove("abierto");
+}
+
+document.querySelectorAll(".modal-overlay").forEach(function(m) {
+  m.addEventListener("click", function(e) {
+    if (e.target === this) this.classList.remove("abierto");
+  });
+});
+
+// ── MENÚ MÓVIL ──
+function toggleMenu() {
+  var nav = document.getElementById("nav-links");
+  var btn = document.getElementById("hamburger");
+  var abierto = nav.classList.toggle("abierto");
+  btn.classList.toggle("abierto", abierto);
+  btn.setAttribute("aria-label", abierto ? "Cerrar menú" : "Abrir menú");
+}
+
+function cerrarMenu() {
+  document.getElementById("nav-links").classList.remove("abierto");
+  var btn = document.getElementById("hamburger");
+  btn.classList.remove("abierto");
+  btn.setAttribute("aria-label", "Abrir menú");
+}
+
+// Cerrar menú al hacer click fuera del nav
+document.addEventListener("click", function(e) {
+  if (!e.target.closest("nav")) cerrarMenu();
+});
+
+// ── TOAST ──
+function toast(msg, tipo) {
+  var t = document.getElementById("toast");
+  t.textContent = msg;
+  t.className = "toast visible" + (tipo ? " "+tipo : "");
+  setTimeout(function(){ t.classList.remove("visible"); }, 3000);
+}
+
+// ── CALENDARIO ──
+var calendario = [
+  {dia:"30",mes:"Jun",nombre:"Cierra Fondo Comunidad Activa RM — GORE Metropolitano",tipo:"Cierre postulación",urgente:true},
+  {dia:"Por",mes:"Conf.",nombre:"FONDEVE Ñuñoa 2026 — Cierre próximamente",tipo:"Cierre postulación",urgente:true},
+  {dia:"15",mes:"Jul",nombre:"FFOIP SEGEGOB — Publicación resultados",tipo:"Resultados",urgente:false},
+  {dia:"23",mes:"Jul",nombre:"Puerto Valparaíso Fondos Concursables — Resultados",tipo:"Resultados",urgente:false},
+  {dia:"1",mes:"Ago",nombre:"FOSIS Organizaciones en Acción — Apertura esperada",tipo:"Apertura estimada",urgente:false},
+  {dia:"Ago",mes:"2026",nombre:"FNDR 8% — Resultados regionales",tipo:"Resultados",urgente:false},
+  {dia:"Sep",mes:"2026",nombre:"MINVU Espacios Comunitarios — Apertura esperada",tipo:"Apertura estimada",urgente:false},
+  {dia:"Oct",mes:"2026",nombre:"FONDEVE Providencia — Apertura estimada",tipo:"Apertura estimada",urgente:false},
+  {dia:"Nov",mes:"2026",nombre:"FONDECOV Temuco — Apertura estimada",tipo:"Apertura estimada",urgente:false},
+  {dia:"31",mes:"Dic",nombre:"Cierre ejecución proyectos adjudicados 2026",tipo:"Fecha límite ejecución",urgente:false}
+];
+
+function renderCalendario() {
+  document.getElementById("cal-grid").innerHTML = calendario.map(function(e){
+    var cls = e.urgente ? "cal-item cal-urgente" : "cal-item";
+    return "<div class='"+cls+"'>" +
+      "<div class='cal-fecha'><div class='dia'>"+e.dia+"</div><div class='mes'>"+e.mes+"</div></div>" +
+      "<div class='cal-info'><div class='cal-nombre'>"+e.nombre+"</div><div class='cal-tipo'>"+(e.urgente?"⚠️ ":"")+e.tipo+"</div></div>" +
+    "</div>";
+  }).join("");
+}
+
+// ── FAQ ──
+var faqs = [
+  {q:"¿Qué es una Junta de Vecinos y cómo se constituye?",a:"Es una organización comunitaria territorial regulada por la Ley 19.418. Para constituirla se necesita un mínimo de vecinos, realizar una asamblea constitutiva y registrarla en la municipalidad. El municipio otorga la personalidad jurídica."},
+  {q:"¿Qué documentos necesito para postular a los fondos?",a:"Los más comunes son: Certificado de Vigencia de la Personalidad Jurídica (no mayor a 6 meses), RUT de la organización, Acta de directorio vigente, Cédula de identidad del representante legal y el formulario de postulación de cada fondo."},
+  {q:"¿Puedo postular a más de un fondo al mismo tiempo?",a:"Generalmente sí, siempre que sean fondos de distintas instituciones y los proyectos sean diferentes. Sin embargo, algunos fondos como el FONDEVE impiden volver a postular por 3 años una vez adjudicado."},
+  {q:"¿Los fondos hay que devolverlos?",a:"No. La mayoría son subsidios no reembolsables, es decir, no son préstamos y no generan deuda. Sí requieren rendición de cuentas y justificación del gasto."},
+  {q:"¿Qué es el cofinanciamiento?",a:"Algunos fondos requieren que la organización aporte un porcentaje del valor total del proyecto (generalmente entre 5% y 10%). Este aporte puede venir de la comunidad, del municipio u otras fuentes."},
+  {q:"¿Cómo me avisan cuando abre un nuevo fondo?",a:"Al registrarte en Ayuda al Vecino, recibirás alertas por correo electrónico personalizadas según tu región y las áreas de interés que selecciones. También puedes revisar el Calendario de esta plataforma."}
+];
+
+function renderFAQ() {
+  document.getElementById("faq-grid").innerHTML = faqs.map(function(f,i){
+    return "<div class='faq-item'>" +
+      "<div class='faq-pregunta' role='button' tabindex='0' aria-expanded='false' aria-controls='faq-"+i+"' onclick='toggleFaq("+i+")' onkeydown='if(event.key===\"Enter\"||event.key==\" \")toggleFaq("+i+")'>"+f.q+" <span>▾</span></div>" +
+      "<div class='faq-resp' id='faq-"+i+"'>"+f.a+"</div>" +
+    "</div>";
+  }).join("");
+}
+
+function toggleFaq(i) {
+  var panel = document.getElementById("faq-"+i);
+  var btn = panel.previousElementSibling;
+  var abierta = panel.classList.toggle("abierta");
+  btn.setAttribute("aria-expanded", abierta);
+}
+
+
+// ── MUNICIPIOS ──
+var municipios = [
+  {id:"maipu",nombre:"Maipú",region:"Región Metropolitana",pop:"600.000 hab.",web:"https://municipalidadmaipu.cl",
+   beneficios:[
+    {cat:"Salud",emoji:"🏥",items:[
+      {t:"Tres Farmacias Municipales",d:"Maipú cuenta con 3 farmacias municipales con medicamentos a menor costo para toda la familia, desde crónicos hasta agudos.",c:"Acércate a cualquiera de las 3 farmacias municipales con receta médica. Consulta ubicaciones en el sitio oficial.",url:"https://www.municipalidadmaipu.cl/farmacia-municipal"},
+      {t:"CESFAM y Atención Primaria gratuita",d:"Red de centros de salud con atención médica, dental, matrona, nutricionista y salud mental para vecinos con Fonasa.",c:"Inscríbete en el CESFAM de tu sector con carnet y Fonasa activo.",url:"https://www.municipalidadmaipu.cl/salud/"},
+      {t:"Programa acompañamiento adultos mayores",d:"Talleres de buen envejecer, actividad física y acompañamiento en alianza con SENAMA para personas mayores de Maipú.",c:"Llama al 224028201 o al WhatsApp +56 9 96373499. También puedes acercarte a la Municipalidad.",url:"https://www.municipalidadmaipu.cl/adulto-mayor/"}
+    ]},
+    {cat:"Adulto Mayor",emoji:"👴",items:[
+      {t:"Oficina del Adulto Mayor",d:"Entrega medicamentos y beneficios directamente a personas mayores. Atención personalizada y visitas domiciliarias.",c:"Llama al 224028201 o al WhatsApp +56 9 96373499.",url:"https://www.municipalidadmaipu.cl/adulto-mayor/"},
+      {t:"Tarjeta Beneficios Maipú",d:"Tarjeta con descuentos en salud, farmacias, peluquerías y otros servicios para vecinos residentes en Maipú.",c:"Solicita tu tarjeta con carnet de identidad y acreditando residencia en Maipú en la Municipalidad.",url:"https://www.municipalidadmaipu.cl/informese-de-los-multiples-descuentos-de-la-tarjeta-beneficios-maipu/"}
+    ]},
+    {cat:"Educación y Becas",emoji:"🎓",items:[
+      {t:"Becas municipales escolares y superiores",d:"Apoyo económico para estudiantes de Maipú en vulnerabilidad. Becas para básica, media y educación superior.",c:"Postula en marzo en la Municipalidad con RSH, notas y certificado de matrícula.",url:"https://www.municipalidadmaipu.cl/educacion/"}
+    ]},
+    {cat:"Social y Legal",emoji:"⚖️",items:[
+      {t:"Dirección de Desarrollo Social",d:"Atención de urgencias sociales, orientación en subsidios, asesoría jurídica y apoyo a familias vulnerables de Maipú.",c:"Acércate a la Dirección de Desarrollo Social con carnet de identidad.",url:"https://www.municipalidadmaipu.cl/desarrollo-social/"},
+      {t:"Mediación vecinal gratuita",d:"Resolución gratuita de conflictos entre vecinos, condóminos y organizaciones comunitarias.",c:"Solicita mediación en la Dirección de Desarrollo Comunitario de la Municipalidad.",url:"https://www.municipalidadmaipu.cl/"}
+    ]}
+  ]},
+  {id:"puentealto",nombre:"Puente Alto",region:"Región Metropolitana",pop:"600.000 hab.",web:"https://mpuentealto.cl",
+   beneficios:[
+    {cat:"Salud",emoji:"🏥",items:[
+      {t:"Farmacia Solidaria Municipal",d:"Medicamentos a precio accesible para vecinos de Puente Alto. Solo necesitas cédula de identidad vigente para inscribirte.",c:"Inscríbete en la Farmacia Solidaria con cédula de identidad vigente.",url:"https://www.mpuentealto.cl/farmacia-solidaria/"},
+      {t:"CESFAM y Atención Primaria",d:"Red de centros de salud con médico, dental, matrona y salud mental. Más de 2.500 exámenes preventivos anuales.",c:"Inscríbete en el CESFAM de tu sector o revisa los centros en cmpuentealto.cl.",url:"https://www.cmpuentealto.cl/centros-de-salud/"}
+    ]},
+    {cat:"Educación y Becas",emoji:"🎓",items:[
+      {t:"Becas Municipales — Educación Superior y Útiles",d:"Beca Municipal de Educación Superior y Beca de Uniformes y Útiles Escolares para familias en vulnerabilidad.",c:"Revisa el proceso en datos.mpuentealto.cl o acércate al Departamento de Acción Social.",url:"https://datos.mpuentealto.cl/dashboards/21617/becas-municipales/"},
+      {t:"Apoyo postulación FUAS",d:"El municipio orienta a jóvenes a postular al FUAS para gratuidad, becas y créditos del Estado para educación superior.",c:"Acércate a la Municipalidad. El FUAS se postula en fuas.mineduc.cl entre octubre y noviembre.",url:"https://www.mpuentealto.cl/"}
+    ]},
+    {cat:"Adulto Mayor",emoji:"👴",items:[
+      {t:"Oficina del Adulto Mayor",d:"Talleres de inclusión, actividad física y recreación para personas mayores de 60 años de Puente Alto.",c:"Acércate a la Oficina del Adulto Mayor en la Municipalidad de Puente Alto.",url:"https://www.mpuentealto.cl/oficina-del-adulto-mayor/"},
+      {t:"Programa Mi Comunidad — CMPA",d:"Redes de apoyo y participación comunitaria para adultos mayores, impulsado por la Corporación Municipal.",c:"Contacta la Corporación Municipal de Puente Alto en cmpuentealto.cl.",url:"https://www.cmpuentealto.cl/"}
+    ]},
+    {cat:"Social",emoji:"⚖️",items:[
+      {t:"Departamento de Acción Social",d:"Atención de urgencias sociales, subsidios y orientación para familias vulnerables de Puente Alto.",c:"Acércate con RSH y carnet al Departamento de Acción Social de lunes a viernes.",url:"https://www.mpuentealto.cl/"}
+    ]}
+  ]},
+  {id:"laflorida",nombre:"La Florida",region:"Región Metropolitana",pop:"390.000 hab.",web:"https://laflorida.cl",
+   beneficios:[
+    {cat:"Salud",emoji:"🏥",items:[
+      {t:"CESFAM y Atención Primaria gratuita",d:"Red de centros de salud con atención médica, dental, matrona y enfermería gratuita para vecinos con Fonasa.",c:"Llama o acércate al CESFAM de tu sector con carnet de identidad. Es gratuito.",url:"https://laflorida.cl/sitio/salud/"},
+      {t:"Farmacia Popular Municipal",d:"Medicamentos esenciales a precio solidario o gratuitos con receta médica vigente de cualquier médico.",c:"Lleva tu receta médica y carnet a la farmacia municipal. No necesitas Fonasa para comprar.",url:"https://laflorida.cl/sitio/salud/"}
+    ]},
+    {cat:"Adulto Mayor",emoji:"👴",items:[
+      {t:"Programa Integral Adulto Mayor",d:"26 centros de gimnasia de bajo impacto, talleres de cueca, tango, yoga, macramé y tejido. 100% gratuito para mayores de 60 años.",c:"Llama a la Municipalidad o acércate a la Oficina del Adulto Mayor. Completamente gratis.",url:"https://laflorida.cl/sitio/programas/programa-adulto-mayor/"},
+      {t:"Visitas domiciliarias adulto mayor",d:"Un asistente social visita tu hogar para evaluar necesidades y orientarte. Ideal para personas con dificultad para salir.",c:"Llama al municipio al 226590000 y solicita una visita domiciliaria del Programa Adulto Mayor.",url:"https://laflorida.cl/sitio/programas/programa-adulto-mayor/"},
+      {t:"Protección legal adulto mayor",d:"Orientación jurídica y apoyo en casos de violencia, maltrato o abandono. Intervención multidisciplinaria legal y psicológica.",c:"Acércate a la Oficina del Adulto Mayor. Atención confidencial y gratuita.",url:"https://laflorida.cl/sitio/programas/programa-adulto-mayor/"}
+    ]},
+    {cat:"Educación y Becas",emoji:"🎓",items:[
+      {t:"Beca Escolar Municipal 2026",d:"Apoyo económico para estudiantes de básica y media de familias vulnerables. Postulación en plataforma online.",c:"Entra directamente a appx.laflorida.cl/beca_escolar y regístrate. Gratuito.",url:"https://appx.laflorida.cl/beca_escolar/"},
+      {t:"Útiles y uniformes escolares gratuitos",d:"Entrega gratuita de materiales para niños de familias vulnerables al inicio del año.",c:"Postula en enero con RSH y certificado de matrícula en el municipio.",url:"https://laflorida.cl/sitio/educacion/"}
+    ]},
+    {cat:"Social y Comunitario",emoji:"⚖️",items:[
+      {t:"DIDESO — Desarrollo Social",d:"Atiende urgencias sociales, vivienda, niñez, mujer y adulto mayor. Puerta de entrada a todos los beneficios municipales.",c:"Acércate a DIDESO en Av. Walker Martínez 540, La Florida. Lleva carnet de identidad.",url:"https://laflorida.cl/sitio/direcciones-municipales/"},
+      {t:"Exención pago de aseo adultos mayores",d:"Mujeres mayores de 60 y hombres mayores de 65 años pueden postular a exención del cobro de aseo domiciliario.",c:"Postula en la Municipalidad con carnet de identidad y certificado que acredite tu edad.",url:"https://laflorida.cl/sitio/noticias_florida/extension-de-postulacion-al-beneficio-de-exencion-de-derechos-de-aseo/"}
+    ]}
+  ]},
+  {id:"santiago",nombre:"Santiago",region:"Región Metropolitana",pop:"520.000 hab.",web:"https://munistgo.cl",
+   beneficios:[
+    {cat:"Salud",emoji:"🏥",items:[
+      {t:"CESFAM gratuitos",d:"Red de Centros de Salud con médico, dental, matrona, nutricionista y salud mental gratuita para vecinos con Fonasa.",c:"Inscríbete en el CESFAM de tu sector. Agenda por teléfono o en línea.",url:"https://munistgo.cl/salud"},
+      {t:"Atención dental gratuita",d:"Odontología gratuita para niños, embarazadas y adultos mayores. Urgencias dentales sin costo.",c:"Agenda en tu CESFAM. Prioridad embarazadas, menores de 20 y adultos mayores.",url:"https://munistgo.cl/salud"},
+      {t:"Farmacia Municipal",d:"Medicamentos a precio justo para vecinos de Santiago con receta médica.",c:"Presenta receta vigente en la farmacia municipal. Sin necesidad de ser Fonasa.",url:"https://munistgo.cl/salud"}
+    ]},
+    {cat:"Educación y Becas",emoji:"🎓",items:[
+      {t:"Beca Educación Superior",d:"Apoyo económico para estudiantes de Santiago con excelencia y vulnerabilidad en universidades, IP y CFT.",c:"Postula en munistgo.cl/becas-y-fondos entre marzo y abril de cada año.",url:"https://munistgo.cl/becas-y-fondos"},
+      {t:"Beca Deportista Destacado",d:"Apoyo económico para deportistas de la comuna con desempeño excepcional en su disciplina.",c:"Postula en la Municipalidad con respaldo de logros deportivos y RSH.",url:"https://munistgo.cl/becas-y-fondos"},
+      {t:"Útiles y uniformes escolares",d:"Entrega gratuita a familias vulnerables de la comuna al inicio del año escolar.",c:"Postula en enero con RSH y matrícula vigente.",url:"https://munistgo.cl"}
+    ]},
+    {cat:"Social y Legal",emoji:"⚖️",items:[
+      {t:"Asesoría jurídica gratuita",d:"Orientación legal gratuita en materias civiles, laborales, familia y vecinal para vecinos de Santiago.",c:"Solicita hora en Santo Domingo 789, de lunes a viernes de 09:00 a 14:00 hrs.",url:"https://munistgo.cl"},
+      {t:"App MI STGO — Descuentos Vecinos",d:"Descuentos en bencina, gastronomía, salud y mascotas para quienes viven o trabajan en Santiago.",c:"Descarga gratis desde AppStore o GooglePlay buscando MI STGO.",url:"https://munistgo.cl"}
+    ]},
+    {cat:"Adulto Mayor",emoji:"👴",items:[
+      {t:"Centros de Día y talleres gratuitos",d:"Actividades recreativas, culturales, físicas y educativas para adultos mayores de Santiago.",c:"Inscríbete en los centros comunitarios o en la Oficina del Adulto Mayor.",url:"https://munistgo.cl"}
+    ]}
+  ]},
+  {id:"quilicura",nombre:"Quilicura",region:"Región Metropolitana",pop:"230.000 hab.",web:"https://quilicura.cl",
+   beneficios:[
+    {cat:"Salud",emoji:"🏥",items:[
+      {t:"Farmacia Municipal Solidaria",d:"Medicamentos a precio justo para todos los vecinos. Solo necesitas carnet y acreditar domicilio en Quilicura. Acepta extranjeros.",c:"Inscríbete en Av. Bernardo O'Higgins 481 (esquina Covadonga). Lleva carnet y cuenta de agua, luz o certificado de residencia.",url:"https://quilicura.cl/farmacia-municipal-solidaria/"},
+      {t:"CESFAM gratuitos",d:"Atención médica primaria gratuita para vecinos inscritos en Fonasa. Médico, matrona, nutricionista y enfermería.",c:"Inscríbete en el CESFAM de tu sector con carnet de identidad.",url:"https://quilicura.cl/salud/"},
+      {t:"Beneficios sociales en salud",d:"Apoyo en medicamentos, exámenes y anteojos para vecinos vulnerables, evaluados por asistente social.",c:"Acércate al Departamento de Desarrollo Social con RSH y carnet. Sin hora previa.",url:"https://quilicura.cl/desarrollo-social/"}
+    ]},
+    {cat:"Educación y Becas",emoji:"🎓",items:[
+      {t:"Beca Municipal Educación Superior",d:"Apoyo económico mensual para estudiantes universitarios y de CFT con vulnerabilidad y buen rendimiento.",c:"Postula en marzo en la Municipalidad con RSH, certificado de matrícula y notas.",url:"https://quilicura.cl/educacion/"},
+      {t:"Útiles y uniformes escolares",d:"Entrega gratuita de materiales para niños de familias vulnerables al inicio del año.",c:"Postula en enero con RSH y certificado de matrícula en el municipio.",url:"https://quilicura.cl/educacion/"}
+    ]},
+    {cat:"Social",emoji:"⚖️",items:[
+      {t:"Guía de Beneficios y Derechos Sociales",d:"Quilicura distribuye la Guía oficial del Estado con más de 80 prestaciones sociales disponibles para vecinos.",c:"Solicita la guía en la Municipalidad o en las delegaciones comunales. Es gratuita.",url:"https://quilicura.cl/desarrollo-social/"},
+      {t:"Asesoría jurídica gratuita",d:"Orientación legal en materias civiles, laborales, familia y vecinal para vecinos de Quilicura.",c:"Solicita hora en la Municipalidad de lunes a viernes en horario hábil.",url:"https://quilicura.cl/"}
+    ]},
+    {cat:"Adulto Mayor",emoji:"👴",items:[
+      {t:"Talleres adulto mayor",d:"Actividades recreativas, culturales y de salud gratuitas para personas mayores de 60 años.",c:"Inscríbete en los centros comunitarios o en la Oficina del Adulto Mayor.",url:"https://quilicura.cl/adulto-mayor/"}
+    ]}
+  ]},
+  {id:"penalolen",nombre:"Peñalolén",region:"Región Metropolitana",pop:"250.000 hab.",web:"https://penalolen.cl",
+   beneficios:[
+    {cat:"Salud",emoji:"🏥",items:[
+      {t:"Farmacia Comunitaria Municipal",d:"Medicamentos crónicos a precio accesible. Inscripción online o presencial. Incluye servicio de delivery de medicamentos a domicilio.",c:"Inscríbete online en penalolen.cl/farmacia o presencialmente en Av. Grecia 8735. Lleva receta médica y cuenta de servicios de Peñalolén.",url:"https://www.penalolen.cl/farmacia/inscripcion-farmacia/"},
+      {t:"CESFAM y Atención Primaria",d:"Red de centros de salud con médico, dental, matrona y salud mental gratuita para vecinos con Fonasa.",c:"Inscríbete en el CESFAM de tu sector con carnet de identidad.",url:"https://www.penalolen.cl/salud/"},
+      {t:"Clínica Veterinaria Municipal",d:"Atención veterinaria a precio social para mascotas de vecinos de Peñalolén.",c:"Agenda hora en la sección Veterinaria del sitio municipal penalolen.cl.",url:"https://www.penalolen.cl/veterinaria/"}
+    ]},
+    {cat:"Adulto Mayor",emoji:"👴",items:[
+      {t:"Programa Adulto Mayor integral",d:"Turismo social SERNATUR, talleres de envejecimiento activo, evaluación geriátrica, charlas preventivas y acompañamiento telefónico contra la soledad.",c:"Centro de Atención Adulto Mayor en Ricardo Grellet de los Reyes 2001. Lunes a viernes de 08:30 a 13:30 hrs.",url:"https://transparenciaproactiva.penalolen.cl/informate/ayuda-social"},
+      {t:"Diversidad cultural y pueblos originarios",d:"Ferias de gastronomía y artesanía, asesoría sobre derechos y reconocimiento cultural para comunidades originarias.",c:"Consulta en la Oficina de Diversidad Cultural de la Municipalidad de Peñalolén.",url:"https://transparenciaproactiva.penalolen.cl/informate/ayuda-social"}
+    ]},
+    {cat:"Educación y Becas",emoji:"🎓",items:[
+      {t:"Becas municipales y estatales",d:"Orientación y apoyo en postulación a becas municipales y a la Beca Presidente de la República.",c:"Acércate al Edificio Consistorial o delegaciones, lunes a viernes en horario de mañana.",url:"https://transparenciaproactiva.penalolen.cl/informate/ayuda-social"}
+    ]},
+    {cat:"Social y Legal",emoji:"⚖️",items:[
+      {t:"Área Social Municipal",d:"Orientación para subsidios, atención social, emergencias (incendios, accidentes) y actualización del Registro Social de Hogares.",c:"Atención en Edificio Consistorial y Delegaciones, lunes a viernes en horario de mañana.",url:"https://transparenciaproactiva.penalolen.cl/informate/ayuda-social"},
+      {t:"Corporación de Empleo y Emprendimiento Yunus",d:"Apoyo a vecinos que quieren trabajar, emprender o capacitarse. Talleres gratuitos y orientación laboral.",c:"Contacta la Corporación Yunus a través de penalolen.cl o acércate al municipio.",url:"https://www.penalolen.cl/"}
+    ]}
+  ]},
+  {id:"antofagasta",nombre:"Antofagasta",region:"Antofagasta",pop:"430.000 hab.",web:"https://municipalidadantofagasta.cl",
+   beneficios:[
+    {cat:"Salud",emoji:"🏥",items:[
+      {t:"CESFAM y Atención Primaria",d:"Centros de salud familiar con médico, dental y matrona gratuita para vecinos con Fonasa inscritos.",c:"Inscríbete en el CESFAM de tu sector con carnet de identidad.",url:"https://municipalidadantofagasta.cl/salud"},
+      {t:"Farmacia Municipal",d:"Medicamentos esenciales a precio accesible o gratuitos con receta médica para familias vulnerables.",c:"Presenta receta médica vigente en la farmacia municipal.",url:"https://municipalidadantofagasta.cl"}
+    ]},
+    {cat:"Educación y Becas",emoji:"🎓",items:[
+      {t:"Beca Municipal Antofagasta",d:"Apoyo económico para estudiantes con vulnerabilidad y buen rendimiento académico.",c:"Postula entre marzo y abril con RSH, matrícula y notas en la Municipalidad.",url:"https://municipalidadantofagasta.cl/educacion"},
+      {t:"Útiles escolares gratuitos",d:"Entrega de materiales para niños de familias vulnerables.",c:"Postula en enero con RSH y certificado de matrícula.",url:"https://municipalidadantofagasta.cl"}
+    ]},
+    {cat:"Social",emoji:"⚖️",items:[
+      {t:"Dirección de Desarrollo Social",d:"Atención de urgencias sociales, subsidios y apoyo a familias vulnerables de Antofagasta.",c:"Acércate con carnet a la Dirección de Desarrollo Social.",url:"https://municipalidadantofagasta.cl"},
+      {t:"Oficina de la Mujer",d:"Atención y apoyo para mujeres en situación de violencia o vulnerabilidad.",c:"Atención presencial y confidencial en la Municipalidad.",url:"https://municipalidadantofagasta.cl"}
+    ]},
+    {cat:"Adulto Mayor",emoji:"👴",items:[
+      {t:"Programa Adulto Mayor",d:"Talleres recreativos, actividad física y sociabilización gratuitos para mayores de 60 años.",c:"Inscríbete en la Oficina del Adulto Mayor de la Municipalidad.",url:"https://municipalidadantofagasta.cl"}
+    ]}
+  ]},
+  {id:"concepcion",nombre:"Concepción",region:"Biobío",pop:"240.000 hab.",web:"https://concepcion.cl",
+   beneficios:[
+    {cat:"Salud",emoji:"🏥",items:[
+      {t:"CESFAM gratuitos",d:"Red de centros de salud con médico, dental, matrona y especialidades básicas para vecinos con Fonasa.",c:"Inscríbete en el CESFAM de tu sector con carnet de identidad.",url:"https://concepcion.cl/salud"},
+      {t:"Farmacia Municipal",d:"Medicamentos a precio rebajado con receta médica para vecinos de la comuna.",c:"Presenta receta vigente en la farmacia municipal de Concepción.",url:"https://concepcion.cl"}
+    ]},
+    {cat:"Educación y Becas",emoji:"🎓",items:[
+      {t:"Beca Municipal Concepción",d:"Apoyo económico para estudiantes con vulnerabilidad en todos los niveles educativos.",c:"Postula entre marzo y abril en la Municipalidad con RSH y antecedentes académicos.",url:"https://concepcion.cl/educacion"},
+      {t:"Útiles y uniformes escolares",d:"Entrega gratuita para familias vulnerables al inicio del año escolar.",c:"Postula en enero con RSH y certificado de matrícula.",url:"https://concepcion.cl"}
+    ]},
+    {cat:"Social y Legal",emoji:"⚖️",items:[
+      {t:"Asesoría jurídica gratuita",d:"Orientación legal en materias de familia, laboral, civil y vecinal para vecinos de Concepción.",c:"Solicita hora en la Municipalidad de lunes a viernes en horario hábil.",url:"https://concepcion.cl"},
+      {t:"Programa Municipal de la Mujer",d:"Atención y apoyo para mujeres en situación de vulnerabilidad o violencia intrafamiliar.",c:"Atención presencial y confidencial en la Municipalidad. Sin costo.",url:"https://concepcion.cl"}
+    ]},
+    {cat:"Adulto Mayor",emoji:"👴",items:[
+      {t:"Talleres adulto mayor",d:"Actividades recreativas, culturales y de salud gratuitas para personas mayores de 60 años.",c:"Inscríbete en los centros comunitarios o en la Oficina del Adulto Mayor.",url:"https://concepcion.cl"}
+    ]}
+  ]},
+  {id:"temuco",nombre:"Temuco",region:"La Araucanía",pop:"290.000 hab.",web:"https://temuco.cl",
+   beneficios:[
+    {cat:"Salud",emoji:"🏥",items:[
+      {t:"CESFAM y Atención Primaria",d:"Red de centros de salud con médico, dental, matrona y salud mental gratuita. Prioridad a adultos mayores.",c:"Inscríbete en el CESFAM de tu sector con carnet de identidad.",url:"https://temuco.cl/salud"},
+      {t:"Farmacia Municipal",d:"Medicamentos esenciales a precio rebajado o gratuitos. Prioridad para adultos mayores y vecinos vulnerables.",c:"Presenta receta médica vigente en la farmacia municipal.",url:"https://temuco.cl"}
+    ]},
+    {cat:"Adulto Mayor",emoji:"👴",items:[
+      {t:"Programa Adulto Mayor Temuco",d:"Talleres gratuitos de actividad física, sociabilización y recreación. Presupuesto anual de $424 millones.",c:"Inscríbete en la Oficina del Adulto Mayor o en tu centro comunitario.",url:"https://temuco.cl/adulto-mayor"},
+      {t:"Programa Vínculos",d:"Programa del Ministerio de Desarrollo Social para adultos mayores vulnerables. El equipo visita los hogares.",c:"Solicita evaluación en la Municipalidad. El equipo va a tu domicilio.",url:"https://temuco.cl"},
+      {t:"Traslado y recreación adulto mayor",d:"Servicio de traslado gratuito para que adultos mayores participen en actividades recreativas.",c:"Inscríbete en el Programa Adulto Mayor de la Municipalidad.",url:"https://temuco.cl"}
+    ]},
+    {cat:"Educación y Becas",emoji:"🎓",items:[
+      {t:"Beca Municipal Temuco",d:"Apoyo económico para estudiantes con vulnerabilidad y rendimiento académico.",c:"Postula entre marzo y abril con RSH, matrícula y notas.",url:"https://temuco.cl/educacion"},
+      {t:"Útiles y uniformes escolares",d:"Entrega gratuita para familias vulnerables al inicio del año.",c:"Postula en enero con RSH y certificado de matrícula.",url:"https://temuco.cl"}
+    ]},
+    {cat:"Social y Comunitario",emoji:"⚖️",items:[
+      {t:"Asesoría a comunidades indígenas",d:"Apoyo para comunidades mapuche con asesoría en derechos y programas disponibles.",c:"Consulta en la Oficina de Asuntos Indígenas de la Municipalidad de Temuco.",url:"https://temuco.cl"},
+      {t:"Oficina de la Mujer",d:"Atención y derivación para mujeres en situación de violencia o vulnerabilidad.",c:"Atención presencial y confidencial en la Municipalidad de Temuco.",url:"https://temuco.cl"}
+    ]}
+  ]},
+  {id:"recoleta",nombre:"Recoleta",region:"Región Metropolitana",pop:"170.000 hab.",web:"https://recoleta.cl",
+   beneficios:[
+    {cat:"Salud",emoji:"🏥",items:[
+      {t:"Farmacia Popular Ricardo Silva Soto",d:"La primera farmacia popular de Chile. Ahorra hasta un 70% en medicamentos respecto al mercado, comprando a precio de costo directamente de laboratorios.",c:"Inscríbete en el hall central de la Municipalidad de Recoleta, piso -1, mesón lado izquierdo. Lleva carnet de identidad y receta médica con máximo 6 meses de antigüedad.",url:"https://www.recoleta.cl/como-inscribirse/"},
+      {t:"Óptica Popular Reinalda Pereira",d:"Lentes ópticos hasta un 70% más baratos que en el mercado. Consulta médica gratuita con tecnólogo médico incluida. Para vecinos, trabajadores y estudiantes de Recoleta.",c:"Acércate a la óptica popular ubicada al costado de la farmacia en el edificio municipal. Lleva certificado de residencia, RSH, carnet de consultorio, contrato de trabajo o certificado de estudiante.",url:"https://www.recoleta.cl/optica-popular/"},
+      {t:"CESFAM gratuitos",d:"Atención médica primaria gratuita para vecinos inscritos en Fonasa. Médico, dental, matrona y enfermería.",c:"Inscríbete en el CESFAM de tu sector con carnet de identidad.",url:"https://ww2.recoleta.cl/salud/"}
+    ]},
+    {cat:"Educación y Becas",emoji:"🎓",items:[
+      {t:"Beca Municipal Educación Superior",d:"Apoyo económico para estudiantes de Recoleta con vulnerabilidad económica que cursan educación superior.",c:"Postula en la Municipalidad entre marzo y abril con RSH, certificado de matrícula y notas.",url:"https://ww2.recoleta.cl/educacion/"},
+      {t:"Útiles y uniformes escolares",d:"Entrega gratuita de materiales para niños de familias vulnerables al inicio del año.",c:"Postula en enero con RSH y certificado de matrícula en el municipio.",url:"https://ww2.recoleta.cl/educacion/"}
+    ]},
+    {cat:"Social y Legal",emoji:"⚖️",items:[
+      {t:"Consulta de precios farmacia online",d:"Puedes consultar los precios de los medicamentos de la Farmacia Popular online antes de ir.",c:"Visita tramites.informaticarecoleta.cl para consultar precios de medicamentos disponibles.",url:"https://tramites.informaticarecoleta.cl/index.php"},
+      {t:"Asesoría jurídica y social",d:"Orientación social y legal gratuita para vecinos de Recoleta en materias de familia, laboral y vecinal.",c:"Acércate a la Municipalidad de Recoleta o ingresa a recoleta.cl para más información.",url:"https://ww2.recoleta.cl/vecinos/"}
+    ]},
+    {cat:"Adulto Mayor",emoji:"👴",items:[
+      {t:"Talleres y programas adulto mayor",d:"Actividades recreativas, culturales y de salud gratuitas para personas mayores de 60 años de Recoleta.",c:"Inscríbete en la Oficina del Adulto Mayor de la Municipalidad de Recoleta.",url:"https://ww2.recoleta.cl/"}
+    ]}
+  ]},
+  {id:"sanbernardo",nombre:"San Bernardo",region:"Región Metropolitana",pop:"250.000 hab.",web:"https://sanbernardo.cl",
+   beneficios:[
+    {cat:"Salud",emoji:"🏥",items:[
+      {t:"CESFAM y Atención Primaria gratuita",d:"Red de centros de salud con médico, dental, matrona y salud mental gratuita para vecinos con Fonasa.",c:"Inscríbete en el CESFAM de tu sector con carnet de identidad.",url:"https://www.sanbernardo.cl/salud/"},
+      {t:"Farmacia Municipal",d:"Medicamentos a precio accesible para vecinos de San Bernardo con receta médica.",c:"Presenta receta médica vigente en la farmacia municipal de San Bernardo.",url:"https://www.sanbernardo.cl/"}
+    ]},
+    {cat:"Educación y Becas",emoji:"🎓",items:[
+      {t:"Beca Municipal San Bernardo",d:"Apoyo a estudiantes de básica, media, educación superior y adultos que cursan programas de educación para personas adultas.",c:"Postula en la Municipalidad. Revisa los resultados y plazos en sanbernardo.cl/becas.",url:"https://www.sanbernardo.cl/becas-2025/"},
+      {t:"Útiles y uniformes escolares",d:"Entrega gratuita de materiales para niños de familias vulnerables.",c:"Postula en enero con RSH y certificado de matrícula en el municipio.",url:"https://www.sanbernardo.cl/educacion/"}
+    ]},
+    {cat:"Social y Legal",emoji:"⚖️",items:[
+      {t:"Dirección de Desarrollo Social",d:"Atención de urgencias sociales, subsidios y orientación para familias vulnerables de San Bernardo.",c:"Acércate con carnet e RSH a la Dirección de Desarrollo Social de la Municipalidad.",url:"https://www.sanbernardo.cl/social/"},
+      {t:"Mediación y asesoría vecinal",d:"Resolución gratuita de conflictos vecinales y orientación legal para vecinos.",c:"Solicita mediación o asesoría en la Dirección de Desarrollo Comunitario.",url:"https://www.sanbernardo.cl/"}
+    ]},
+    {cat:"Adulto Mayor",emoji:"👴",items:[
+      {t:"Talleres adulto mayor",d:"Actividades recreativas y de salud gratuitas para personas mayores de 60 años de San Bernardo.",c:"Inscríbete en la Oficina del Adulto Mayor de la Municipalidad de San Bernardo.",url:"https://www.sanbernardo.cl/adulto-mayor/"}
+    ]}
+  ]},
+  {id:"cerronavia",nombre:"Cerro Navia",region:"Región Metropolitana",pop:"155.000 hab.",web:"https://cerronavia.cl",
+   beneficios:[
+    {cat:"Salud",emoji:"🏥",items:[
+      {t:"CESFAM y Atención Primaria gratuita",d:"Red de centros de salud con atención médica, dental, matrona y salud mental gratuita para vecinos con Fonasa.",c:"Inscríbete en el CESFAM de tu sector con carnet de identidad.",url:"https://www.cerronavia.cl/salud/"},
+      {t:"Farmacia Municipal",d:"Medicamentos a precio accesible para vecinos de Cerro Navia con receta médica.",c:"Presenta receta médica vigente en la farmacia municipal.",url:"https://www.cerronavia.cl/"}
+    ]},
+    {cat:"Educación y Becas",emoji:"🎓",items:[
+      {t:"Beca Municipal Educación Superior",d:"Apoyo económico para estudiantes que viven en Cerro Navia, cursan pregrado y tienen promedio igual o superior a 5.0 y RSH en la comuna.",c:"Postula a través de la plataforma digital que se habilita cada año. Requiere notas, certificado de alumno regular, certificado de arancel y certificados de renta del hogar.",url:"https://www.cerronavia.cl/postula-a-la-beca-municipal-de-educacion-superior-2025/"},
+      {t:"Corporación del Deporte de Cerro Navia",d:"Fomento del deporte y actividad física para niños, jóvenes y adultos. Clases en gimnasio, estadio y piscina municipales.",c:"Consulta programas en la Corporación del Deporte, Mapocho Norte 8115, Cerro Navia.",url:"https://www.cerronavia.cl/deporte/"}
+    ]},
+    {cat:"Social y Legal",emoji:"⚖️",items:[
+      {t:"Dirección de Desarrollo Social",d:"Atención de urgencias sociales, subsidios estatales y orientación para familias vulnerables de Cerro Navia.",c:"Acércate con carnet e RSH a la Dirección de Desarrollo Social del municipio.",url:"https://www.cerronavia.cl/social/"},
+      {t:"Asesoría jurídica gratuita",d:"Orientación legal gratuita en materias civiles, laborales y de familia para vecinos.",c:"Solicita hora en la Municipalidad de Cerro Navia en horario hábil.",url:"https://www.cerronavia.cl/"}
+    ]},
+    {cat:"Adulto Mayor",emoji:"👴",items:[
+      {t:"Talleres adulto mayor",d:"Actividades recreativas, culturales y de salud gratuitas para personas mayores de 60 años.",c:"Inscríbete en los centros comunitarios o en la Oficina del Adulto Mayor.",url:"https://www.cerronavia.cl/adulto-mayor/"}
+    ]}
+  ]},
+  {id:"pudahuel",nombre:"Pudahuel",region:"Región Metropolitana",pop:"200.000 hab.",web:"https://mpudahuel.cl",
+   beneficios:[
+    {cat:"Salud",emoji:"🏥",items:[
+      {t:"CESFAM y Atención Primaria gratuita",d:"Red de centros de salud con atención médica, dental, matrona y salud mental gratuita para vecinos con Fonasa.",c:"Inscríbete en el CESFAM de tu sector con carnet de identidad.",url:"https://www.mpudahuel.cl/sitio/municipio/63-programas-sociales"},
+      {t:"Farmacia Municipal",d:"Medicamentos a precio accesible para vecinos de Pudahuel con receta médica.",c:"Presenta receta médica vigente en la farmacia municipal de Pudahuel.",url:"https://www.mpudahuel.cl/"}
+    ]},
+    {cat:"Adulto Mayor",emoji:"👴",items:[
+      {t:"Programa Adulto Mayor — SENAMA",d:"Pudahuel participa activamente en el Fondo Nacional del Adulto Mayor. El municipio capacita a clubes de adultos mayores para postular a fondos SENAMA.",c:"Consulta en la Dirección de Desarrollo Comunitario de Pudahuel. Talleres de capacitación gratuitos.",url:"https://www.mpudahuel.cl/sitio/municipio/63-programas-sociales"},
+      {t:"Información PGU y beneficios adulto mayor",d:"El municipio de Pudahuel difunde activamente los beneficios previsionales para adultos mayores, incluyendo la PGU y el Bono por Hijo para mujeres.",c:"Revisa pudahuel.cl/noticias para información actualizada o consulta en la Municipalidad.",url:"https://www.pudahuel.cl/noticias/2026/04/pgu-se-expande-reforma-de-pensiones-habilita-nuevo-tramo-de-beneficiarios-y-eleva-el-monto/"}
+    ]},
+    {cat:"Educación y Becas",emoji:"🎓",items:[
+      {t:"Beca Municipal Pudahuel",d:"Apoyo económico para estudiantes de Pudahuel con vulnerabilidad económica y buen rendimiento académico.",c:"Postula en la Municipalidad entre marzo y abril con RSH, matrícula y notas.",url:"https://www.mpudahuel.cl/"},
+      {t:"Útiles y uniformes escolares",d:"Entrega gratuita de materiales para niños de familias vulnerables al inicio del año.",c:"Postula en enero con RSH y certificado de matrícula.",url:"https://www.mpudahuel.cl/"}
+    ]},
+    {cat:"Social y Legal",emoji:"⚖️",items:[
+      {t:"Programas Sociales Municipales",d:"Red de programas de asistencia social, subsidios y apoyo comunitario para familias de Pudahuel.",c:"Acércate a la Dirección de Desarrollo Comunitario con carnet e RSH.",url:"https://www.mpudahuel.cl/sitio/municipio/63-programas-sociales"}
+    ]}
+  ]},
+    {id:"valparaiso",nombre:"Valparaíso",region:"Valparaíso",pop:"310.000 hab.",web:"https://municipalidaddevalparaiso.cl",
+   beneficios:[
+    {cat:"Salud",emoji:"🏥",items:[
+      {t:"CESFAM gratuitos",d:"Red de centros de salud con médico, dental, matrona y especialidades básicas para vecinos con Fonasa.",c:"Inscríbete en el CESFAM de tu sector con carnet de identidad.",url:"https://municipalidaddevalparaiso.cl/salud"},
+      {t:"Farmacia Popular Municipal",d:"Medicamentos a precio justo o gratuitos con receta médica para vecinos en vulnerabilidad.",c:"Presenta receta vigente en la farmacia municipal con carnet de identidad.",url:"https://municipalidaddevalparaiso.cl"}
+    ]},
+    {cat:"Deporte y Cultura",emoji:"🎭",items:[
+      {t:"FONDEPORTE Juan Olivares Marambio",d:"Fondo exclusivo para clubes deportivos de Valparaíso. Financia equipamiento y actividades deportivas.",c:"Postula en la Municipalidad. Bases disponibles en el sitio oficial.",url:"https://municipalidaddevalparaiso.cl/bases"},
+      {t:"Festival de Música Popular",d:"Concurso y festival musical anual para artistas y agrupaciones de la ciudad.",c:"Consulta bases en municipalidaddevalparaiso.cl en el periodo de convocatoria.",url:"https://municipalidaddevalparaiso.cl/bases"}
+    ]},
+    {cat:"Educación y Becas",emoji:"🎓",items:[
+      {t:"Beca Municipal Valparaíso",d:"Apoyo económico para estudiantes con vulnerabilidad en todos los niveles educativos.",c:"Postula entre marzo y abril con RSH, matrícula y notas.",url:"https://municipalidaddevalparaiso.cl"},
+      {t:"Útiles y uniformes escolares",d:"Entrega gratuita para familias vulnerables al inicio del año escolar.",c:"Postula en enero con RSH y certificado de matrícula.",url:"https://municipalidaddevalparaiso.cl"}
+    ]},
+    {cat:"Social y Legal",emoji:"⚖️",items:[
+      {t:"Dirección de Desarrollo Social",d:"Atención de urgencias sociales, subsidios y orientación para familias vulnerables de Valparaíso.",c:"Acércate con carnet e RSH al municipio.",url:"https://municipalidaddevalparaiso.cl"},
+      {t:"Asesoría jurídica gratuita",d:"Orientación legal gratuita en materias civiles, laborales y de familia.",c:"Solicita hora en la Municipalidad de lunes a viernes en horario hábil.",url:"https://municipalidaddevalparaiso.cl"}
+    ]},
+    {cat:"Adulto Mayor",emoji:"👴",items:[
+      {t:"Programas adulto mayor",d:"Talleres recreativos, culturales y de salud gratuitos para personas mayores de 60 años.",c:"Inscríbete en los centros comunitarios o en la Oficina del Adulto Mayor.",url:"https://municipalidaddevalparaiso.cl"}
+    ]}
+  ]}
+];
+
+
+function renderMuniGrid() {
+  var grid = document.getElementById("muni-grid");
+  if (!grid) return;
+  grid.innerHTML = municipios.map(function(m) {
+    return "<div class='muni-btn' data-id='" + m.id + "'>" +
+      "<span class='m-nombre'>" + m.nombre + "</span>" +
+      "<span class='m-region'>" + m.region + "</span>" +
+      "<span class='m-pop'>" + m.pop + "</span>" +
+    "</div>";
+  }).join("");
+  grid.addEventListener("click", function(e) {
+    var btn = e.target.closest(".muni-btn");
+    if (btn) verMunicipio(btn.getAttribute("data-id"));
+  });
+}
+
+function verMunicipio(id) {
+  var m = municipios.find(function(x){ return x.id === id; });
+  if (!m) return;
+
+  document.querySelectorAll(".muni-btn").forEach(function(b) {
+    b.classList.toggle("activa", b.getAttribute("data-id") === id);
+  });
+
+  var total = m.beneficios.reduce(function(a, b){ return a + b.items.length; }, 0);
+
+  var catsHtml = m.beneficios.map(function(cat, ci) {
+    var itemsHtml = cat.items.map(function(item, ii) {
+      var uid = "b" + ci + "-" + ii;
+      return "<div class='beneficio-card'>" +
+        "<div class='b-titulo'>" + item.t + "</div>" +
+        "<div class='b-desc'>" + item.d + "</div>" +
+        "<button class='b-como-btn' data-uid='" + uid + "'>▸ ¿Cómo acceder?</button>" +
+        "<div class='b-como' id='" + uid + "'>" +
+          item.c +
+          "<br><a href='" + item.url + "' target='_blank' style='color:var(--verde);font-weight:600;font-size:.78rem;margin-top:.4rem;display:inline-block'>Sitio oficial →</a>" +
+        "</div>" +
+      "</div>";
+    }).join("");
+    return "<div class='cat-seccion'>" +
+      "<div class='cat-titulo'>" + cat.emoji + " " + cat.cat + "</div>" +
+      "<div class='beneficio-grid'>" + itemsHtml + "</div>" +
+    "</div>";
+  }).join("");
+
+  var detalle = document.getElementById("muni-detalle");
+  detalle.innerHTML =
+    "<div class='muni-card'>" +
+      "<div class='muni-header'>" +
+        "<div>" +
+          "<h3>🏛️ " + m.nombre + "</h3>" +
+          "<p>" + m.region + " · " + m.pop + " · " + total + " beneficios directos</p>" +
+        "</div>" +
+        "<a href='" + m.web + "' target='_blank'>Sitio oficial →</a>" +
+      "</div>" +
+      "<div class='muni-body'>" + catsHtml + "</div>" +
+    "</div>";
+
+
+
+  detalle.scrollIntoView({behavior:"smooth", block:"start"});
+}
+
+function toggleComo(uid) {
+  var el = document.getElementById(uid);
+  if (!el) return;
+  el.classList.toggle("visible");
+}
+
+// ── SELECTOR TIPO ──
+function selTipo(tipo) {
+  var btnP = document.getElementById("tipo-personal");
+  var btnJ = document.getElementById("tipo-junta");
+  if (btnP) btnP.classList.toggle("activa", tipo === "personal");
+  if (btnJ) btnJ.classList.toggle("activa", tipo === "juntavecinos");
+  var titulo = document.getElementById("buscador-titulo");
+  if (titulo) {
+    titulo.textContent = tipo === "personal"
+      ? "🔍 Busca beneficios disponibles para ti por municipio"
+      : "🔍 Busca fondos disponibles para tu junta de vecinos";
+  }
+  switchTab(tipo);
+}
+
+// ── PARSER CSV ──
+function parsearCSV(texto) {
+  // Normalizar saltos de línea: \r\n → \n, \r suelto → \n
+  texto = texto.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+  var filas = [], fila = [], campo = "", enComillas = false;
+  for (var i = 0; i < texto.length; i++) {
+    var c = texto[i], sig = texto[i+1];
+    if (enComillas) {
+      if (c === '"' && sig === '"') { campo += '"'; i++; }
+      else if (c === '"') { enComillas = false; }
+      else { campo += c; } // incluye \n dentro de campos entrecomillados
+    } else {
+      if (c === '"') { enComillas = true; }
+      else if (c === ',') { fila.push(campo.trim()); campo = ""; }
+      else if (c === '\n') {
+        fila.push(campo.trim());
+        if (fila.some(function(f){ return f !== ""; })) filas.push(fila);
+        fila = []; campo = "";
+      } else { campo += c; }
+    }
+  }
+  if (campo !== "" || fila.length) { fila.push(campo.trim()); filas.push(fila); }
+  return filas;
+}
+
+function csvAObjetos(texto) {
+  var filas = parsearCSV(texto);
+  if (filas.length < 2) return [];
+  var headers = filas[0];
+  return filas.slice(1).map(function(fila) {
+    var obj = {};
+    headers.forEach(function(h, i) { obj[h.trim()] = (fila[i] || "").trim(); });
+    return obj;
+  });
+}
+
+// ── TRANSFORMADORES ──
+function transformarFondo(row) {
+  return {
+    id: parseInt(row.id) || 0,
+    alcance: row.alcance,
+    nombre: row.nombre,
+    inst: row.inst,
+    desc: row.desc,
+    estado: row.estado,
+    monto: row.monto,
+    cofin: row.cofin,
+    quien: row.quien,
+    cats: row.cats ? row.cats.split("|").map(function(s){ return s.trim(); }) : [],
+    region: row.region,
+    comunas: row.comunas ? row.comunas.split("|").map(function(s){ return s.trim(); }).filter(Boolean) : [],
+    abre: row.abre,
+    cierra: row.cierra,
+    link: row.link,
+    req: row.req,
+    pasos: row.pasos,
+    ejemplos: row.ejemplos ? row.ejemplos.split("|").map(function(s){ return s.trim(); }) : [],
+    caso: row.caso
+  };
+}
+
+function transformarMunicipios(rows) {
+  var mapa = {}, orden = [];
+  rows.forEach(function(row) {
+    var id = row.municipio_id;
+    if (!mapa[id]) {
+      mapa[id] = { id:id, nombre:row.municipio_nombre, region:row.region, pop:row.pop, web:row.web, beneficios:[] };
+      orden.push(id);
+    }
+    var cat = mapa[id].beneficios.find(function(c){ return c.cat === row.cat; });
+    if (!cat) { cat = { cat:row.cat, emoji:row.cat_emoji, items:[] }; mapa[id].beneficios.push(cat); }
+    cat.items.push({ t:row.titulo, d:row.desc, c:row.como, url:row.url });
+  });
+  return orden.map(function(id){ return mapa[id]; });
+}
+
+function transformarCalendario(rows) {
+  return rows.map(function(row) {
+    return { dia:row.dia, mes:row.mes, nombre:row.nombre, tipo:row.tipo,
+             urgente: row.urgente === "TRUE" || row.urgente === "true" || row.urgente === "1" };
+  });
+}
+
+function transformarFaqs(rows) {
+  return rows.map(function(row){ return { q:row.pregunta, a:row.respuesta }; });
+}
+
+// ── CARGA DESDE GOOGLE SHEETS ──
+function urlSheet(hoja) {
+  return "https://docs.google.com/spreadsheets/d/" + SHEET_ID +
+    "/gviz/tq?tqx=out:csv&sheet=" + encodeURIComponent(hoja);
+}
+
+function cargarDesdeSheets() {
+  if (!SHEET_ID) { inicializar(); return; }
+
+  var ind = document.getElementById("datos-source");
+  if (ind) ind.textContent = "⏳ Cargando datos actualizados...";
+
+  Promise.all([
+    fetch(urlSheet("fondos")).then(function(r){ return r.text(); }),
+    fetch(urlSheet("municipios")).then(function(r){ return r.text(); }),
+    fetch(urlSheet("calendario")).then(function(r){ return r.text(); }),
+    fetch(urlSheet("faqs")).then(function(r){ return r.text(); })
+  ]).then(function(res) {
+    var fr = csvAObjetos(res[0]);
+    var mr = csvAObjetos(res[1]);
+    var cr = csvAObjetos(res[2]);
+    var qr = csvAObjetos(res[3]);
+    if (fr.length) fondos      = fr.map(transformarFondo);
+    if (mr.length) municipios  = transformarMunicipios(mr);
+    if (cr.length) calendario  = transformarCalendario(cr);
+    if (qr.length) faqs        = transformarFaqs(qr);
+    inicializar();
+    if (ind) { ind.textContent = "✅ Datos en línea · " + new Date().toLocaleDateString("es-CL"); ind.style.color = "#2d9e5f"; }
+  }).catch(function(err) {
+    console.warn("Sheets no disponible, usando datos locales.", err);
+    inicializar();
+    if (ind) { ind.textContent = "⚠️ Datos locales (sin conexión a Sheets)"; ind.style.color = "#b7860a"; }
+  });
+}
+
+function inicializar() {
+  onZona();
+  renderFondos(fondos);
+  renderCalendario();
+  renderFAQ();
+  renderMuniGrid();
+}
+
+// ── INIT ──
+document.addEventListener("click", function(e) {
+  var btn = e.target.closest(".b-como-btn");
+  if (!btn) return;
+  var uid = btn.getAttribute("data-uid");
+  var panel = document.getElementById(uid);
+  if (!panel) return;
+  var visible = panel.classList.toggle("visible");
+  btn.textContent = visible ? "▾ ¿Cómo acceder?" : "▸ ¿Cómo acceder?";
+});
+cargarDesdeSheets();
+</script>
+</body>
+</html>
