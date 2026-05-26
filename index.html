@@ -353,8 +353,8 @@ footer a{color:var(--amarillo);text-decoration:none}
 </section>
 
 <div class="stats-bar">
-  <div class="stat"><div class="stat-num">14</div><div class="stat-label">Municipios con beneficios</div></div>
-  <div class="stat"><div class="stat-num">81</div><div class="stat-label">Beneficios personales</div></div>
+  <div class="stat"><div class="stat-num" id="stat-num-municipios">14</div><div class="stat-label">Municipios con beneficios</div></div>
+  <div class="stat"><div class="stat-num" id="stat-num-beneficios">81</div><div class="stat-label">Beneficios personales</div></div>
   <div class="stat"><div class="stat-num">22</div><div class="stat-label">Fondos y programas</div></div>
   <div class="stat"><div class="stat-num">$17B+</div><div class="stat-label">En financiamiento</div></div>
 </div>
@@ -391,7 +391,7 @@ footer a{color:var(--amarillo);text-decoration:none}
         <div class="ic-titulo">Beneficios Personales</div>
         <div class="ic-desc">Farmacia, salud, becas, adulto mayor, vivienda y más — sin concursar, solo acercarte a tu municipio.</div>
         <div class="ic-stats">
-          <span>14 municipios</span>
+          <span id="span-num-municipios">14 municipios</span>
           <span>120+ beneficios</span>
         </div>
         <div class="ic-btn">Ver beneficios →</div>
@@ -411,11 +411,11 @@ footer a{color:var(--amarillo);text-decoration:none}
 
     <div class="inicio-numeros">
       <div class="in-item">
-        <div class="in-num">14</div>
+        <div class="in-num" id="in-num-municipios">14</div>
         <div class="in-label">Municipios con beneficios</div>
       </div>
       <div class="in-item">
-        <div class="in-num">81</div>
+        <div class="in-num" id="in-num-beneficios">81</div>
         <div class="in-label">Beneficios personales directos</div>
       </div>
       <div class="in-item">
@@ -1631,6 +1631,26 @@ function cargarDesdeSheets() {
 }
 
 function inicializar() {
+  // Actualizar contadores dinámicos
+  var numMunis = municipios ? municipios.length : 0;
+  var numBeneficios = municipios ? municipios.reduce(function(acc, m) {
+    return acc + m.beneficios.reduce(function(a, cat) { return a + cat.items.length; }, 0);
+  }, 0) : 0;
+  if (numMunis > 0) {
+    var elSM = document.getElementById("stat-num-municipios");
+    var elSP = document.getElementById("span-num-municipios");
+    var elIM = document.getElementById("in-num-municipios");
+    if (elSM) elSM.textContent = numMunis;
+    if (elSP) elSP.textContent = numMunis + " municipios";
+    if (elIM) elIM.textContent = numMunis;
+  }
+  if (numBeneficios > 0) {
+    var elSB = document.getElementById("stat-num-beneficios");
+    var elIB = document.getElementById("in-num-beneficios");
+    if (elSB) elSB.textContent = numBeneficios;
+    if (elIB) elIB.textContent = numBeneficios;
+  }
+
   onZona();
   renderFondos(fondos);
   renderCalendario();
