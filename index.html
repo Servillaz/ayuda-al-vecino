@@ -1597,8 +1597,9 @@ function transformarFaqs(rows) {
 
 // ── CARGA DESDE GOOGLE SHEETS ──
 function urlSheet(hoja) {
-  // Intentar primero archivos locales (más rápido y no requiere permisos)
-  return "/datos-sheets/" + hoja + ".csv";
+  // Ruta relativa — funciona en Netlify, GitHub Pages y cualquier hosting
+  var base = window.location.pathname.replace(/\/[^/]*$/, "").replace(/\/$/, "");
+  return base + "/datos-sheets/" + hoja + ".csv";
 }
 
 function cargarDesdeSheets() {
