@@ -1,0 +1,40 @@
+name: 🔍 Actualizar Fondos Comunitarios
+
+on:
+  # Ejecuta cada lunes a las 9:00 AM hora Chile (UTC-3 → 12:00 UTC)
+  schedule:
+    - cron: '0 12 * * 1'
+
+  # Permite ejecutar manualmente desde GitHub Actions → Run workflow
+  workflow_dispatch:
+
+jobs:
+  actualizar:
+    name: Scraper + Actualización Google Sheets
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: 📥 Descargar código
+        uses: actions/checkout@v4
+
+      - name: 🐍 Configurar Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+          cache-dependency-path: scraper/requirements.txt
+
+      - name: 📦 Instalar dependencias
+        run: pip install -r scraper/requirements.txt
+
+      - name: 🔍 Ejecutar scraper
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GOOGLE_CREDENTIALS_JSON: ${{ secrets.GOOGLE_CREDENTIALS_JSON }}
+          SHEET_ID: ${{ secrets.SHEET_ID }}
+        run: python scraper/main.py
+
+      - name: 📋 Mostrar resultado
+        if: always()
+        run: echo "Scraper finalizado el $(date '+%d/%m/%Y %H:%M') UTC"
