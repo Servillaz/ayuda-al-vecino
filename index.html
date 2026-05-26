@@ -523,7 +523,7 @@ footer a{color:var(--amarillo);text-decoration:none}
 // Pega aquí el ID de tu Google Sheet (la parte entre /d/ y /edit en la URL)
 // Ejemplo: "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgVE2upms"
 // Deja vacío ("") para usar solo los datos locales hardcodeados
-var SHEET_ID = "";
+var SHEET_ID = "1gNnACIdC4Er-GR-E96keujUrg2dyfCk9L2I_2HRHU9E";
 
 // ── DATOS FONDOS ──
 // ALCANCE: "nacional" | "regional" | "municipal"
@@ -1597,8 +1597,8 @@ function transformarFaqs(rows) {
 
 // ── CARGA DESDE GOOGLE SHEETS ──
 function urlSheet(hoja) {
-  return "https://docs.google.com/spreadsheets/d/" + SHEET_ID +
-    "/gviz/tq?tqx=out:csv&sheet=" + encodeURIComponent(hoja);
+  // Intentar primero archivos locales (más rápido y no requiere permisos)
+  return "/datos-sheets/" + hoja + ".csv";
 }
 
 function cargarDesdeSheets() {
