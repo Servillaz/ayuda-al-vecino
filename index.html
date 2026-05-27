@@ -492,31 +492,36 @@ footer a{color:var(--amarillo);text-decoration:none}
   <div class="modal">
     <button class="modal-close" onclick="cerrar('modal-registro')">✕</button>
     <div id="reg-form">
-      <h2>🏘️ Únete gratis</h2>
-      <p class="sub">Recibe alertas cuando abran fondos para tu comunidad.</p>
-      <div class="fg2"><label>Tu nombre</label><input type="text" id="r-nombre" placeholder="María González"></div>
-      <div class="fg2"><label>Correo electrónico</label><input type="email" id="r-email" placeholder="maria@correo.com"></div>
+      <h2>🔔 Recibe alertas gratis</h2>
+      <p class="sub">Te avisamos cuando abran fondos o haya beneficios nuevos para tu municipio.</p>
       <div class="fg2">
-        <label>Tu región</label>
-        <select id="r-region">
-          <option value="">Selecciona tu región</option>
-          <option>Región Metropolitana</option><option>Valparaíso</option><option>Biobío</option>
-          <option>La Araucanía</option><option>Los Lagos</option><option>Maule</option>
-          <option>O'Higgins</option><option>Coquimbo</option><option>Antofagasta</option>
-          <option>Arica y Parinacota</option>
+        <label>Tu nombre <span style="color:var(--gris);font-size:.8rem;font-weight:400">(opcional)</span></label>
+        <input type="text" id="r-nombre" placeholder="María González">
+      </div>
+      <div class="fg2">
+        <label>Correo electrónico <span style="color:var(--verde)">*</span></label>
+        <input type="email" id="r-email" placeholder="maria@correo.com">
+      </div>
+      <div class="fg2">
+        <label>Tu municipio <span style="color:var(--verde)">*</span></label>
+        <select id="r-municipio">
+          <option value="">Selecciona tu municipio</option>
         </select>
       </div>
       <div class="fg2">
-        <label for="r-rol">¿Eres dirigente vecinal?</label>
-        <select id="r-rol"><option>Sí, soy dirigente/directivo</option><option>No, soy vecino/a</option><option>Trabajo en municipio</option></select>
+        <label>¿Cómo usas la plataforma?</label>
+        <select id="r-rol">
+          <option value="personal">👤 Busco beneficios personales</option>
+          <option value="junta">🤝 Soy dirigente vecinal / junta de vecinos</option>
+          <option value="municipio">🏛️ Trabajo en un municipio</option>
+        </select>
       </div>
-      <div class="check-row"><input type="checkbox" id="chk-alertas" checked><label for="chk-alertas">Quiero recibir alertas de nuevos fondos</label></div>
-      <button class="btn-reg" onclick="registrar()">✅ Registrarme gratis</button>
+      <button class="btn-reg" id="btn-registrar" onclick="registrar()">🔔 Suscribirme gratis</button>
     </div>
     <div id="reg-ok" class="success" style="display:none">
       <div class="s-icon">🎉</div>
-      <h3>¡Ya estás registrado!</h3>
-      <p>Te avisaremos cuando abran fondos para tu región.</p>
+      <h3>¡Ya estás suscrito!</h3>
+      <p id="reg-ok-msg">Te avisaremos cuando haya novedades para tu municipio.</p>
     </div>
   </div>
 </div>
@@ -537,6 +542,11 @@ footer a{color:var(--amarillo);text-decoration:none}
 // Ejemplo: "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgVE2upms"
 // Deja vacío ("") para usar solo los datos locales hardcodeados
 var SHEET_ID = "1gNnACIdC4Er-GR-E96keujUrg2dyfCk9L2I_2HRHU9E";
+
+// URL del Google Apps Script para guardar suscriptores en Sheets.
+// Ver scripts/suscriptores.gs para instrucciones de despliegue.
+// Deja vacío ("") mientras no lo hayas desplegado.
+var APPS_SCRIPT_URL = "";
 
 // ── DATOS FONDOS ──
 // ALCANCE: "nacional" | "regional" | "municipal"
@@ -1051,18 +1061,57 @@ function abrirRegistro() {
 }
 
 function registrar() {
-  var n = document.getElementById("r-nombre").value.trim();
-  var e = document.getElementById("r-email").value.trim();
-  var r = document.getElementById("r-region").value;
-  if (!n || !e || !r) { toast("⚠️ Por favor completa todos los campos"); return; }
+  var n   = document.getElementById("r-nombre").value.trim();
+  var e   = document.getElementById("r-email").value.trim();
+  var sel = document.getElementById("r-municipio");
+  var m   = sel ? sel.value : "";
+  var mNombre = sel && sel.selectedIndex > 0 ? sel.options[sel.selectedIndex].text : m;
+  var rol = (document.getElementById("r-rol") || {}).value || "personal";
+
+  if (!e) { toast("⚠️ El correo es obligatorio"); return; }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)) { toast("⚠️ Ingresa un correo válido"); return; }
+  if (!m) { toast("⚠️ Selecciona tu municipio"); return; }
+
   // Guardar en localStorage
-  try {
-    localStorage.setItem("atv_usuario", JSON.stringify({ nombre: n, email: e, region: r }));
-  } catch(err) {}
+  try { localStorage.setItem("atv_usuario", JSON.stringify({ nombre: n, email: e, municipio: m })); } catch(err) {}
+
+  var btn = document.getElementById("btn-registrar");
+
+  if (APPS_SCRIPT_URL) {
+    if (btn) { btn.textContent = "Enviando..."; btn.disabled = true; }
+    var url = APPS_SCRIPT_URL +
+      "?nombre="    + encodeURIComponent(n) +
+      "&email="     + encodeURIComponent(e) +
+      "&municipio=" + encodeURIComponent(mNombre) +
+      "&tipo="      + encodeURIComponent(rol);
+
+    fetch(url)
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        if (data.ok) {
+          mostrarExito(n, mNombre);
+        } else {
+          toast("⚠️ " + (data.msg || "Error al suscribirse"));
+          if (btn) { btn.textContent = "🔔 Suscribirme gratis"; btn.disabled = false; }
+        }
+      })
+      .catch(function() {
+        // Sin respuesta del servidor: igual mostramos éxito (data en localStorage)
+        mostrarExito(n, mNombre);
+      });
+  } else {
+    // Sin endpoint configurado aún: modo beta local
+    mostrarExito(n, mNombre);
+  }
+}
+
+function mostrarExito(nombre, municipio) {
   document.getElementById("reg-form").style.display = "none";
-  document.getElementById("reg-ok").style.display = "block";
+  document.getElementById("reg-ok").style.display   = "block";
+  var msg = document.getElementById("reg-ok-msg");
+  if (msg && municipio) msg.textContent = "Te avisaremos cuando haya novedades para " + municipio + ".";
   var btn = document.querySelector(".btn-nav");
-  if (btn) btn.textContent = "👋 " + n.split(" ")[0];
+  if (btn) btn.textContent = "👋 " + (nombre ? nombre.split(" ")[0] : "Vecino");
 }
 
 // Restaurar sesión guardada al cargar
@@ -1075,6 +1124,16 @@ function registrar() {
     }
   } catch(err) {}
 })();
+
+// Manejar Enter en los campos del formulario de suscripción
+document.addEventListener("keydown", function(e) {
+  if (e.key === "Enter" && document.getElementById("modal-registro").classList.contains("abierto")) {
+    var active = document.activeElement;
+    if (active && (active.tagName === "INPUT" || active.tagName === "SELECT")) {
+      registrar();
+    }
+  }
+});
 
 function cerrar(id) {
   document.getElementById(id).classList.remove("abierto");
@@ -1663,6 +1722,20 @@ function inicializar() {
     var elIB = document.getElementById("in-num-beneficios");
     if (elSB) elSB.textContent = numBeneficios;
     if (elIB) elIB.textContent = numBeneficios;
+  }
+
+  // Poblar el selector de municipios del formulario de suscripción
+  var selSub = document.getElementById("r-municipio");
+  if (selSub && municipios && municipios.length && selSub.options.length === 1) {
+    var sorted = municipios.slice().sort(function(a, b) {
+      return a.nombre.localeCompare(b.nombre, "es");
+    });
+    sorted.forEach(function(m) {
+      var opt = document.createElement("option");
+      opt.value       = m.id;
+      opt.textContent = m.nombre;
+      selSub.appendChild(opt);
+    });
   }
 
   onZona();
