@@ -167,6 +167,8 @@ main{max-width:1200px;margin:0 auto;padding:2.5rem 1.5rem}
 .fg2 input,.fg2 select{width:100%;padding:10px 14px;border:1.5px solid var(--borde);border-radius:10px;font-family:'DM Sans',sans-serif;font-size:.9rem;transition:border-color .2s}
 .fg2 input:focus,.fg2 select:focus{outline:none;border-color:var(--verde)}
 .check-row{display:flex;align-items:center;gap:.5rem;font-size:.82rem;color:var(--gris);margin-bottom:1.25rem}
+.btn-baja{width:100%;padding:10px;border:1px solid #e53e3e;background:transparent;color:#e53e3e;border-radius:12px;cursor:pointer;font-size:.9rem;margin-top:8px;font-family:inherit;transition:background .2s}
+.btn-baja:hover{background:#fff5f5}
 .btn-reg{width:100%;background:var(--verde);color:#fff;border:none;padding:12px;border-radius:12px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:.95rem;cursor:pointer;transition:background .2s}
 .btn-reg:hover{background:var(--verde2)}
 .success{text-align:center;padding:1.5rem 0}
@@ -522,6 +524,26 @@ footer a{color:var(--amarillo);text-decoration:none}
       <div class="s-icon">🎉</div>
       <h3>¡Ya estás suscrito!</h3>
       <p id="reg-ok-msg">Te avisaremos cuando haya novedades para tu municipio.</p>
+    </div>
+    <div id="reg-gestionar" style="display:none">
+      <h2>⚙️ Tu suscripción</h2>
+      <p class="sub">Actualiza tus preferencias o cancela tu suscripción.</p>
+      <div class="fg2">
+        <label>Tu municipio</label>
+        <select id="g-municipio">
+          <option value="">Selecciona tu municipio</option>
+        </select>
+      </div>
+      <div class="fg2">
+        <label>¿Cómo usas la plataforma?</label>
+        <select id="g-rol">
+          <option value="personal">👤 Beneficios personales</option>
+          <option value="junta">🤝 Dirigente vecinal / junta</option>
+          <option value="municipio">🏛️ Trabajo en municipio</option>
+        </select>
+      </div>
+      <button class="btn-reg" onclick="actualizarPreferencias()">💾 Guardar cambios</button>
+      <button class="btn-baja" onclick="confirmarBaja()">Cancelar suscripción</button>
     </div>
   </div>
 </div>
@@ -1055,8 +1077,35 @@ function switchTab(nombre) {
 
 // ── REGISTRO ──
 function abrirRegistro() {
-  document.getElementById("reg-form").style.display = "block";
-  document.getElementById("reg-ok").style.display = "none";
+  var u = null;
+  try { u = JSON.parse(localStorage.getItem("atv_usuario") || "null"); } catch(err) {}
+
+  // Ocultar todas las vistas del modal
+  document.getElementById("reg-form").style.display      = "none";
+  document.getElementById("reg-ok").style.display        = "none";
+  document.getElementById("reg-gestionar").style.display = "none";
+
+  if (u && u.email) {
+    // Usuario ya suscrito → mostrar gestión de preferencias
+    document.getElementById("reg-gestionar").style.display = "block";
+    // Pre-seleccionar municipio actual
+    var gMuni = document.getElementById("g-municipio");
+    if (gMuni && u.municipio) {
+      for (var i = 0; i < gMuni.options.length; i++) {
+        if (gMuni.options[i].value === u.municipio) { gMuni.selectedIndex = i; break; }
+      }
+    }
+    // Pre-seleccionar tipo actual
+    var gRol = document.getElementById("g-rol");
+    if (gRol && u.tipo) {
+      for (var j = 0; j < gRol.options.length; j++) {
+        if (gRol.options[j].value === u.tipo) { gRol.selectedIndex = j; break; }
+      }
+    }
+  } else {
+    // Usuario nuevo → mostrar formulario de registro
+    document.getElementById("reg-form").style.display = "block";
+  }
   document.getElementById("modal-registro").classList.add("abierto");
 }
 
@@ -1073,7 +1122,7 @@ function registrar() {
   if (!m) { toast("⚠️ Selecciona tu municipio"); return; }
 
   // Guardar en localStorage
-  try { localStorage.setItem("atv_usuario", JSON.stringify({ nombre: n, email: e, municipio: m })); } catch(err) {}
+  try { localStorage.setItem("atv_usuario", JSON.stringify({ nombre: n, email: e, municipio: m, tipo: rol })); } catch(err) {}
 
   var btn = document.getElementById("btn-registrar");
 
@@ -1112,6 +1161,57 @@ function mostrarExito(nombre, municipio) {
   if (msg && municipio) msg.textContent = "Te avisaremos cuando haya novedades para " + municipio + ".";
   var btn = document.querySelector(".btn-nav");
   if (btn) btn.textContent = "👋 " + (nombre ? nombre.split(" ")[0] : "Vecino");
+}
+
+function actualizarPreferencias() {
+  var u = null;
+  try { u = JSON.parse(localStorage.getItem("atv_usuario") || "null"); } catch(err) {}
+  if (!u || !u.email) { toast("⚠️ No se encontró tu suscripción"); return; }
+
+  var sel     = document.getElementById("g-municipio");
+  var m       = sel ? sel.value : "";
+  var mNombre = sel && sel.selectedIndex > 0 ? sel.options[sel.selectedIndex].text : "";
+  var rol     = (document.getElementById("g-rol") || {}).value || "personal";
+
+  if (!m) { toast("⚠️ Selecciona tu municipio"); return; }
+
+  // Actualizar localStorage
+  u.municipio = m;
+  u.tipo      = rol;
+  try { localStorage.setItem("atv_usuario", JSON.stringify(u)); } catch(err) {}
+
+  // Actualizar en Sheets vía Apps Script
+  if (APPS_SCRIPT_URL) {
+    fetch(APPS_SCRIPT_URL +
+      "?action=actualizar" +
+      "&email="     + encodeURIComponent(u.email) +
+      "&municipio=" + encodeURIComponent(mNombre) +
+      "&tipo="      + encodeURIComponent(rol)
+    ).catch(function() {});
+  }
+
+  cerrar("modal-registro");
+  toast("✅ Preferencias guardadas para " + mNombre);
+}
+
+function confirmarBaja() {
+  if (!confirm("¿Seguro que quieres cancelar tu suscripción?\nDeja de recibir alertas de Ayuda al Vecino.")) return;
+
+  var u = null;
+  try { u = JSON.parse(localStorage.getItem("atv_usuario") || "null"); } catch(err) {}
+
+  if (APPS_SCRIPT_URL && u && u.email) {
+    fetch(APPS_SCRIPT_URL + "?action=baja&email=" + encodeURIComponent(u.email))
+      .catch(function() {});
+  }
+
+  try { localStorage.removeItem("atv_usuario"); } catch(err) {}
+
+  var btn = document.querySelector(".btn-nav");
+  if (btn) btn.textContent = "Registrarme";
+
+  cerrar("modal-registro");
+  toast("👋 Suscripción cancelada. ¡Hasta pronto!");
 }
 
 // Restaurar sesión guardada al cargar
@@ -1724,17 +1824,21 @@ function inicializar() {
     if (elIB) elIB.textContent = numBeneficios;
   }
 
-  // Poblar el selector de municipios del formulario de suscripción
-  var selSub = document.getElementById("r-municipio");
-  if (selSub && municipios && municipios.length && selSub.options.length === 1) {
+  // Poblar ambos selectores de municipio (registro y gestión de preferencias)
+  if (municipios && municipios.length) {
     var sorted = municipios.slice().sort(function(a, b) {
       return a.nombre.localeCompare(b.nombre, "es");
     });
-    sorted.forEach(function(m) {
-      var opt = document.createElement("option");
-      opt.value       = m.id;
-      opt.textContent = m.nombre;
-      selSub.appendChild(opt);
+    ["r-municipio", "g-municipio"].forEach(function(selId) {
+      var sel = document.getElementById(selId);
+      if (sel && sel.options.length === 1) {
+        sorted.forEach(function(m) {
+          var opt = document.createElement("option");
+          opt.value       = m.id;
+          opt.textContent = m.nombre;
+          sel.appendChild(opt);
+        });
+      }
     });
   }
 

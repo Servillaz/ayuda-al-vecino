@@ -1,0 +1,41 @@
+name: 🔔 Enviar Alertas Semanales
+
+on:
+  # Cada viernes a las 9:00 AM hora Chile (UTC-3 → 12:00 UTC)
+  schedule:
+    - cron: '0 12 * * 5'
+
+  # Permite ejecutar manualmente para pruebas desde GitHub Actions → Run workflow
+  workflow_dispatch:
+
+jobs:
+  alertas:
+    name: Enviar alertas a suscriptores
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: 📥 Descargar código
+        uses: actions/checkout@v4
+
+      - name: 🐍 Configurar Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+          cache-dependency-path: scraper/requirements.txt
+
+      - name: 📦 Instalar dependencias
+        run: pip install -r scraper/requirements.txt
+
+      - name: 🔔 Enviar alertas
+        env:
+          GOOGLE_CREDENTIALS_JSON: ${{ secrets.GOOGLE_CREDENTIALS_JSON }}
+          SHEET_ID: ${{ secrets.SHEET_ID }}
+          BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}
+          BREVO_SENDER_EMAIL: ${{ secrets.BREVO_SENDER_EMAIL }}
+        run: python scripts/enviar_alertas.py
+
+      - name: 📋 Resultado
+        if: always()
+        run: echo "Alertas procesadas el $(date '+%d/%m/%Y %H:%M') UTC"
