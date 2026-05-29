@@ -304,7 +304,7 @@ footer a{color:var(--amarillo);text-decoration:none}
 .avanzado-toggle:hover{color:#fff}
 
 /* ── PARA TI ─────────────────────────────────────────────────── */
-#para-ti{display:none;background:linear-gradient(160deg,#f0faf4,#e4f5ec);border-top:3px solid var(--verde2);padding:1.5rem 1.5rem}
+#para-ti{background:linear-gradient(160deg,#f0faf4,#e4f5ec);border-top:3px solid var(--verde2);padding:1.5rem 1.5rem}
 .pt-inner{max-width:900px;margin:0 auto}
 .pt-cerrar-row{display:flex;justify-content:flex-end;margin-bottom:.6rem}
 .pt-cerrar-btn{background:none;border:1px solid #b2d8be;color:var(--gris);cursor:pointer;font-size:.78rem;padding:.25rem .7rem;border-radius:8px;font-family:'DM Sans',sans-serif}
@@ -2179,6 +2179,7 @@ function buscarConNecesidad() {
   // Persona: mostrar Para Ti filtrado
   var sec = document.getElementById('para-ti');
   sec.classList.remove('vacio');
+  sec.style.display = 'block';
   renderParaTi();
 
   var total = parseInt((document.getElementById('pt-total') || {}).textContent || '0');
@@ -2268,6 +2269,7 @@ function buscarParaMi() {
 function cerrarParaTi() {
   var sec = document.getElementById('para-ti');
   sec.classList.add('vacio');
+  sec.style.display = '';
 }
 
 function renderParaTi() {
