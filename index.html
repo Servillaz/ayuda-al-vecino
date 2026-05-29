@@ -456,7 +456,7 @@ footer a{color:var(--amarillo);text-decoration:none}
 <div class="stats-bar">
   <div class="stat"><div class="stat-num" id="stat-num-municipios">14</div><div class="stat-label">Municipios con beneficios</div></div>
   <div class="stat"><div class="stat-num" id="stat-num-beneficios">81</div><div class="stat-label">Beneficios personales</div></div>
-  <div class="stat"><div class="stat-num">22</div><div class="stat-label">Fondos y programas</div></div>
+  <div class="stat"><div class="stat-num" id="stat-num-fondos">31</div><div class="stat-label">Fondos y programas</div></div>
   <div class="stat"><div class="stat-num">$17B+</div><div class="stat-label">En financiamiento</div></div>
 </div>
 
@@ -521,7 +521,7 @@ footer a{color:var(--amarillo);text-decoration:none}
         <div class="ic-titulo">Fondos para Juntas de Vecinos</div>
         <div class="ic-desc">FONDEVE, FNDR, MINVU, FOSIS y más — fondos concursables para organizaciones comunitarias con personalidad jurídica.</div>
         <div class="ic-stats">
-          <span>22 fondos</span>
+          <span id="ic-num-fondos">31 fondos</span>
           <span>$17B+ disponibles</span>
         </div>
         <div class="ic-btn">Ver fondos →</div>
@@ -538,7 +538,7 @@ footer a{color:var(--amarillo);text-decoration:none}
         <div class="in-label">Beneficios personales directos</div>
       </div>
       <div class="in-item">
-        <div class="in-num">22</div>
+        <div class="in-num" id="in-num-fondos">31</div>
         <div class="in-label">Fondos para organizaciones</div>
       </div>
       <div class="in-item">
@@ -2096,7 +2096,7 @@ function renderParaTi() {
           '<span class="pt-cat-badge">' + cat.items.length + '</span></div>';
       }
     });
-    html += '<button class="pt-ver-btn" onclick="switchTab(\'personal\');verMuni(\'' + muni.id + '\')">Ver todos los beneficios →</button>';
+    html += '<button class="pt-ver-btn" onclick="switchTab(\'personal\');verMunicipio(\'' + muni.id + '\')">Ver todos los beneficios →</button>';
     html += '</div>';
   } else {
     html += '<div class="pt-card"><div class="pt-card-titulo">🏠 Beneficios personales</div>';
@@ -2232,6 +2232,16 @@ inicializar = function() {
 
   renderBannerUrgente();
   renderCalendarioFondos();
+
+  // Actualizar contador dinámico de fondos
+  if (fondos && fondos.length) {
+    var nf = fondos.length;
+    ['stat-num-fondos','in-num-fondos'].forEach(function(id) {
+      var el = document.getElementById(id); if (el) el.textContent = nf;
+    });
+    var icF = document.getElementById('ic-num-fondos');
+    if (icF) icF.textContent = nf + ' fondos';
+  }
 };
 </script>
 </body>
