@@ -27,28 +27,23 @@ import anthropic
 FUENTES = [
     # ── Nacionales ──
     {
-        "nombre": "Portal Único de Fondos Concursables (fondos.gob.cl)",
-        "url": "https://www.fondos.gob.cl/",
-        "params": {}
-    },
-    {
         "nombre": "FOSIS — Programas y Servicios",
-        "url": "https://www.fosis.gob.cl/que-hacemos/programas-y-servicios/",
+        "url": "https://www.fosis.gob.cl/es/que-hacemos/programas-y-servicios/",
         "params": {}
     },
     {
         "nombre": "SENAMA — Fondos y Concursos",
-        "url": "https://www.senama.gob.cl/fondos-y-concursos",
+        "url": "https://www.senama.gob.cl/fondos",
         "params": {}
     },
     {
-        "nombre": "MINVU — Programas Habitacionales",
-        "url": "https://www.minvu.gob.cl/programas-habitacionales/",
+        "nombre": "MINVU — Programas y Subsidios",
+        "url": "https://www.minvu.gob.cl/subsidios/",
         "params": {}
     },
     {
         "nombre": "SernamEG — Fondos y Programas",
-        "url": "https://sernameg.gob.cl/fondos/",
+        "url": "https://sernameg.gob.cl/programas/",
         "params": {}
     },
     {
@@ -57,18 +52,18 @@ FUENTES = [
         "params": {}
     },
     {
-        "nombre": "SERCOTEC — Fondos para Emprendimiento",
+        "nombre": "SERCOTEC — Instrumentos de Apoyo",
         "url": "https://www.sercotec.cl/instrumentos/",
         "params": {}
     },
     {
-        "nombre": "Ministerio del Deporte — Fondos",
-        "url": "https://www.mindep.cl/fondos/",
+        "nombre": "ChileAtiende — Bonos y Beneficios del Estado",
+        "url": "https://www.chileatiende.gob.cl/temas/bonos-y-beneficios-del-estado",
         "params": {}
     },
     {
         "nombre": "SUBDERE — Fondos Regionales",
-        "url": "https://www.subdere.cl/fondos-concursables",
+        "url": "https://www.subdere.gov.cl/programas",
         "params": {}
     },
     # ── Región Metropolitana ──
