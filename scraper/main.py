@@ -25,9 +25,10 @@ import anthropic
 
 # ─── FUENTES OFICIALES A MONITOREAR ──────────────────────────────
 FUENTES = [
+    # ── Nacionales ──
     {
-        "nombre": "Fondos del Gobierno (fondos.gob.cl)",
-        "url": "https://fondos.gob.cl/busca-tu-fondo/",
+        "nombre": "Portal Único de Fondos Concursables (fondos.gob.cl)",
+        "url": "https://www.fondos.gob.cl/",
         "params": {}
     },
     {
@@ -46,13 +47,69 @@ FUENTES = [
         "params": {}
     },
     {
-        "nombre": "SernamEG — Fondos",
+        "nombre": "SernamEG — Fondos y Programas",
         "url": "https://sernameg.gob.cl/fondos/",
         "params": {}
     },
     {
-        "nombre": "GORE Metropolitano — Fondos",
+        "nombre": "SEGEGOB — Fondo de Fortalecimiento Organizaciones",
+        "url": "https://fondodefortalecimiento.gob.cl/",
+        "params": {}
+    },
+    {
+        "nombre": "SERCOTEC — Fondos para Emprendimiento",
+        "url": "https://www.sercotec.cl/instrumentos/",
+        "params": {}
+    },
+    {
+        "nombre": "Ministerio del Deporte — Fondos",
+        "url": "https://www.mindep.cl/fondos/",
+        "params": {}
+    },
+    {
+        "nombre": "SUBDERE — Fondos Regionales",
+        "url": "https://www.subdere.cl/fondos-concursables",
+        "params": {}
+    },
+    # ── Región Metropolitana ──
+    {
+        "nombre": "GORE Metropolitano — Fondos Concursables",
         "url": "https://www.gobiernosantiago.cl/fondos-concursables/",
+        "params": {}
+    },
+    {
+        "nombre": "Municipalidad de Santiago — Fondos Concursables",
+        "url": "https://www.munistgo.cl/fondos/",
+        "params": {}
+    },
+    {
+        "nombre": "Municipalidad de Ñuñoa — Fondos 2026",
+        "url": "https://www.nunoa.cl/fondos-concursables/",
+        "params": {}
+    },
+    {
+        "nombre": "Las Condes — Fondos Concursables Organizaciones",
+        "url": "https://www.lascondes.cl/beneficios/financiamiento-de-proyectos/fondos-concursables/",
+        "params": {}
+    },
+    {
+        "nombre": "Providencia — Fondos para Organizaciones",
+        "url": "https://www.providencia.cl/fondos-concursables/",
+        "params": {}
+    },
+    {
+        "nombre": "La Florida — Fondos Organizaciones",
+        "url": "https://www.municipiodelaflorida.cl/fondos-concursables/",
+        "params": {}
+    },
+    {
+        "nombre": "Maipú — Fondos Concursables",
+        "url": "https://municipalidadmaipu.cl/fondos-concursables/",
+        "params": {}
+    },
+    {
+        "nombre": "Puente Alto — Fondos y FONDEVE",
+        "url": "https://www.mpuentealto.cl/fondos-concursables/",
         "params": {}
     },
 ]

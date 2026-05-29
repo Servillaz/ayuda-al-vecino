@@ -1,0 +1,63 @@
+name: 🏘️ Actualizar Beneficios Municipales RM
+
+on:
+  # Primer lunes de cada mes a las 10:00 AM Chile (UTC-3 → 13:00 UTC)
+  schedule:
+    - cron: '0 13 1-7 * 1'
+
+  # Ejecutar manualmente para pruebas
+  workflow_dispatch:
+
+jobs:
+  municipios:
+    name: Scraper DIDECO + Descarga CSVs + Deploy
+    runs-on: ubuntu-latest
+    timeout-minutes: 60        # este proceso es más largo (52 municipios)
+    permissions:
+      contents: write
+
+    steps:
+      - name: 📥 Descargar código
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 🐍 Configurar Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+          cache-dependency-path: scraper/requirements.txt
+
+      - name: 📦 Instalar dependencias
+        run: pip install -r scraper/requirements.txt
+
+      - name: 🏘️ Scrapear beneficios DIDECO de los 52 municipios RM
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GOOGLE_CREDENTIALS_JSON: ${{ secrets.GOOGLE_CREDENTIALS_JSON }}
+          SHEET_ID: ${{ secrets.SHEET_ID }}
+        run: python scraper/scraper_municipios_rm.py
+
+      - name: 📥 Descargar CSVs actualizados desde Google Sheets
+        env:
+          GOOGLE_CREDENTIALS_JSON: ${{ secrets.GOOGLE_CREDENTIALS_JSON }}
+          SHEET_ID: ${{ secrets.SHEET_ID }}
+        run: python scripts/descargar_sheets.py
+
+      - name: 💾 Commitear CSVs actualizados
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add datos-sheets/
+          if git diff --staged --quiet; then
+            echo "✅ Sin cambios nuevos en municipios"
+          else
+            git commit -m "🏘️ Beneficios municipales actualizados [$(date '+%d/%m/%Y')]"
+            git push
+            echo "🚀 CSVs actualizados — GitHub Pages se actualiza en ~1 minuto"
+          fi
+
+      - name: 📋 Resultado
+        if: always()
+        run: echo "Pipeline municipios completado el $(date '+%d/%m/%Y %H:%M') UTC"
