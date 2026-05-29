@@ -336,6 +336,40 @@ footer a{color:var(--amarillo);text-decoration:none}
 #banner-urgente{display:none;background:linear-gradient(90deg,#fef2f2,#fff5f5);border-left:4px solid #dc2626;padding:.75rem 2rem;font-size:.87rem;color:#991b1b;font-weight:500;align-items:center;gap:.75rem}
 #banner-urgente a{color:#dc2626;font-weight:700;margin-left:auto;text-decoration:none}
 
+/* ── DOS CAMINOS (nuevo hero) ────────────────────────────────── */
+.dos-caminos{max-width:680px;margin:0 auto}
+.camino-label{font-size:1.05rem;color:rgba(255,255,255,.92);font-weight:700;text-align:center;margin-bottom:1.1rem}
+.caminos-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:540px){.caminos-grid{grid-template-columns:1fr}}
+.btn-camino{background:rgba(255,255,255,.96);border:3px solid transparent;border-radius:18px;padding:1.6rem 1.4rem;cursor:pointer;text-align:left;transition:all .2s;font-family:'DM Sans',sans-serif;min-height:130px;display:flex;flex-direction:column;gap:.5rem;box-shadow:0 4px 16px rgba(0,0,0,.1);width:100%}
+.btn-camino:hover,.btn-camino:focus{border-color:var(--amarillo);transform:translateY(-3px);box-shadow:0 10px 28px rgba(0,0,0,.18);outline:3px solid var(--amarillo)}
+.btn-camino .ci{font-size:2.2rem;line-height:1;display:block}
+.btn-camino strong{font-size:1rem;color:var(--gris-o);line-height:1.3;display:block;margin-top:.1rem}
+.btn-camino span{font-size:.83rem;color:var(--gris);line-height:1.4;display:block}
+/* ── PASO COMUNA ─────────────────────────────────────────────── */
+.paso-comuna{max-width:680px;margin:0 auto;animation:fadeIn .25s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.paso-camino-tag{background:rgba(255,255,255,.18);border-radius:10px;padding:.55rem 1rem;font-size:.88rem;color:rgba(255,255,255,.92);display:flex;align-items:center;gap:.5rem;margin-bottom:1rem;font-weight:600;width:fit-content}
+.paso-select-grande{width:100%;padding:14px 16px;border:2px solid rgba(255,255,255,.3);border-radius:12px;font-family:'DM Sans',sans-serif;font-size:1.05rem;color:var(--gris-o);background:#fff;cursor:pointer;margin-bottom:1rem;-webkit-appearance:none}
+.paso-select-grande:focus{outline:none;border-color:var(--amarillo);box-shadow:0 0 0 3px rgba(245,200,66,.3)}
+.btn-ver-beneficios{width:100%;background:var(--amarillo);color:var(--gris-o);border:none;padding:15px 24px;border-radius:12px;font-family:'DM Sans',sans-serif;font-weight:800;font-size:1.05rem;cursor:pointer;transition:background .18s;min-height:52px;letter-spacing:-.2px}
+.btn-ver-beneficios:hover{background:#f0bc30}
+.btn-volver-camino{background:none;border:none;color:rgba(255,255,255,.6);font-size:.82rem;cursor:pointer;padding:.4rem 0;margin-top:.3rem;text-decoration:underline;text-underline-offset:3px;font-family:'DM Sans',sans-serif;display:block}
+.btn-volver-camino:hover{color:#fff}
+.link-ya-se{display:block;text-align:center;margin-top:1rem;background:none;border:none;color:rgba(255,255,255,.4);font-size:.76rem;cursor:pointer;font-family:'DM Sans',sans-serif;letter-spacing:.2px;padding:.3rem}
+.link-ya-se:hover{color:rgba(255,255,255,.7);text-decoration:underline}
+/* ── ACCESIBILIDAD ───────────────────────────────────────────── */
+body{font-size:17px}
+.fg select,.paso-select-grande{font-size:.98rem}
+.fg label{font-size:.8rem}
+.btn-buscar,.btn-limpiar,.btn-nav,.btn-reg{min-height:48px}
+.tab{font-size:.9rem;padding:.65rem 1.3rem}
+.b-titulo{font-size:.93rem}
+.b-desc{font-size:.87rem;line-height:1.6}
+.muni-btn .m-nombre{font-size:.93rem}
+button,.chip,.cat-btn,.muni-btn,[role=button]{-webkit-tap-highlight-color:rgba(0,0,0,.08)}
+/* ── PARA TI — ocultar si vacío ──────────────────────────────── */
+#para-ti.vacio{display:none!important}
 /* ── CALENDARIO FONDOS ───────────────────────────────────────── */
 .cal-fondos-grid{display:grid;gap:1rem;margin-top:1.5rem}
 .cal-mes-titulo{font-weight:700;color:var(--gris-o);font-size:.88rem;background:var(--gris-c);padding:.4rem .9rem;border-radius:8px;margin-bottom:.5rem}
@@ -362,7 +396,7 @@ footer a{color:var(--amarillo);text-decoration:none}
     <a href="#" class="hide-m" onclick="switchTab('inicio');cerrarMenu();return false">Beneficios</a>
     <a href="#" class="hide-m" onclick="switchTab('calendario');cerrarMenu();return false">Calendario</a>
     <a href="#" class="hide-m" onclick="switchTab('faq');cerrarMenu();return false">Ayuda</a>
-    <a href="#" class="btn-nav" onclick="abrirRegistro();cerrarMenu();return false">Registrarme</a>
+    <a href="#" class="btn-nav" onclick="abrirRegistro();cerrarMenu();return false">Recibir alertas</a>
   </div>
   <button class="hamburger" id="hamburger" aria-label="Abrir menú" onclick="toggleMenu()">
     <span></span><span></span><span></span>
@@ -371,31 +405,37 @@ footer a{color:var(--amarillo);text-decoration:none}
 
 <section class="hero">
   <div class="hero-badge">🇨🇱 Plataforma Gratuita para Chile</div>
-  <h1>Descubre toda la ayuda pública<br><em>que te corresponde</em></h1>
-  <p>Cientos de beneficios, fondos y subsidios están disponibles — pero nadie te los dice. <strong>Cuéntanos quién eres y te mostramos exactamente lo que tienes.</strong></p>
+  <h1>Encuentra las ayudas<br><em>que te corresponden</em></h1>
+  <p>Responde 2 preguntas simples y te mostramos qué hay disponible en tu municipio.</p>
 
-  <!-- PERFIL RÁPIDO -->
-  <div class="perfil-box">
-    <div class="perfil-titulo">¿Para quién buscamos hoy?</div>
-    <div class="perfil-chips">
-      <label class="chip" id="chip-adulto" onclick="selChip('adulto_mayor',this)">👴 Adulto mayor</label>
-      <label class="chip" id="chip-hijos"  onclick="selChip('tiene_hijos',this)">👶 Tengo hijos</label>
-      <label class="chip" id="chip-dirig"  onclick="selChip('es_dirigente',this)">🤝 Dirigente vecinal</label>
-      <label class="chip" id="chip-trab"   onclick="selChip('busca_trabajo',this)">💼 Busco trabajo</label>
-      <label class="chip" id="chip-disc"   onclick="selChip('discapacidad',this)">♿ Discapacidad</label>
-      <label class="chip" id="chip-empr"   onclick="selChip('emprendedor',this)">🚀 Emprendedor/a</label>
-    </div>
-    <div class="perfil-muni-row">
-      <div class="fg">
-        <label>📍 ¿En qué municipio vives?</label>
-        <select id="p-municipio">
-          <option value="">Selecciona tu municipio</option>
-        </select>
-      </div>
-      <button class="btn-para-mi" onclick="buscarParaMi()">Ver mis beneficios →</button>
+  <!-- PASO 1: DOS CAMINOS GRANDES -->
+  <div class="dos-caminos" id="dos-caminos">
+    <div class="camino-label">¿Qué estás buscando?</div>
+    <div class="caminos-grid">
+      <button class="btn-camino" onclick="elegirCamino('persona')" aria-label="Busco ayuda para mi familia">
+        <span class="ci">🏠</span>
+        <strong>Busco ayuda para mí o mi familia</strong>
+        <span>Salud, farmacia, becas, adulto mayor, bonos y subsidios</span>
+      </button>
+      <button class="btn-camino" onclick="elegirCamino('organizacion')" aria-label="Busco fondos para junta de vecinos">
+        <span class="ci">🤝</span>
+        <strong>Busco fondos para mi junta de vecinos</strong>
+        <span>Proyectos, sede, seguridad, cultura y medioambiente</span>
+      </button>
     </div>
   </div>
-  <button class="avanzado-toggle" onclick="toggleBuscador()">▾ Búsqueda avanzada por filtros</button>
+
+  <!-- PASO 2: MUNICIPIO (aparece al elegir) -->
+  <div class="paso-comuna" id="paso-comuna" style="display:none">
+    <div class="paso-camino-tag" id="paso-camino-tag">🏠 Ayuda para mí o mi familia</div>
+    <select id="p-municipio" class="paso-select-grande" aria-label="Selecciona tu municipio">
+      <option value="">¿En qué municipio vives?</option>
+    </select>
+    <button class="btn-ver-beneficios" onclick="buscarParaMi()">Ver beneficios disponibles →</button>
+    <button class="btn-volver-camino" onclick="volverCaminos()">← Cambiar selección</button>
+  </div>
+
+  <button class="link-ya-se" onclick="toggleBuscador()">Ya sé lo que busco — usar búsqueda avanzada</button>
 
   <!-- BUSCADOR AVANZADO (colapsable) -->
   <div class="buscador" id="buscador-avanzado" style="display:none;margin-top:.75rem">
@@ -467,7 +507,7 @@ footer a{color:var(--amarillo);text-decoration:none}
 </div>
 
 <!-- PARA TI — aparece al usar el perfil rápido -->
-<div id="para-ti">
+<div id="para-ti" class="vacio">
   <div class="pt-inner">
     <div class="pt-cerrar-row"><button class="pt-cerrar-btn" onclick="cerrarParaTi()">✕ Cerrar</button></div>
     <div class="pt-top">
@@ -1979,6 +2019,41 @@ cargarDesdeSheets();
 // ══════════════════════════════════════════════════════
 
 var perfil = {};
+var caminoActual = null; // 'persona' | 'organizacion'
+
+// ── DOS CAMINOS ───────────────────────────────────────────────
+function elegirCamino(tipo) {
+  caminoActual = tipo;
+  document.getElementById('dos-caminos').style.display = 'none';
+  var paso = document.getElementById('paso-comuna');
+  paso.style.display = 'block';
+  var tag = document.getElementById('paso-camino-tag');
+  if (tag) {
+    tag.textContent = tipo === 'persona'
+      ? '🏠 Ayuda para mí o mi familia'
+      : '🤝 Fondos para mi junta de vecinos';
+  }
+  // Preset chip según camino
+  if (tipo === 'organizacion') {
+    perfil.es_dirigente = true;
+  } else {
+    perfil.es_dirigente = false;
+  }
+  // Foco en el select para accesibilidad
+  setTimeout(function() {
+    var sel = document.getElementById('p-municipio');
+    if (sel) sel.focus();
+  }, 150);
+}
+
+function volverCaminos() {
+  document.getElementById('paso-comuna').style.display = 'none';
+  document.getElementById('dos-caminos').style.display = 'block';
+  caminoActual = null;
+  perfil.es_dirigente = false;
+  // Ocultar para-ti si estaba visible
+  cerrarParaTi();
+}
 
 var MESES_NUM = {
   'ene':0,'feb':1,'mar':2,'abr':3,'may':4,'jun':5,
@@ -2030,20 +2105,43 @@ function toggleBuscador() {
 
 function buscarParaMi() {
   var muniId = document.getElementById('p-municipio').value;
-  if (!muniId && !Object.values(perfil).some(Boolean)) {
-    toast('⚠️ Selecciona al menos tu municipio o una situación');
+  if (!muniId) {
+    toast('⚠️ Selecciona tu municipio para continuar');
+    document.getElementById('p-municipio').focus();
     return;
   }
   perfil.municipio = muniId;
 
+  // Si viene del flujo organizacion, activar es_dirigente
+  if (caminoActual === 'organizacion') {
+    perfil.es_dirigente = true;
+    // Ir directo a la sección de fondos
+    switchTab('juntavecinos');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    return;
+  }
+
+  // Flujo persona: mostrar Para Ti
   var sec = document.getElementById('para-ti');
-  sec.style.display = 'block';
+  sec.classList.remove('vacio');
   renderParaTi();
-  sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+  // Solo mostrar si hay resultados reales
+  var total = parseInt((document.getElementById('pt-total') || {}).textContent || '0');
+  if (total === 0) {
+    // No hay resultados: ir a la tab personal directamente
+    sec.classList.add('vacio');
+    switchTab('personal');
+    verMunicipio(muniId);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } else {
+    sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
 }
 
 function cerrarParaTi() {
-  document.getElementById('para-ti').style.display = 'none';
+  var sec = document.getElementById('para-ti');
+  sec.classList.add('vacio');
 }
 
 function renderParaTi() {
