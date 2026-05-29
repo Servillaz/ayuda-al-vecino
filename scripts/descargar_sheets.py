@@ -9,6 +9,8 @@ Credenciales (en orden de preferencia):
 """
 
 import csv, json, os, sys
+sys.stdout.reconfigure(encoding='utf-8', errors='replace')
+sys.stderr.reconfigure(encoding='utf-8', errors='replace')
 from google.oauth2.service_account import Credentials
 import gspread
 
