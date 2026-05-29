@@ -358,6 +358,30 @@ footer a{color:var(--amarillo);text-decoration:none}
 .btn-volver-camino:hover{color:#fff}
 .link-ya-se{display:block;text-align:center;margin-top:1rem;background:none;border:none;color:rgba(255,255,255,.4);font-size:.76rem;cursor:pointer;font-family:'DM Sans',sans-serif;letter-spacing:.2px;padding:.3rem}
 .link-ya-se:hover{color:rgba(255,255,255,.7);text-decoration:underline}
+/* ── INDICADOR DE PASOS ──────────────────────────────────────── */
+.paso-indicador{font-size:.78rem;color:rgba(255,255,255,.6);font-weight:600;text-align:center;margin-bottom:.6rem;letter-spacing:.5px;text-transform:uppercase}
+/* ── BUSCADOR DE MUNICIPIO ───────────────────────────────────── */
+.muni-search-wrap{position:relative;margin-bottom:1rem}
+.muni-search-input{width:100%;padding:14px 16px;border:2px solid rgba(255,255,255,.3);border-radius:12px;font-family:'DM Sans',sans-serif;font-size:1.05rem;color:var(--gris-o);background:#fff;-webkit-appearance:none;box-sizing:border-box}
+.muni-search-input:focus{outline:none;border-color:var(--amarillo);box-shadow:0 0 0 3px rgba(245,200,66,.3)}
+.muni-search-input::placeholder{color:#9ca3af}
+.municipios-lista{position:absolute;top:100%;left:0;right:0;background:#fff;border:2px solid var(--verde2);border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.15);z-index:100;max-height:260px;overflow-y:auto;margin-top:4px}
+.muni-opcion{display:block;width:100%;text-align:left;padding:12px 16px;border:none;background:transparent;font-family:'DM Sans',sans-serif;font-size:1rem;color:var(--gris-o);cursor:pointer;border-bottom:1px solid #f0f0f0}
+.muni-opcion:last-child{border-bottom:none}
+.muni-opcion:hover,.muni-opcion:focus{background:var(--verde-s);color:var(--verde);outline:none}
+.muni-no-resultado{padding:12px 16px;font-size:.88rem;color:var(--gris);text-align:center}
+/* ── PASO AYUDA TEXT ─────────────────────────────────────────── */
+.paso-ayuda{text-align:center;font-size:.85rem;color:rgba(255,255,255,.75);padding:.4rem 0;margin-top:.2rem;min-height:1.6rem;transition:color .2s}
+/* ── PARA TI — beneficios reales ─────────────────────────────── */
+.pt-beneficio-item{padding:.45rem 0;border-bottom:1px dashed #e8f5ee}
+.pt-beneficio-item:last-child{border-bottom:none}
+.pt-ben-nombre{font-weight:700;font-size:.88rem;color:var(--gris-o)}
+.pt-ben-desc{font-size:.8rem;color:var(--gris);line-height:1.45;margin-top:.15rem}
+.pt-contacto{grid-column:1/-1;background:#fff;border-radius:14px;border:1.5px solid #cde8d4;padding:1.1rem 1.2rem;text-align:center;margin-top:.25rem}
+.pt-contacto-titulo{font-weight:700;font-size:.9rem;color:var(--gris-o);margin-bottom:.35rem}
+.pt-contacto-texto{font-size:.84rem;color:var(--gris);margin-bottom:.5rem}
+.pt-contacto-link{display:inline-block;background:var(--verde);color:#fff;padding:.45rem 1.1rem;border-radius:10px;font-size:.85rem;font-weight:600;text-decoration:none;transition:background .18s}
+.pt-contacto-link:hover{background:var(--verde2)}
 /* ── PASO NECESIDAD ──────────────────────────────────────────── */
 .necesidades-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;margin-bottom:1rem}
 @media(max-width:480px){.necesidades-grid{grid-template-columns:repeat(2,1fr)}}
@@ -429,7 +453,9 @@ button,.chip,.cat-btn,.muni-btn,[role=button]{-webkit-tap-highlight-color:rgba(0
   <p>Responde 2 preguntas simples y te mostramos qué hay disponible en tu municipio.</p>
 
   <!-- PASO 1: DOS CAMINOS GRANDES -->
+  <!-- PASO 1 -->
   <div class="dos-caminos" id="dos-caminos">
+    <div class="paso-indicador">Paso 1 de 3</div>
     <div class="camino-label">¿Qué estás buscando?</div>
     <div class="caminos-grid">
       <button class="btn-camino" onclick="elegirCamino('persona')" aria-label="Busco ayuda para mi familia">
@@ -445,22 +471,33 @@ button,.chip,.cat-btn,.muni-btn,[role=button]{-webkit-tap-highlight-color:rgba(0
     </div>
   </div>
 
-  <!-- PASO 2: MUNICIPIO (aparece al elegir) -->
+  <!-- PASO 2: MUNICIPIO -->
   <div class="paso-comuna" id="paso-comuna" style="display:none">
+    <div class="paso-indicador">Paso 2 de 3</div>
     <div class="paso-camino-tag" id="paso-camino-tag">🏠 Ayuda para mí o mi familia</div>
-    <select id="p-municipio" class="paso-select-grande" aria-label="Selecciona tu municipio">
-      <option value="">¿En qué municipio vives?</option>
-    </select>
-    <button class="btn-ver-beneficios" onclick="buscarParaMi()">Ver beneficios disponibles →</button>
+    <div class="muni-search-wrap">
+      <input type="text" id="p-municipio-text" class="muni-search-input"
+        placeholder="Escribe el nombre de tu municipio..."
+        oninput="filtrarMunicipios(this.value)"
+        autocomplete="off"
+        aria-label="Busca y elige tu municipio"
+        aria-autocomplete="list"
+        aria-controls="municipios-lista">
+      <input type="hidden" id="p-municipio" value="">
+      <div id="municipios-lista" class="municipios-lista" role="listbox" style="display:none"></div>
+    </div>
+    <button class="btn-ver-beneficios" onclick="buscarParaMi()">Continuar →</button>
     <button class="btn-volver-camino" onclick="volverCaminos()">← Cambiar selección</button>
   </div>
 
-  <!-- PASO 3: ¿QUÉ NECESITAS? (aparece tras elegir municipio) -->
+  <!-- PASO 3: ¿QUÉ NECESITAS? -->
   <div id="paso-necesidad" class="paso-comuna" style="display:none">
+    <div class="paso-indicador">Paso 3 de 3 — ¡último paso!</div>
     <div class="paso-camino-tag" id="paso-necesidad-tag">🏠 Tu municipio</div>
     <div class="camino-label" style="text-align:left;font-size:.98rem;margin-bottom:.85rem">¿Qué necesitas?</div>
     <div id="necesidades-grid" class="necesidades-grid" role="group" aria-label="Selecciona qué necesitas"></div>
-    <button class="btn-ver-beneficios" id="btn-ver-final" onclick="buscarConNecesidad()" disabled style="opacity:.45;cursor:not-allowed;margin-top:1rem">
+    <div class="paso-ayuda" id="paso-ayuda-text">👆 Elige una opción y luego presiona el botón</div>
+    <button class="btn-ver-beneficios" id="btn-ver-final" onclick="buscarConNecesidad()" disabled style="opacity:.45;cursor:not-allowed;margin-top:.6rem">
       Ver mis oportunidades →
     </button>
     <button class="btn-volver-camino" onclick="volverAMunicipio()">← Cambiar municipio</button>
@@ -2068,13 +2105,12 @@ var caminoActual  = null; // 'persona' | 'organizacion'
 var necesidadActual = null;
 
 var NECESIDADES_PERSONA = [
-  { id:'salud',      emoji:'🏥', label:'Salud',            cats:['Salud'] },
-  { id:'educacion',  emoji:'🎓', label:'Educación y becas', cats:['Educación y Becas'] },
-  { id:'adulto',     emoji:'👴', label:'Adulto mayor',      cats:['Adulto Mayor'] },
-  { id:'dinero',     emoji:'💰', label:'Dinero y bonos',    cats:['Social y Legal'] },
-  { id:'vivienda',   emoji:'🏠', label:'Vivienda',          cats:['Vivienda'] },
-  { id:'legal',      emoji:'⚖️', label:'Asesoría legal',    cats:['Social y Legal'] },
-  { id:'todo',       emoji:'✅', label:'Ver todo',           cats:[] },
+  { id:'salud_mayor',emoji:'👴', label:'Soy adulto mayor o necesito salud',  cats:['Salud','Adulto Mayor'] },
+  { id:'educacion',  emoji:'🎓', label:'Educación o becas para estudiar',     cats:['Educación y Becas'] },
+  { id:'dinero',     emoji:'💰', label:'Quiero un bono o subsidio del Estado',cats:['Social y Legal'] },
+  { id:'vivienda',   emoji:'🏠', label:'Necesito ayuda con mi vivienda',      cats:['Vivienda'] },
+  { id:'tramite',    emoji:'📋', label:'Tengo un problema o trámite',         cats:['Social y Legal'] },
+  { id:'todo',       emoji:'✅', label:'Ver todo lo disponible',              cats:[] },
 ];
 
 var NECESIDADES_ORG = [
@@ -2154,12 +2190,60 @@ function avanzarANecesidad() {
   }, 160);
 }
 
+// ── BUSCADOR DE MUNICIPIO ────────────────────────────────────
+function normText(t) {
+  return (t || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '');
+}
+
+function filtrarMunicipios(texto) {
+  var hidden = document.getElementById('p-municipio');
+  var lista  = document.getElementById('municipios-lista');
+  if (hidden) hidden.value = '';
+
+  var q = normText(texto.trim());
+  if (!q) { if (lista) lista.style.display = 'none'; return; }
+
+  var matches = (municipios || []).filter(function(m) {
+    return normText(m.nombre).includes(q);
+  }).slice(0, 8);
+
+  if (!lista) return;
+  if (!matches.length) {
+    lista.innerHTML = '<div class="muni-no-resultado">No encontrado — intenta "Maipú", "La Florida", "Santiago"...</div>';
+  } else {
+    lista.innerHTML = matches.map(function(m) {
+      return '<button class="muni-opcion" onclick="elegirMunicipio(\'' + m.id + '\',\'' +
+        m.nombre.replace(/'/g,"\\'") + '\')" role="option">📍 ' + m.nombre + '</button>';
+    }).join('');
+  }
+  lista.style.display = 'block';
+}
+
+function elegirMunicipio(id, nombre) {
+  var hidden = document.getElementById('p-municipio');
+  var texto  = document.getElementById('p-municipio-text');
+  var lista  = document.getElementById('municipios-lista');
+  if (hidden) hidden.value = id;
+  if (texto)  texto.value  = nombre;
+  if (lista)  lista.style.display = 'none';
+}
+
+// Cerrar lista al hacer clic fuera
+document.addEventListener('click', function(e) {
+  if (!e.target.closest('.muni-search-wrap')) {
+    var lista = document.getElementById('municipios-lista');
+    if (lista) lista.style.display = 'none';
+  }
+});
+
 function elegirNecesidad(id, el) {
   necesidadActual = id;
   document.querySelectorAll('.btn-necesidad').forEach(function(b){ b.classList.remove('sel'); });
   el.classList.add('sel');
   var btn = document.getElementById('btn-ver-final');
   if (btn) { btn.disabled = false; btn.style.opacity = '1'; btn.style.cursor = 'pointer'; }
+  var ayuda = document.getElementById('paso-ayuda-text');
+  if (ayuda) { ayuda.textContent = '✅ Ahora presiona el botón de abajo'; ayuda.style.color = 'rgba(255,255,255,.95)'; }
 }
 
 function buscarConNecesidad() {
@@ -2198,9 +2282,11 @@ function volverAMunicipio() {
   document.getElementById('paso-comuna').style.display    = 'block';
   necesidadActual = null;
   cerrarParaTi();
+  var ayuda = document.getElementById('paso-ayuda-text');
+  if (ayuda) { ayuda.textContent = '👆 Elige una opción y luego presiona el botón'; ayuda.style.color = ''; }
   setTimeout(function() {
-    var sel = document.getElementById('p-municipio');
-    if (sel) sel.focus();
+    var inp = document.getElementById('p-municipio-text');
+    if (inp) inp.focus();
   }, 100);
 }
 
@@ -2253,16 +2339,25 @@ function toggleBuscador() {
 }
 
 function buscarParaMi() {
-  var muniId = document.getElementById('p-municipio').value;
+  var muniId   = (document.getElementById('p-municipio') || {}).value || '';
+  var textVal  = ((document.getElementById('p-municipio-text') || {}).value || '').trim();
+
+  // Si escribió algo pero no seleccionó de la lista, intentar match exacto
+  if (!muniId && textVal) {
+    var match = (municipios || []).find(function(m) {
+      return normText(m.nombre) === normText(textVal);
+    });
+    if (match) { muniId = match.id; document.getElementById('p-municipio').value = muniId; }
+  }
+
   if (!muniId) {
-    toast('⚠️ Selecciona tu municipio para continuar');
-    document.getElementById('p-municipio').focus();
+    toast('⚠️ Escribe y elige tu municipio de la lista');
+    var inp = document.getElementById('p-municipio-text');
+    if (inp) inp.focus();
     return;
   }
   perfil.municipio = muniId;
   if (caminoActual === 'organizacion') perfil.es_dirigente = true;
-
-  // Avanzar al paso 3 — qué necesitas
   avanzarANecesidad();
 }
 
@@ -2319,32 +2414,49 @@ function renderParaTi() {
 
   var html = '';
 
-  // Card 1: beneficios municipales filtrados
+  // Card 1: beneficios del municipio con items reales
   if (muni && catsFiltradas.length > 0) {
     html += '<div class="pt-card">';
-    html += '<div class="pt-card-titulo">🏠 En ' + muni.nombre + '</div>';
+    html += '<div class="pt-card-titulo">🏠 Beneficios en ' + muni.nombre + '</div>';
     catsFiltradas.forEach(function(cat) {
-      html += '<div class="pt-cat-fila">' + cat.emoji + ' <span>' + cat.cat + '</span>' +
-        '<span class="pt-cat-badge">' + cat.items.length + '</span></div>';
+      cat.items.slice(0, 3).forEach(function(item) {
+        html += '<div class="pt-beneficio-item">';
+        html += '<div class="pt-ben-nombre">' + cat.emoji + ' ' + item.t + '</div>';
+        html += '<div class="pt-ben-desc">' + item.d + '</div>';
+        html += '</div>';
+      });
     });
-    html += '<button class="pt-ver-btn" onclick="switchTab(\'personal\');verMunicipio(\'' + muni.id + '\')">Ver detalles y cómo postular →</button>';
+    html += '<button class="pt-ver-btn" onclick="switchTab(\'personal\');verMunicipio(\'' + muni.id + '\')">Ver cómo acceder a cada beneficio →</button>';
     html += '</div>';
   }
 
-  // Card 2: fondos nacionales/regionales
-  if (fondosRel.length > 0) {
+  // Card 2: solo si hay fondos personales relevantes (PGU, Bono Marzo)
+  var fondosPersonales = fondosRel.filter(function(f) {
+    var nom = (f.nombre || '').toLowerCase();
+    return nom.includes('pgu') || nom.includes('bono') || nom.includes('pensión') ||
+           nom.includes('aporte') || nom.includes('subsidio') || nom.includes('4 a 7');
+  });
+  if (fondosPersonales.length > 0) {
     html += '<div class="pt-card">';
-    html += '<div class="pt-card-titulo">📋 Fondos disponibles</div>';
-    fondosRel.slice(0, 4).forEach(function(f) {
+    html += '<div class="pt-card-titulo">💰 Bonos y subsidios del Estado</div>';
+    fondosPersonales.slice(0, 4).forEach(function(f) {
       var est = calcularEstado(f);
       var bc  = est === 'abierto' ? 'e-abierto' : 'e-proximo';
       var bl  = est === 'abierto' ? 'Abierto' : 'Próximo';
       html += '<div class="pt-fondo-fila" onclick="switchTab(\'juntavecinos\');verDetalle(' + f.id + ')">';
       html += '<div class="pt-fondo-nombre">' + f.nombre + '</div>';
-      html += '<div class="pt-fondo-meta"><span class="estado-badge ' + bc + '" style="font-size:.7rem;padding:.15rem .45rem"><span class="estado-dot"></span>' + bl + '</span>' + badgeContador(f) + '<span>' + f.monto + '</span></div>';
+      html += '<div class="pt-fondo-meta"><span class="estado-badge ' + bc + '" style="font-size:.7rem;padding:.15rem .45rem"><span class="estado-dot"></span>' + bl + '</span>' + badgeContador(f) + '</div>';
       html += '</div>';
     });
-    html += '<button class="pt-ver-btn" onclick="switchTab(\'juntavecinos\')">Ver todos los fondos →</button>';
+    html += '</div>';
+  }
+
+  // Contacto al final
+  if (muni) {
+    html += '<div class="pt-contacto">';
+    html += '<div class="pt-contacto-titulo">📍 ¿Necesitas más ayuda?</div>';
+    html += '<div class="pt-contacto-texto">Puedes ir directamente a la Municipalidad de <strong>' + muni.nombre + '</strong> o consultar en su sitio web.</div>';
+    html += '<a href="' + muni.web + '" class="pt-contacto-link" target="_blank" rel="noopener">Ir al sitio de la municipalidad →</a>';
     html += '</div>';
   }
 
@@ -2454,16 +2566,8 @@ var _origInicializar = inicializar;
 inicializar = function() {
   _origInicializar();
 
-  // Poblar p-municipio
-  var selP = document.getElementById('p-municipio');
-  if (selP && municipios && municipios.length && selP.options.length === 1) {
-    municipios.slice().sort(function(a, b){ return a.nombre.localeCompare(b.nombre,'es'); })
-      .forEach(function(m) {
-        var o = document.createElement('option');
-        o.value = m.id; o.textContent = m.nombre;
-        selP.appendChild(o);
-      });
-  }
+  // p-municipio es ahora un campo hidden + buscador de texto
+  // La búsqueda usa la variable global 'municipios' directamente en filtrarMunicipios()
 
   renderBannerUrgente();
   renderCalendarioFondos();
