@@ -288,6 +288,67 @@ footer a{color:var(--amarillo);text-decoration:none}
   .b-como a{display:inline-block;margin-top:.5rem;background:var(--verde);color:#fff;padding:6px 14px;border-radius:8px;font-size:.78rem;font-weight:600;text-decoration:none;transition:background .2s}
   .b-como a:hover{background:var(--verde2)}
 
+/* ── PERFIL RÁPIDO ───────────────────────────────────────────── */
+.perfil-box{background:#fff;border-radius:16px;padding:1.4rem 1.5rem;max-width:780px;margin:0 auto;box-shadow:0 4px 24px rgba(0,0,0,.13)}
+.perfil-titulo{font-size:.82rem;color:var(--gris);font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:.9rem;text-align:left}
+.perfil-chips{display:grid;grid-template-columns:repeat(3,1fr);gap:.45rem;margin-bottom:1rem}
+@media(max-width:540px){.perfil-chips{grid-template-columns:repeat(2,1fr)}}
+.chip{display:flex;align-items:center;gap:.45rem;padding:.55rem .7rem;border:1.5px solid var(--borde);border-radius:10px;cursor:pointer;font-size:.83rem;font-weight:500;color:var(--gris-o);background:#fff;transition:all .18s;user-select:none}
+.chip:hover{border-color:var(--verde2);background:var(--verde-s)}
+.chip.sel{border-color:var(--verde);background:var(--verde-s);color:var(--verde);font-weight:700}
+.perfil-muni-row{display:grid;grid-template-columns:1fr auto;gap:.75rem;align-items:end}
+@media(max-width:520px){.perfil-muni-row{grid-template-columns:1fr}}
+.btn-para-mi{background:var(--verde);color:#fff;border:none;padding:11px 22px;border-radius:12px;font-family:'DM Sans',sans-serif;font-weight:700;font-size:.93rem;cursor:pointer;white-space:nowrap;transition:background .18s;align-self:end}
+.btn-para-mi:hover{background:var(--verde2)}
+.avanzado-toggle{display:block;text-align:center;margin-top:.6rem;background:none;border:none;color:rgba(255,255,255,.65);font-size:.78rem;cursor:pointer;text-decoration:underline;text-underline-offset:3px;font-family:'DM Sans',sans-serif;padding:.3rem}
+.avanzado-toggle:hover{color:#fff}
+
+/* ── PARA TI ─────────────────────────────────────────────────── */
+#para-ti{display:none;background:linear-gradient(160deg,#f0faf4,#e4f5ec);border-top:3px solid var(--verde2);padding:1.5rem 1.5rem}
+.pt-inner{max-width:900px;margin:0 auto}
+.pt-cerrar-row{display:flex;justify-content:flex-end;margin-bottom:.6rem}
+.pt-cerrar-btn{background:none;border:1px solid #b2d8be;color:var(--gris);cursor:pointer;font-size:.78rem;padding:.25rem .7rem;border-radius:8px;font-family:'DM Sans',sans-serif}
+.pt-top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.75rem;margin-bottom:1.25rem}
+.pt-titulo{font-family:'Fraunces',serif;font-size:1.15rem;color:var(--gris-o)}
+.pt-dinero-badge{background:var(--verde);color:#fff;padding:.35rem 1rem;border-radius:20px;font-size:.82rem;font-weight:700;white-space:nowrap}
+.pt-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+@media(max-width:640px){.pt-grid{grid-template-columns:1fr}}
+.pt-card{background:#fff;border-radius:14px;padding:1.1rem 1.2rem;border:1.5px solid #cde8d4}
+.pt-card-titulo{font-weight:700;color:var(--gris-o);font-size:.9rem;margin-bottom:.75rem;display:flex;align-items:center;gap:.4rem}
+.pt-cat-fila{display:flex;align-items:center;gap:.5rem;padding:.35rem 0;border-bottom:1px solid #f0f5f2;font-size:.85rem}
+.pt-cat-fila:last-child{border-bottom:none}
+.pt-cat-badge{margin-left:auto;background:var(--verde-s);color:var(--verde);font-weight:700;font-size:.75rem;padding:.1rem .45rem;border-radius:7px}
+.pt-fondo-fila{padding:.4rem 0;border-bottom:1px solid #f0f5f2;cursor:pointer}
+.pt-fondo-fila:last-child{border-bottom:none}
+.pt-fondo-fila:hover .pt-fondo-nombre{color:var(--verde)}
+.pt-fondo-nombre{font-weight:600;font-size:.84rem;color:var(--gris-o);margin:.15rem 0}
+.pt-fondo-meta{font-size:.76rem;color:var(--gris);display:flex;gap:.5rem;flex-wrap:wrap}
+.pt-ver-btn{margin-top:.8rem;background:transparent;border:1.5px solid var(--verde);color:var(--verde);padding:.45rem 1rem;border-radius:10px;font-family:'DM Sans',sans-serif;font-weight:600;font-size:.8rem;cursor:pointer;width:100%;transition:all .18s}
+.pt-ver-btn:hover{background:var(--verde);color:#fff}
+
+/* ── COUNTDOWN ───────────────────────────────────────────────── */
+.countdown{display:inline-flex;align-items:center;font-size:.72rem;font-weight:700;padding:.18rem .5rem;border-radius:7px;margin-left:.4rem}
+.countdown.urgente{background:#fef2f2;color:#dc2626}
+.countdown.pronto{background:#fff7ed;color:#d97706}
+.tarjeta.urgente{border-left:3px solid #dc2626}
+
+/* ── BANNER URGENTE ─────────────────────────────────────────── */
+#banner-urgente{display:none;background:linear-gradient(90deg,#fef2f2,#fff5f5);border-left:4px solid #dc2626;padding:.75rem 2rem;font-size:.87rem;color:#991b1b;font-weight:500;align-items:center;gap:.75rem}
+#banner-urgente a{color:#dc2626;font-weight:700;margin-left:auto;text-decoration:none}
+
+/* ── CALENDARIO FONDOS ───────────────────────────────────────── */
+.cal-fondos-grid{display:grid;gap:1rem;margin-top:1.5rem}
+.cal-mes-titulo{font-weight:700;color:var(--gris-o);font-size:.88rem;background:var(--gris-c);padding:.4rem .9rem;border-radius:8px;margin-bottom:.5rem}
+.cal-item{display:flex;align-items:flex-start;gap:.7rem;padding:.55rem .5rem;border-bottom:1px solid var(--borde);cursor:pointer}
+.cal-item:last-child{border-bottom:none}
+.cal-item:hover .cal-nombre{color:var(--verde)}
+.cal-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;margin-top:.35rem}
+.cal-dot.abierto{background:#22c55e}.cal-dot.proximo{background:#eab308}.cal-dot.cerrado{background:#9ca3af}
+.cal-info{flex:1}
+.cal-nombre{font-weight:600;font-size:.84rem;color:var(--gris-o)}
+.cal-meta{font-size:.76rem;color:var(--gris);display:flex;gap:.75rem;margin-top:.1rem;flex-wrap:wrap}
+.cal-monto{color:var(--verde);font-weight:600}
+
 </style>
 </head>
 <body>
@@ -310,10 +371,34 @@ footer a{color:var(--amarillo);text-decoration:none}
 
 <section class="hero">
   <div class="hero-badge">🇨🇱 Plataforma Gratuita para Chile</div>
-  <h1>Los beneficios de tu comunidad,<br><em>en un solo lugar</em></h1>
-  <p>Beneficios personales por municipio y fondos para juntas de vecinos — todo en un solo lugar, gratis y en simple.</p>
+  <h1>Descubre toda la ayuda pública<br><em>que te corresponde</em></h1>
+  <p>Cientos de beneficios, fondos y subsidios están disponibles — pero nadie te los dice. <strong>Cuéntanos quién eres y te mostramos exactamente lo que tienes.</strong></p>
 
-  <div class="buscador">
+  <!-- PERFIL RÁPIDO -->
+  <div class="perfil-box">
+    <div class="perfil-titulo">¿Para quién buscamos hoy?</div>
+    <div class="perfil-chips">
+      <label class="chip" id="chip-adulto" onclick="selChip('adulto_mayor',this)">👴 Adulto mayor</label>
+      <label class="chip" id="chip-hijos"  onclick="selChip('tiene_hijos',this)">👶 Tengo hijos</label>
+      <label class="chip" id="chip-dirig"  onclick="selChip('es_dirigente',this)">🤝 Dirigente vecinal</label>
+      <label class="chip" id="chip-trab"   onclick="selChip('busca_trabajo',this)">💼 Busco trabajo</label>
+      <label class="chip" id="chip-disc"   onclick="selChip('discapacidad',this)">♿ Discapacidad</label>
+      <label class="chip" id="chip-empr"   onclick="selChip('emprendedor',this)">🚀 Emprendedor/a</label>
+    </div>
+    <div class="perfil-muni-row">
+      <div class="fg">
+        <label>📍 ¿En qué municipio vives?</label>
+        <select id="p-municipio">
+          <option value="">Selecciona tu municipio</option>
+        </select>
+      </div>
+      <button class="btn-para-mi" onclick="buscarParaMi()">Ver mis beneficios →</button>
+    </div>
+  </div>
+  <button class="avanzado-toggle" onclick="toggleBuscador()">▾ Búsqueda avanzada por filtros</button>
+
+  <!-- BUSCADOR AVANZADO (colapsable) -->
+  <div class="buscador" id="buscador-avanzado" style="display:none;margin-top:.75rem">
     <div class="buscador-titulo" id="buscador-titulo">🔍 Encuentra fondos y beneficios disponibles para tu comunidad</div>
     <div class="fila-filtros fila-3">
       <div class="fg">
@@ -365,6 +450,7 @@ footer a{color:var(--amarillo);text-decoration:none}
       <button class="btn-limpiar" onclick="limpiar()">✕ Limpiar</button>
     </div>
   </div>
+  </div><!-- fin buscador-avanzado -->
 </section>
 
 <div class="stats-bar">
@@ -372,6 +458,24 @@ footer a{color:var(--amarillo);text-decoration:none}
   <div class="stat"><div class="stat-num" id="stat-num-beneficios">81</div><div class="stat-label">Beneficios personales</div></div>
   <div class="stat"><div class="stat-num">22</div><div class="stat-label">Fondos y programas</div></div>
   <div class="stat"><div class="stat-num">$17B+</div><div class="stat-label">En financiamiento</div></div>
+</div>
+
+<!-- BANNER URGENTE (fondos que cierran pronto, se genera por JS) -->
+<div id="banner-urgente" style="display:none;background:linear-gradient(90deg,#fef2f2,#fff5f5);border-left:4px solid #dc2626;padding:.75rem 2rem;font-size:.87rem;color:#991b1b;font-weight:500;display:none;align-items:center;gap:.75rem">
+  🚨 <span id="banner-urgente-texto"></span>
+  <a href="#" id="banner-urgente-link" onclick="switchTab('juntavecinos');return false" style="color:#dc2626;font-weight:700;margin-left:auto;text-decoration:none">Ver fondo →</a>
+</div>
+
+<!-- PARA TI — aparece al usar el perfil rápido -->
+<div id="para-ti">
+  <div class="pt-inner">
+    <div class="pt-cerrar-row"><button class="pt-cerrar-btn" onclick="cerrarParaTi()">✕ Cerrar</button></div>
+    <div class="pt-top">
+      <div class="pt-titulo">✅ Encontramos <strong id="pt-total">0 beneficios</strong> para tu perfil</div>
+      <div class="pt-dinero-badge" id="pt-dinero">💰 Calculando...</div>
+    </div>
+    <div class="pt-grid" id="pt-contenido"></div>
+  </div>
 </div>
 
 <div class="banner">
@@ -462,6 +566,15 @@ footer a{color:var(--amarillo);text-decoration:none}
       <div class="cat-btn" role="button" tabindex="0" onclick="filtrarCat('Medio Ambiente',this)"><span class="emoji">🌱</span><span class="nombre">Medio Ambiente</span></div>
       <div class="cat-btn" role="button" tabindex="0" onclick="filtrarCat('Social',this)"><span class="emoji">🤝</span><span class="nombre">Social</span></div>
       <div class="cat-btn" role="button" tabindex="0" onclick="filtrarCat('',this)"><span class="emoji">💡</span><span class="nombre">Ver todos</span></div>
+    </div>
+
+    <!-- Calendario visual de fondos -->
+    <div style="background:#fff;border-radius:16px;border:1.5px solid var(--borde);padding:1.25rem 1.5rem;margin-bottom:2rem">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.25rem">
+        <h3 style="font-family:'Fraunces',serif;font-size:1.05rem;color:var(--gris-o);margin:0">📅 Calendario de fondos 2026</h3>
+        <span style="font-size:.78rem;color:var(--gris)">🟢 Abierto &nbsp; 🟡 Próximo &nbsp; ⚫ Cerrado</span>
+      </div>
+      <div id="cal-fondos-contenido" class="cal-fondos-grid"></div>
     </div>
 
     <div class="fondos-header">
@@ -1860,6 +1973,266 @@ document.addEventListener("click", function(e) {
   btn.textContent = visible ? "▾ ¿Cómo acceder?" : "▸ ¿Cómo acceder?";
 });
 cargarDesdeSheets();
+
+// ══════════════════════════════════════════════════════
+// PERFIL RÁPIDO + PARA TI
+// ══════════════════════════════════════════════════════
+
+var perfil = {};
+
+var MESES_NUM = {
+  'ene':0,'feb':1,'mar':2,'abr':3,'may':4,'jun':5,
+  'jul':6,'ago':7,'sep':8,'oct':9,'nov':10,'dic':11,
+  'enero':0,'febrero':1,'marzo':2,'abril':3,'mayo':4,'junio':5,
+  'julio':6,'agosto':7,'septiembre':8,'octubre':9,'noviembre':10,'diciembre':11
+};
+
+function diasHasta(fechaStr) {
+  if (!fechaStr || /confirmar|región|según|varía/i.test(fechaStr)) return null;
+  var p = fechaStr.trim().toLowerCase().split(/\s+/);
+  if (p.length < 2) return null;
+  var dia = parseInt(p[0]);
+  var mes = MESES_NUM[p[1]];
+  var año = p.length >= 3 ? parseInt(p[2]) : new Date().getFullYear();
+  if (isNaN(dia) || mes === undefined || isNaN(año)) return null;
+  var fecha = new Date(año, mes, dia);
+  var hoy = new Date(); hoy.setHours(0,0,0,0);
+  return Math.round((fecha - hoy) / 86400000);
+}
+
+function badgeContador(f) {
+  var est = calcularEstado(f);
+  if (est !== 'abierto' && est !== 'proximo') return '';
+  var campo = est === 'abierto' ? f.cierra : f.abre;
+  var dias = diasHasta(campo);
+  if (dias === null) return '';
+  if (est === 'abierto') {
+    if (dias < 0) return '';
+    if (dias === 0) return '<span class="countdown urgente">⏰ Cierra HOY</span>';
+    if (dias <= 7)  return '<span class="countdown urgente">⏰ Cierra en '+dias+' día'+(dias===1?'':'s')+'</span>';
+    if (dias <= 21) return '<span class="countdown pronto">⏰ Cierra en '+dias+' días</span>';
+  } else {
+    if (dias < 0) return '';
+    if (dias <= 14) return '<span class="countdown pronto">🟡 Abre en '+dias+' días</span>';
+  }
+  return '';
+}
+
+function selChip(clave, el) {
+  perfil[clave] = !perfil[clave];
+  el.classList.toggle('sel');
+}
+
+function toggleBuscador() {
+  var b = document.getElementById('buscador-avanzado');
+  b.style.display = b.style.display === 'none' ? 'block' : 'none';
+}
+
+function buscarParaMi() {
+  var muniId = document.getElementById('p-municipio').value;
+  if (!muniId && !Object.values(perfil).some(Boolean)) {
+    toast('⚠️ Selecciona al menos tu municipio o una situación');
+    return;
+  }
+  perfil.municipio = muniId;
+
+  var sec = document.getElementById('para-ti');
+  sec.style.display = 'block';
+  renderParaTi();
+  sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+
+function cerrarParaTi() {
+  document.getElementById('para-ti').style.display = 'none';
+}
+
+function renderParaTi() {
+  var muniId = perfil.municipio;
+  var muni   = muniId && municipios ? municipios.find(function(m){ return m.id === muniId; }) : null;
+
+  // Fondos relevantes según perfil
+  var fondosRel = (fondos || []).filter(function(f) {
+    var est = calcularEstado(f);
+    if (est === 'cerrado') return false;
+    var quien  = (f.quien   || '').toLowerCase();
+    var nombre = (f.nombre  || '').toLowerCase();
+    var cats   = (f.cats    || []).join(' ').toLowerCase();
+    if (perfil.es_dirigente) return true;
+    if (perfil.adulto_mayor && (quien.includes('adulto') || nombre.includes('adulto') || nombre.includes('pgu') || nombre.includes('senama') || cats.includes('adulto'))) return true;
+    if (perfil.busca_trabajo && (nombre.includes('trabajo') || nombre.includes('empleo') || nombre.includes('sence'))) return true;
+    if (perfil.emprendedor && (nombre.includes('emprendimiento') || nombre.includes('sercotec'))) return true;
+    if (perfil.discapacidad && (nombre.includes('discapacidad') || nombre.includes('senadis') || quien.includes('discapacidad'))) return true;
+    // Por defecto: mostrar fondos nacionales/personales
+    return f.alcance === 'nacional' && (quien.includes('vecino') || quien.includes('persona') || quien.includes('familia') || nombre.includes('pgu') || nombre.includes('bono'));
+  });
+
+  var totalBeneficios = (muni ? muni.beneficios.reduce(function(a,c){ return a + c.items.length; }, 0) : 0);
+  var totalItems = totalBeneficios + fondosRel.length;
+  document.getElementById('pt-total').textContent = totalItems + (totalItems === 1 ? ' beneficio' : ' beneficios');
+
+  // Estimar dinero (suma de máximos de fondos abiertos/próximos)
+  var dineroEstim = 0;
+  fondosRel.forEach(function(f) {
+    var m = (f.monto || '').replace(/\./g,'').replace(/\$/g,'').replace(/hasta/i,'').trim();
+    var n = parseInt(m.replace(/[^\d]/g,''));
+    if (!isNaN(n) && n > 0) dineroEstim += n;
+  });
+  document.getElementById('pt-dinero').textContent = dineroEstim > 0
+    ? '💰 Hasta $' + dineroEstim.toLocaleString('es-CL') + ' disponibles'
+    : '💰 Múltiples beneficios disponibles';
+
+  var html = '';
+
+  // Card 1: beneficios personales del municipio
+  if (muni) {
+    html += '<div class="pt-card"><div class="pt-card-titulo">🏠 Beneficios en ' + muni.nombre + '</div>';
+    muni.beneficios.forEach(function(cat) {
+      var mostrar = true;
+      if (perfil.adulto_mayor && cat.cat !== 'Adulto Mayor' && cat.cat !== 'Salud') mostrar = false;
+      if (perfil.tiene_hijos && cat.cat !== 'Educación y Becas' && cat.cat !== 'Salud') mostrar = false;
+      if (!perfil.adulto_mayor && !perfil.tiene_hijos) mostrar = true;
+      if (mostrar) {
+        html += '<div class="pt-cat-fila">' + cat.emoji + ' <span>' + cat.cat + '</span>' +
+          '<span class="pt-cat-badge">' + cat.items.length + '</span></div>';
+      }
+    });
+    html += '<button class="pt-ver-btn" onclick="switchTab(\'personal\');verMuni(\'' + muni.id + '\')">Ver todos los beneficios →</button>';
+    html += '</div>';
+  } else {
+    html += '<div class="pt-card"><div class="pt-card-titulo">🏠 Beneficios personales</div>';
+    html += '<div style="font-size:.84rem;color:var(--gris);line-height:1.6">Selecciona tu municipio para ver los beneficios específicos disponibles para ti.</div>';
+    html += '</div>';
+  }
+
+  // Card 2: fondos disponibles
+  if (fondosRel.length > 0) {
+    html += '<div class="pt-card"><div class="pt-card-titulo">📋 Fondos disponibles' + (perfil.es_dirigente ? ' para tu organización' : '') + '</div>';
+    fondosRel.slice(0, 5).forEach(function(f) {
+      var est = calcularEstado(f);
+      var badgeClass = est === 'abierto' ? 'e-abierto' : 'e-proximo';
+      var badgeLabel = est === 'abierto' ? 'Abierto' : 'Próximo';
+      var contador = badgeContador(f);
+      html += '<div class="pt-fondo-fila" onclick="switchTab(\'juntavecinos\');verDetalle(' + f.id + ')">';
+      html += '<div class="pt-fondo-nombre">' + f.nombre + '</div>';
+      html += '<div class="pt-fondo-meta"><span class="estado-badge ' + badgeClass + '" style="font-size:.7rem;padding:.15rem .45rem"><span class="estado-dot"></span>' + badgeLabel + '</span>' + contador + '<span>' + f.monto + '</span></div>';
+      html += '</div>';
+    });
+    html += '<button class="pt-ver-btn" onclick="switchTab(\'juntavecinos\')">Ver todos los fondos →</button>';
+    html += '</div>';
+  }
+
+  document.getElementById('pt-contenido').innerHTML = html;
+}
+
+// ══════════════════════════════════════════════════════
+// CONTADOR EN FONDOS CARDS
+// ══════════════════════════════════════════════════════
+
+// Parchar renderFondos para agregar countdown
+(function() {
+  var _orig = renderFondos;
+  renderFondos = function(lista) {
+    _orig(lista);
+    // Agregar countdown a cada tarjeta
+    var tarjetas = document.querySelectorAll('.fondos-grid .tarjeta');
+    tarjetas.forEach(function(t, i) {
+      var f = lista[i];
+      if (!f) return;
+      var badge = badgeContador(f);
+      if (!badge) return;
+      var top = t.querySelector('.tarjeta-top');
+      if (top) {
+        var span = document.createElement('span');
+        span.innerHTML = badge;
+        top.appendChild(span.firstChild);
+      }
+      if (badge.includes('urgente')) t.classList.add('urgente');
+    });
+  };
+})();
+
+// ══════════════════════════════════════════════════════
+// BANNER URGENTE + CALENDARIO
+// ══════════════════════════════════════════════════════
+
+function renderBannerUrgente() {
+  if (!fondos || !fondos.length) return;
+  var urgente = fondos.filter(function(f) {
+    if (calcularEstado(f) !== 'abierto') return false;
+    var d = diasHasta(f.cierra);
+    return d !== null && d >= 0 && d <= 10;
+  }).sort(function(a, b) {
+    return (diasHasta(a.cierra) || 999) - (diasHasta(b.cierra) || 999);
+  })[0];
+
+  var banner = document.getElementById('banner-urgente');
+  if (!urgente || !banner) return;
+  var dias = diasHasta(urgente.cierra);
+  document.getElementById('banner-urgente-texto').innerHTML =
+    '<strong>' + urgente.nombre + '</strong> — cierra en ' + dias + (dias === 1 ? ' día' : ' días');
+  document.getElementById('banner-urgente-link').onclick = function() {
+    switchTab('juntavecinos'); verDetalle(urgente.id); return false;
+  };
+  banner.style.display = 'flex';
+}
+
+function renderCalendarioFondos() {
+  var cont = document.getElementById('cal-fondos-contenido');
+  if (!cont || !fondos || !fondos.length) return;
+
+  // Agrupar fondos con fecha conocida, ordenados por fecha más próxima
+  var items = fondos
+    .map(function(f) {
+      var est = calcularEstado(f);
+      var fechaRef = est === 'abierto' ? f.cierra : f.abre;
+      var dias = diasHasta(fechaRef);
+      return { f: f, est: est, fechaRef: fechaRef, dias: dias };
+    })
+    .filter(function(x) { return x.dias !== null; })
+    .sort(function(a, b) {
+      var da = a.dias < 0 ? 9999 : a.dias;
+      var db = b.dias < 0 ? 9999 : b.dias;
+      return da - db;
+    });
+
+  if (!items.length) { cont.innerHTML = '<div style="font-size:.85rem;color:var(--gris)">Sin fechas confirmadas por ahora.</div>'; return; }
+
+  var html = '';
+  items.forEach(function(x) {
+    var dot = 'cal-dot ' + x.est;
+    var textoFecha = x.est === 'abierto'
+      ? '⏰ Cierra: ' + x.f.cierra + (x.dias >= 0 && x.dias <= 30 ? ' (' + x.dias + ' días)' : '')
+      : '🟡 Abre: ' + x.f.abre + (x.dias >= 0 && x.dias <= 30 ? ' (' + x.dias + ' días)' : '');
+    html += '<div class="cal-item" onclick="verDetalle(' + x.f.id + ')">' +
+      '<div class="' + dot + '"></div>' +
+      '<div class="cal-info">' +
+        '<div class="cal-nombre">' + x.f.nombre + '</div>' +
+        '<div class="cal-meta"><span>' + textoFecha + '</span><span class="cal-monto">' + x.f.monto + '</span></div>' +
+      '</div>' +
+    '</div>';
+  });
+  cont.innerHTML = html;
+}
+
+// Poblar select de municipio del perfil en inicializar
+var _origInicializar = inicializar;
+inicializar = function() {
+  _origInicializar();
+
+  // Poblar p-municipio
+  var selP = document.getElementById('p-municipio');
+  if (selP && municipios && municipios.length && selP.options.length === 1) {
+    municipios.slice().sort(function(a, b){ return a.nombre.localeCompare(b.nombre,'es'); })
+      .forEach(function(m) {
+        var o = document.createElement('option');
+        o.value = m.id; o.textContent = m.nombre;
+        selP.appendChild(o);
+      });
+  }
+
+  renderBannerUrgente();
+  renderCalendarioFondos();
+};
 </script>
 </body>
 </html>
