@@ -358,16 +358,36 @@ footer a{color:var(--amarillo);text-decoration:none}
 .btn-volver-camino:hover{color:#fff}
 .link-ya-se{display:block;text-align:center;margin-top:1rem;background:none;border:none;color:rgba(255,255,255,.4);font-size:.76rem;cursor:pointer;font-family:'DM Sans',sans-serif;letter-spacing:.2px;padding:.3rem}
 .link-ya-se:hover{color:rgba(255,255,255,.7);text-decoration:underline}
+/* ── PASO NECESIDAD ──────────────────────────────────────────── */
+.necesidades-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.6rem;margin-bottom:1rem}
+@media(max-width:480px){.necesidades-grid{grid-template-columns:repeat(2,1fr)}}
+.btn-necesidad{background:rgba(255,255,255,.93);border:2.5px solid transparent;border-radius:14px;padding:1rem .7rem;cursor:pointer;text-align:center;font-family:'DM Sans',sans-serif;min-height:80px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.35rem;transition:all .18s;width:100%}
+.btn-necesidad:hover,.btn-necesidad:focus{border-color:var(--amarillo);background:#fff;outline:none;transform:translateY(-2px)}
+.btn-necesidad.sel{border-color:var(--verde);background:#fff;box-shadow:0 0 0 3px rgba(26,107,60,.2)}
+.btn-necesidad .ni{font-size:1.75rem;line-height:1;display:block}
+.btn-necesidad span{font-size:.8rem;color:var(--gris-o);font-weight:600;line-height:1.3}
+#btn-ver-final{transition:opacity .18s,background .18s}
+#btn-ver-final:disabled{cursor:not-allowed}
+/* ── TRUST BLOCK ─────────────────────────────────────────────── */
+.trust-block{background:#f0faf4;border-top:1px solid #cde8d4;border-bottom:1px solid #cde8d4;padding:.9rem 2rem;text-align:center}
+.trust-inner{max-width:720px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:.75rem 1.5rem}
+.trust-label{font-size:.78rem;color:#2d6a4f;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.trust-fuentes{display:flex;flex-wrap:wrap;gap:.4rem;justify-content:center}
+.trust-fuente{background:#fff;border:1px solid #a8d5b5;color:#1a6b3c;font-size:.76rem;font-weight:600;padding:.2rem .65rem;border-radius:20px}
+.trust-update{font-size:.76rem;color:#4a5568;margin-left:auto}
+@media(max-width:600px){.trust-inner{flex-direction:column;gap:.5rem}.trust-update{margin-left:0}}
 /* ── ACCESIBILIDAD ───────────────────────────────────────────── */
-body{font-size:17px}
-.fg select,.paso-select-grande{font-size:.98rem}
-.fg label{font-size:.8rem}
-.btn-buscar,.btn-limpiar,.btn-nav,.btn-reg{min-height:48px}
-.tab{font-size:.9rem;padding:.65rem 1.3rem}
-.b-titulo{font-size:.93rem}
-.b-desc{font-size:.87rem;line-height:1.6}
-.muni-btn .m-nombre{font-size:.93rem}
+body{font-size:18px}
+.fg select,.paso-select-grande{font-size:1rem}
+.fg label{font-size:.82rem}
+.btn-buscar,.btn-limpiar,.btn-nav,.btn-reg,.btn-ver-beneficios,#btn-ver-final{min-height:56px}
+.btn-ver-beneficios,#btn-ver-final{font-size:1.05rem;font-weight:800}
+.tab{font-size:.92rem;padding:.7rem 1.35rem}
+.b-titulo{font-size:.95rem}
+.b-desc{font-size:.88rem;line-height:1.65}
+.muni-btn .m-nombre{font-size:.94rem}
 button,.chip,.cat-btn,.muni-btn,[role=button]{-webkit-tap-highlight-color:rgba(0,0,0,.08)}
+:focus-visible{outline:3px solid var(--amarillo);outline-offset:2px}
 /* ── PARA TI — ocultar si vacío ──────────────────────────────── */
 #para-ti.vacio{display:none!important}
 /* ── CALENDARIO FONDOS ───────────────────────────────────────── */
@@ -433,6 +453,17 @@ button,.chip,.cat-btn,.muni-btn,[role=button]{-webkit-tap-highlight-color:rgba(0
     </select>
     <button class="btn-ver-beneficios" onclick="buscarParaMi()">Ver beneficios disponibles →</button>
     <button class="btn-volver-camino" onclick="volverCaminos()">← Cambiar selección</button>
+  </div>
+
+  <!-- PASO 3: ¿QUÉ NECESITAS? (aparece tras elegir municipio) -->
+  <div id="paso-necesidad" class="paso-comuna" style="display:none">
+    <div class="paso-camino-tag" id="paso-necesidad-tag">🏠 Tu municipio</div>
+    <div class="camino-label" style="text-align:left;font-size:.98rem;margin-bottom:.85rem">¿Qué necesitas?</div>
+    <div id="necesidades-grid" class="necesidades-grid" role="group" aria-label="Selecciona qué necesitas"></div>
+    <button class="btn-ver-beneficios" id="btn-ver-final" onclick="buscarConNecesidad()" disabled style="opacity:.45;cursor:not-allowed;margin-top:1rem">
+      Ver mis oportunidades →
+    </button>
+    <button class="btn-volver-camino" onclick="volverAMunicipio()">← Cambiar municipio</button>
   </div>
 
   <button class="link-ya-se" onclick="toggleBuscador()">Ya sé lo que busco — usar búsqueda avanzada</button>
@@ -522,6 +553,20 @@ button,.chip,.cat-btn,.muni-btn,[role=button]{-webkit-tap-highlight-color:rgba(0
   <span class="badge-nuevo">Nuevo</span>
   🔔 <strong>Fondo Comunidad Activa 2026</strong> — $14.165 millones para la Región Metropolitana. Postula antes del 30 de junio.
   <a href="#" onclick="switchTab('juntavecinos');verDetalle(5);return false">Ver más →</a>
+</div>
+
+<!-- BLOQUE DE CONFIANZA -->
+<div class="trust-block">
+  <div class="trust-inner">
+    <span class="trust-label">Información desde</span>
+    <div class="trust-fuentes">
+      <span class="trust-fuente">ChileAtiende</span>
+      <span class="trust-fuente">Municipalidades RM</span>
+      <span class="trust-fuente">Gobierno Regional</span>
+      <span class="trust-fuente">Fondos Públicos</span>
+    </div>
+    <span class="trust-update">🔄 Actualizado: <strong id="trust-fecha">recientemente</strong></span>
+  </div>
 </div>
 
 <main>
@@ -2019,7 +2064,28 @@ cargarDesdeSheets();
 // ══════════════════════════════════════════════════════
 
 var perfil = {};
-var caminoActual = null; // 'persona' | 'organizacion'
+var caminoActual  = null; // 'persona' | 'organizacion'
+var necesidadActual = null;
+
+var NECESIDADES_PERSONA = [
+  { id:'salud',      emoji:'🏥', label:'Salud',            cats:['Salud'] },
+  { id:'educacion',  emoji:'🎓', label:'Educación y becas', cats:['Educación y Becas'] },
+  { id:'adulto',     emoji:'👴', label:'Adulto mayor',      cats:['Adulto Mayor'] },
+  { id:'dinero',     emoji:'💰', label:'Dinero y bonos',    cats:['Social y Legal'] },
+  { id:'vivienda',   emoji:'🏠', label:'Vivienda',          cats:['Vivienda'] },
+  { id:'legal',      emoji:'⚖️', label:'Asesoría legal',    cats:['Social y Legal'] },
+  { id:'todo',       emoji:'✅', label:'Ver todo',           cats:[] },
+];
+
+var NECESIDADES_ORG = [
+  { id:'seguridad',  emoji:'🔒', label:'Seguridad',         cats:['Seguridad'] },
+  { id:'cultura',    emoji:'🎭', label:'Cultura y arte',     cats:['Cultura'] },
+  { id:'deporte',    emoji:'⚽', label:'Deporte',            cats:['Deporte'] },
+  { id:'medioamb',   emoji:'🌱', label:'Medioambiente',      cats:['Medio Ambiente'] },
+  { id:'sede',       emoji:'🏚️', label:'Sede vecinal',       cats:['Sede Vecinal'] },
+  { id:'social',     emoji:'🤝', label:'Social',             cats:['Social'] },
+  { id:'todo',       emoji:'💡', label:'Ver todos',          cats:[] },
+];
 
 // ── DOS CAMINOS ───────────────────────────────────────────────
 function elegirCamino(tipo) {
@@ -2048,11 +2114,93 @@ function elegirCamino(tipo) {
 
 function volverCaminos() {
   document.getElementById('paso-comuna').style.display = 'none';
+  document.getElementById('paso-necesidad').style.display = 'none';
   document.getElementById('dos-caminos').style.display = 'block';
   caminoActual = null;
+  necesidadActual = null;
   perfil.es_dirigente = false;
-  // Ocultar para-ti si estaba visible
   cerrarParaTi();
+}
+
+// ── PASO 3: Necesidades ──────────────────────────────────────
+function avanzarANecesidad() {
+  var muniId = perfil.municipio;
+  var muni   = municipios ? municipios.find(function(m){ return m.id === muniId; }) : null;
+  var nombre = muni ? muni.nombre : 'tu municipio';
+
+  document.getElementById('paso-comuna').style.display    = 'none';
+  document.getElementById('paso-necesidad').style.display = 'block';
+
+  var tag = document.getElementById('paso-necesidad-tag');
+  if (tag) tag.textContent = (caminoActual === 'persona' ? '🏠 ' : '🤝 ') + nombre;
+
+  var lista = caminoActual === 'organizacion' ? NECESIDADES_ORG : NECESIDADES_PERSONA;
+  var grid  = document.getElementById('necesidades-grid');
+  grid.innerHTML = lista.map(function(n) {
+    return '<button class="btn-necesidad" onclick="elegirNecesidad(\'' + n.id + '\',this)" ' +
+      'aria-label="' + n.label + '">' +
+      '<span class="ni">' + n.emoji + '</span>' +
+      '<span>' + n.label + '</span>' +
+    '</button>';
+  }).join('');
+
+  necesidadActual = null;
+  var btn = document.getElementById('btn-ver-final');
+  if (btn) { btn.disabled = true; btn.style.opacity = '.45'; btn.style.cursor = 'not-allowed'; }
+
+  setTimeout(function() {
+    var first = grid.querySelector('.btn-necesidad');
+    if (first) first.focus();
+  }, 160);
+}
+
+function elegirNecesidad(id, el) {
+  necesidadActual = id;
+  document.querySelectorAll('.btn-necesidad').forEach(function(b){ b.classList.remove('sel'); });
+  el.classList.add('sel');
+  var btn = document.getElementById('btn-ver-final');
+  if (btn) { btn.disabled = false; btn.style.opacity = '1'; btn.style.cursor = 'pointer'; }
+}
+
+function buscarConNecesidad() {
+  if (!necesidadActual) return;
+
+  if (caminoActual === 'organizacion') {
+    var needObj = NECESIDADES_ORG.find(function(n){ return n.id === necesidadActual; });
+    switchTab('juntavecinos');
+    if (needObj && needObj.cats.length > 0) {
+      // Filtrar por categoría en la grilla de fondos
+      filtrarCat(needObj.cats[0], null);
+    }
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    return;
+  }
+
+  // Persona: mostrar Para Ti filtrado
+  var sec = document.getElementById('para-ti');
+  sec.classList.remove('vacio');
+  renderParaTi();
+
+  var total = parseInt((document.getElementById('pt-total') || {}).textContent || '0');
+  if (total === 0) {
+    sec.classList.add('vacio');
+    switchTab('personal');
+    if (perfil.municipio) verMunicipio(perfil.municipio);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  } else {
+    sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+}
+
+function volverAMunicipio() {
+  document.getElementById('paso-necesidad').style.display = 'none';
+  document.getElementById('paso-comuna').style.display    = 'block';
+  necesidadActual = null;
+  cerrarParaTi();
+  setTimeout(function() {
+    var sel = document.getElementById('p-municipio');
+    if (sel) sel.focus();
+  }, 100);
 }
 
 var MESES_NUM = {
@@ -2111,32 +2259,10 @@ function buscarParaMi() {
     return;
   }
   perfil.municipio = muniId;
+  if (caminoActual === 'organizacion') perfil.es_dirigente = true;
 
-  // Si viene del flujo organizacion, activar es_dirigente
-  if (caminoActual === 'organizacion') {
-    perfil.es_dirigente = true;
-    // Ir directo a la sección de fondos
-    switchTab('juntavecinos');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    return;
-  }
-
-  // Flujo persona: mostrar Para Ti
-  var sec = document.getElementById('para-ti');
-  sec.classList.remove('vacio');
-  renderParaTi();
-
-  // Solo mostrar si hay resultados reales
-  var total = parseInt((document.getElementById('pt-total') || {}).textContent || '0');
-  if (total === 0) {
-    // No hay resultados: ir a la tab personal directamente
-    sec.classList.add('vacio');
-    switchTab('personal');
-    verMunicipio(muniId);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  } else {
-    sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
+  // Avanzar al paso 3 — qué necesitas
+  avanzarANecesidad();
 }
 
 function cerrarParaTi() {
@@ -2145,78 +2271,87 @@ function cerrarParaTi() {
 }
 
 function renderParaTi() {
-  var muniId = perfil.municipio;
-  var muni   = muniId && municipios ? municipios.find(function(m){ return m.id === muniId; }) : null;
+  var muniId  = perfil.municipio;
+  var muni    = muniId && municipios ? municipios.find(function(m){ return m.id === muniId; }) : null;
 
-  // Fondos relevantes según perfil
+  // Necesidad seleccionada
+  var needObj = necesidadActual && necesidadActual !== 'todo'
+    ? NECESIDADES_PERSONA.find(function(n){ return n.id === necesidadActual; })
+    : null;
+  var catsNeed = needObj && needObj.cats.length ? needObj.cats : null;
+
+  // Filtrar categorías del municipio según necesidad
+  var catsFiltradas = muni ? muni.beneficios.filter(function(cat) {
+    return !catsNeed || catsNeed.indexOf(cat.cat) !== -1;
+  }) : [];
+
+  // Fondos relevantes
   var fondosRel = (fondos || []).filter(function(f) {
     var est = calcularEstado(f);
     if (est === 'cerrado') return false;
-    var quien  = (f.quien   || '').toLowerCase();
-    var nombre = (f.nombre  || '').toLowerCase();
-    var cats   = (f.cats    || []).join(' ').toLowerCase();
     if (perfil.es_dirigente) return true;
-    if (perfil.adulto_mayor && (quien.includes('adulto') || nombre.includes('adulto') || nombre.includes('pgu') || nombre.includes('senama') || cats.includes('adulto'))) return true;
-    if (perfil.busca_trabajo && (nombre.includes('trabajo') || nombre.includes('empleo') || nombre.includes('sence'))) return true;
-    if (perfil.emprendedor && (nombre.includes('emprendimiento') || nombre.includes('sercotec'))) return true;
-    if (perfil.discapacidad && (nombre.includes('discapacidad') || nombre.includes('senadis') || quien.includes('discapacidad'))) return true;
-    // Por defecto: mostrar fondos nacionales/personales
-    return f.alcance === 'nacional' && (quien.includes('vecino') || quien.includes('persona') || quien.includes('familia') || nombre.includes('pgu') || nombre.includes('bono'));
+    var quien  = (f.quien  || '').toLowerCase();
+    var nombre = (f.nombre || '').toLowerCase();
+    return f.alcance === 'nacional' && (
+      quien.includes('vecino') || quien.includes('persona') ||
+      quien.includes('familia') || nombre.includes('pgu') || nombre.includes('bono')
+    );
   });
 
-  var totalBeneficios = (muni ? muni.beneficios.reduce(function(a,c){ return a + c.items.length; }, 0) : 0);
+  var totalBeneficios = catsFiltradas.reduce(function(a,c){ return a + c.items.length; }, 0);
   var totalItems = totalBeneficios + fondosRel.length;
-  document.getElementById('pt-total').textContent = totalItems + (totalItems === 1 ? ' beneficio' : ' beneficios');
 
-  // Estimar dinero (suma de máximos de fondos abiertos/próximos)
+  // Actualizar encabezado
+  var needLabel = needObj ? (' de ' + needObj.emoji + ' ' + needObj.label) : '';
+  document.getElementById('pt-total').innerHTML =
+    '<strong>' + totalItems + '</strong> oportunidad' + (totalItems !== 1 ? 'es' : '') + needLabel;
+
   var dineroEstim = 0;
   fondosRel.forEach(function(f) {
-    var m = (f.monto || '').replace(/\./g,'').replace(/\$/g,'').replace(/hasta/i,'').trim();
-    var n = parseInt(m.replace(/[^\d]/g,''));
+    var n = parseInt((f.monto || '').replace(/\./g,'').replace(/[^\d]/g,''));
     if (!isNaN(n) && n > 0) dineroEstim += n;
   });
   document.getElementById('pt-dinero').textContent = dineroEstim > 0
     ? '💰 Hasta $' + dineroEstim.toLocaleString('es-CL') + ' disponibles'
-    : '💰 Múltiples beneficios disponibles';
+    : '💰 Múltiples ayudas disponibles';
 
   var html = '';
 
-  // Card 1: beneficios personales del municipio
-  if (muni) {
-    html += '<div class="pt-card"><div class="pt-card-titulo">🏠 Beneficios en ' + muni.nombre + '</div>';
-    muni.beneficios.forEach(function(cat) {
-      var mostrar = true;
-      if (perfil.adulto_mayor && cat.cat !== 'Adulto Mayor' && cat.cat !== 'Salud') mostrar = false;
-      if (perfil.tiene_hijos && cat.cat !== 'Educación y Becas' && cat.cat !== 'Salud') mostrar = false;
-      if (!perfil.adulto_mayor && !perfil.tiene_hijos) mostrar = true;
-      if (mostrar) {
-        html += '<div class="pt-cat-fila">' + cat.emoji + ' <span>' + cat.cat + '</span>' +
-          '<span class="pt-cat-badge">' + cat.items.length + '</span></div>';
-      }
+  // Card 1: beneficios municipales filtrados
+  if (muni && catsFiltradas.length > 0) {
+    html += '<div class="pt-card">';
+    html += '<div class="pt-card-titulo">🏠 En ' + muni.nombre + '</div>';
+    catsFiltradas.forEach(function(cat) {
+      html += '<div class="pt-cat-fila">' + cat.emoji + ' <span>' + cat.cat + '</span>' +
+        '<span class="pt-cat-badge">' + cat.items.length + '</span></div>';
     });
-    html += '<button class="pt-ver-btn" onclick="switchTab(\'personal\');verMunicipio(\'' + muni.id + '\')">Ver todos los beneficios →</button>';
-    html += '</div>';
-  } else {
-    html += '<div class="pt-card"><div class="pt-card-titulo">🏠 Beneficios personales</div>';
-    html += '<div style="font-size:.84rem;color:var(--gris);line-height:1.6">Selecciona tu municipio para ver los beneficios específicos disponibles para ti.</div>';
+    html += '<button class="pt-ver-btn" onclick="switchTab(\'personal\');verMunicipio(\'' + muni.id + '\')">Ver detalles y cómo postular →</button>';
     html += '</div>';
   }
 
-  // Card 2: fondos disponibles
+  // Card 2: fondos nacionales/regionales
   if (fondosRel.length > 0) {
-    html += '<div class="pt-card"><div class="pt-card-titulo">📋 Fondos disponibles' + (perfil.es_dirigente ? ' para tu organización' : '') + '</div>';
-    fondosRel.slice(0, 5).forEach(function(f) {
+    html += '<div class="pt-card">';
+    html += '<div class="pt-card-titulo">📋 Fondos disponibles</div>';
+    fondosRel.slice(0, 4).forEach(function(f) {
       var est = calcularEstado(f);
-      var badgeClass = est === 'abierto' ? 'e-abierto' : 'e-proximo';
-      var badgeLabel = est === 'abierto' ? 'Abierto' : 'Próximo';
-      var contador = badgeContador(f);
+      var bc  = est === 'abierto' ? 'e-abierto' : 'e-proximo';
+      var bl  = est === 'abierto' ? 'Abierto' : 'Próximo';
       html += '<div class="pt-fondo-fila" onclick="switchTab(\'juntavecinos\');verDetalle(' + f.id + ')">';
       html += '<div class="pt-fondo-nombre">' + f.nombre + '</div>';
-      html += '<div class="pt-fondo-meta"><span class="estado-badge ' + badgeClass + '" style="font-size:.7rem;padding:.15rem .45rem"><span class="estado-dot"></span>' + badgeLabel + '</span>' + contador + '<span>' + f.monto + '</span></div>';
+      html += '<div class="pt-fondo-meta"><span class="estado-badge ' + bc + '" style="font-size:.7rem;padding:.15rem .45rem"><span class="estado-dot"></span>' + bl + '</span>' + badgeContador(f) + '<span>' + f.monto + '</span></div>';
       html += '</div>';
     });
     html += '<button class="pt-ver-btn" onclick="switchTab(\'juntavecinos\')">Ver todos los fondos →</button>';
     html += '</div>';
+  }
+
+  if (!html) {
+    html = '<div class="pt-card" style="grid-column:1/-1;text-align:center;padding:2rem">' +
+      '<div style="font-size:2rem;margin-bottom:.5rem">🔍</div>' +
+      '<div style="font-weight:600;margin-bottom:.5rem">Completa tus datos para ver oportunidades</div>' +
+      '<div style="font-size:.85rem;color:var(--gris)">Vuelve al inicio y elige tu situación y municipio.</div>' +
+    '</div>';
   }
 
   document.getElementById('pt-contenido').innerHTML = html;
@@ -2330,6 +2465,15 @@ inicializar = function() {
 
   renderBannerUrgente();
   renderCalendarioFondos();
+
+  // Fecha de última actualización en bloque de confianza
+  var trustEl = document.getElementById('trust-fecha');
+  if (trustEl) {
+    var ahora = new Date();
+    var opts = { weekday:'long', day:'numeric', month:'long' };
+    var fechaStr = ahora.toLocaleDateString('es-CL', opts);
+    trustEl.textContent = fechaStr;
+  }
 
   // Actualizar contador dinámico de fondos
   if (fondos && fondos.length) {
